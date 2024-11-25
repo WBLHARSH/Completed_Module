@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="marketplace_seller_link" name="Marketplace Seller Link" inherit_id="portal.user_dropdown">
+        <xpath expr="//*[@id='o_logout_divider']" position="before">
+            <div id="o_logout_divider" class="dropdown-divider"/>
+            <a href="/seller/marketing" role="menuitem" class="dropdown-item ps-3">
+                <i class="fa fa-shopping-basket me-1 small text-primary"/> Start Selling
+            </a>
+        </xpath>
+    </template>
+</odoo>

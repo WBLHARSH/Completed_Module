@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="marketplace_seller_marketing" name="Marketplace Seller Marketing">
+        <t t-call="website.layout">
+            <div color="WHITE" type="banner" class="kFvkJm">
+                <div type="banner" class="fZHUUn">
+                    <div class="czsuGj">
+                        <div class="fPOyFL">
+                            <h1 class="cWSfmy">
+                                <span class="bvEpHv" t-esc="settings['banner_heading']">Become a Marketplace Seller
+                                </span>
+                                <!--                                <span class="kUlaXp">and sell to 50 Crore+-->
+                                <!--                                    customers-->
+                                <!--                                </span>-->
+                            </h1>
+                            <div id="become_a_seller_wrap" class="d-inline-flex align-items-center mb-2 me-auto">
+                                <a role="button" id="become_a_seller"
+                                   href="/become/seller" class="btn btn-primary a-submit flex-grow-1">
+                                    <i class="fa fa-fw fa-id-card-o me-1 small"/>
+                                    Become a Seller
+                                </a>
+                            </div>
+                        </div>
+                        <img src="/wbl_odoo_marketplace/static/src/img/banner1.png"
+                             alt="Sell On Marketplace Seller Hub" height="" width=""
+                             class="efNVbq"/>
+                    </div>
+                </div>
+            </div>
+            <div color="WHITE" class="kDlVNj">
+                <div class="fZHUUn">
+                    <div class="gDmJmk">
+                        <ul class="bCuqi">
+                            <li class="knhYTL">
+                                <div class="ecwcRs" t-esc="settings['seller_community']">14 Lakh+</div>
+                                <div class="gcPvre">Seller community</div>
+                            </li>
+                            <div class="cPvBle"/>
+                            <li class="knhYTL">
+                                <div class="ecwcRs" t-esc="settings['online_business']">24x7</div>
+                                <div class="gcPvre">Online Business</div>
+                            </li>
+                            <div class="cPvBle"/>
+                            <li class="knhYTL">
+                                <div class="ecwcRs" t-esc="settings['days_payment']">7</div>
+                                <div class="gcPvre">days* payment</div>
+                            </li>
+                            <div class="cPvBle"/>
+                            <li class="knhYTL">
+                                <div class="ecwcRs" t-esc="settings['pincodes_served']">19000+</div>
+                                <div class="gcPvre">Pincodes served</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container mp-main-container-why-loves">
+                <div class="marketplace-seller-loves">
+                    <div class="">
+                        <h2 class="mp-why-sellers-love-heading">
+                            <span class="mp-why-do">Why do
+                                <span class="mp-sellers-love-message">sellers love selling on Marketplace?
+                                </span>
+                            </span>
+                        </h2>
+                        <div class="mp-why-seller-love-notes">
+                            <div>
+                                <div class="mp-love-notes" t-esc="settings['seller_love_short_description']">45 crore+
+                                    customers across India trust
+                                    Marketplace.com to be their number 1 online shopping destination. It is no surprise
+                                    that
+                                    more than a million sellers trust their products to be made available 24x7 on
+                                    Marketplace.
+                                </div>
+                                <div class="mp-why-love-reasons-block">
+                                    <div class="mp-why-love-reason"
+                                         style="border-radius: 4px; background-color: rgb(255, 255, 255); box-shadow: rgba(208, 208, 208, 0.5) 1px 1px 16px 1px; margin: 0px; position: relative; width: 636px; min-width: 222px; overflow: hidden; display: block; z-index: unset;">
+                                        <div class="mp-reason-block">
+                                            <div class="mp-reason-box">
+                                                <div class="mp-reason-header">
+                                                    <img src="/wbl_odoo_marketplace/static/src/img/why-seller-love-1.png"
+                                                         alt="Opportunity icon"
+                                                         class="mp-reason-icon"/>
+                                                    <h3 class="mp-reason-heading">
+                                                        Opportunity
+                                                    </h3>
+                                                </div>
+                                                <div class="mp-reason-note" t-esc="settings['opportunity']">45 crore+ of
+                                                    customers
+                                                    across 19000+ pincodes, and access to shopping festivals like The
+                                                    Big
+                                                    Billion Days, and more.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mp-why-love-reason"
+                                         style="border-radius: 4px; background-color: rgb(255, 255, 255); box-shadow: rgba(208, 208, 208, 0.5) 1px 1px 16px 1px; margin: 0px; position: relative; width: 636px; min-width: 222px; overflow: hidden; display: block; z-index: unset;">
+                                        <div class="mp-reason-block">
+                                            <div class="mp-reason-box">
+                                                <div class="mp-reason-header">
+                                                    <img src="/wbl_odoo_marketplace/static/src/img/why-seller-love-2.png"
+                                                         alt="Ease of Doing Business icon"
+                                                         class="mp-reason-icon"/>
+                                                    <h3 class="mp-reason-heading">
+                                                        Ease of Doing Business
+                                                    </h3>
+                                                </div>
+                                                <div class="mp-reason-note" t-esc="settings['ease_of_doing_business']">
+                                                    Create your Marketplace
+                                                    seller account in under 10 minutes with just 1 product and a valid
+                                                    GSTIN
+                                                    number.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mp-why-love-reason"
+                                         style="border-radius: 4px; background-color: rgb(255, 255, 255); box-shadow: rgba(208, 208, 208, 0.5) 1px 1px 16px 1px; margin: 0px; position: relative; width: 636px; min-width: 222px; overflow: hidden; display: block; z-index: unset;">
+                                        <div class="mp-reason-block">
+                                            <div class="mp-reason-box">
+                                                <div class="mp-reason-header">
+                                                    <img src="/wbl_odoo_marketplace/static/src/img/why-seller-love-3.png"
+                                                         alt="Growth icon"
+                                                         class="mp-reason-icon"/>
+                                                    <h3 class="mp-reason-heading">
+                                                        Growth
+                                                    </h3>
+                                                </div>
+                                                <div class="mp-reason-note" t-esc="settings['growth']">Sellers see an
+                                                    average
+                                                    2.8X spike in growth, 2.3X more visibility, and up to 5X growth in
+                                                    The
+                                                    Big Billion Days Sale.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mp-why-love-reason"
+                                         style="border-radius: 4px; background-color: rgb(255, 255, 255); box-shadow: rgba(208, 208, 208, 0.5) 1px 1px 16px 1px; margin: 0px; position: relative; width: 636px; min-width: 222px; overflow: hidden; display: block; z-index: unset;">
+                                        <div class="mp-reason-block">
+                                            <div class="mp-reason-box">
+                                                <div class="mp-reason-header">
+                                                    <img src="/wbl_odoo_marketplace/static/src/img/why-seller-love-4.png"
+                                                         alt="Addition support icon"
+                                                         class="mp-reason-icon"/>
+                                                    <h3 class="mp-reason-heading">
+                                                        Additional Support
+                                                    </h3>
+                                                </div>
+                                                <div class="mp-reason-note" t-esc="settings['additional_support']">
+                                                    Account management
+                                                    services, exclusive training programs, business insights,
+                                                    catalogue/photoshoot support, and more.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="/wbl_odoo_marketplace/static/src/img/woman-with-her-arms-crossed.png"
+                                     class="mp-seller-love-img"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div color="WHITE" class="mp-seller-journey-block">
+                <div class="mp-seller-journey">
+                    <h2 class="mp-seller-journey-heading">
+                        <span class="mp-your-journey">Your Journey
+                            <span class="mp-journey">on Marketplace</span>
+                        </span>
+                    </h2>
+                    <div width="85%" class="mp-journey-notes" t-esc="settings['journey_short_description']">Starting
+                        your online business with Marketplace
+                        is easy. 14 lakh+ sellers trust Marketplace with their business
+                    </div>
+                    <div class="mp-journey-steps-block">
+                        <div class="mp-journey-step">
+                            <div class="ecHZqf">
+                                <img src="/wbl_odoo_marketplace/static/src/img/journey-1.png"
+                                     alt="Create icon" class="mp-journey-step-icon"/>
+                            </div>
+                            <div class="hSJXPG">
+                                <h3 class="mp-journey-head">Create</h3>
+                                <div class="mp-journey-note" t-esc="settings['journey_create']">Register in just 10 mins
+                                    with
+                                    valid GST, address, &amp; bank details
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mp-journey-step">
+                            <div class="ecHZqf">
+                                <img src="/wbl_odoo_marketplace/static/src/img/journey-2.png"
+                                     alt="List icon" class="mp-journey-step-icon"/>
+                            </div>
+                            <div class="hSJXPG">
+                                <h3 class="mp-journey-head">List</h3>
+                                <div class="mp-journey-note" t-esc="settings['journey_list']">List your products (min 1
+                                    no.)
+                                    that you want to sell on Marketplace.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mp-journey-step">
+                            <div class="ecHZqf">
+                                <img src="/wbl_odoo_marketplace/static/src/img/journey-3.png"
+                                     alt="Orders icon" class="mp-journey-step-icon"/>
+                            </div>
+                            <div class="hSJXPG">
+                                <h3 class="mp-journey-head">Orders</h3>
+                                <div class="mp-journey-note" t-esc="settings['journey_orders']">Receive orders from over
+                                    45
+                                    crore+ Marketplace customers.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mp-journey-step">
+                            <div class="ecHZqf">
+                                <img src="/wbl_odoo_marketplace/static/src/img/journey-4.png"
+                                     alt="Shipment icon" class="mp-journey-step-icon"/>
+                            </div>
+                            <div class="hSJXPG">
+                                <h3 class="mp-journey-head">Shipment
+                                </h3>
+                                <div class="mp-journey-note" t-esc="settings['journey_shipment']">Marketplace ensures
+                                    stress free
+                                    delivery of your products
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mp-journey-step">
+                            <div class="ecHZqf">
+                                <img src="/wbl_odoo_marketplace/static/src/img/journey-5.png"
+                                     alt="Payment icon" class="mp-journey-step-icon"/>
+                            </div>
+                            <div class="hSJXPG">
+                                <h3 class="mp-journey-head">Payment
+                                </h3>
+                                <div class="mp-journey-note" t-esc="settings['journey_payment']">Receive payment 7 days*
+                                    from
+                                    the date of dispatch of your order
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/become/seller" role="button" class="btn flex-grow-1 mp-journey-start-selling">Start
+                        Selling
+                    </a>
+                </div>
+            </div>
+
+            <div color="BLUE" class="bsdeTN">
+                <div class="fZHUUn">
+                    <h2 class="fmmQPq">
+                        <span class="ibnKqc">Access our tools to grow faster
+                            <span class="kwWgAB">on Marketplace</span>
+                        </span>
+                    </h2>
+                    <div width="70%" class="jaimrx">We understand that your online business may
+                        require additional support from time to time, and we've got you covered. With your Marketplace
+                        account, you gain access to a range of tools designed to help grow your online business.
+                    </div>
+                    <div class="hlBqGK">
+                        <img src="/wbl_odoo_marketplace/static/src/img/growth.png"
+                             alt="5X Growth Image" class="fgkJVJ"/>
+                    </div>
+                    <div class="fRhSGi">
+                        <div class="hjMMzw"
+                             style="border-radius: 4px; background-color: rgb(255, 255, 255); box-shadow: rgba(208, 208, 208, 0.5) 1px 1px 16px 1px; height: 190px; margin: 0px; position: relative; width: 636px; min-width: 222px; overflow: hidden; display: block; z-index: unset;">
+                            <div class="kIrRHa">
+                                <div class="lfsljL">
+                                    <div class="hdXhsm">
+                                        <img src="/wbl_odoo_marketplace/static/src/img/growth-1.png"
+                                             alt="Fulfilment by Marketplace Icon"
+                                             class="bSGFyK"/>
+                                        <h3 class="ksbphK">
+                                            Fulfilment by Marketplace
+                                        </h3>
+                                    </div>
+                                    <div class="rPjaM">Worried about storing, packing,
+                                        shipping, and delivering your products? Let Marketplace do it all for you.
+                                    </div>
+                                    <a href="#"
+                                       class="lfMigb">Learn More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hjMMzw"
+                             style="border-radius: 4px; background-color: rgb(255, 255, 255); box-shadow: rgba(208, 208, 208, 0.5) 1px 1px 16px 1px; height: 190px; margin: 0px; position: relative; width: 636px; min-width: 222px; overflow: hidden; display: block; z-index: unset;">
+                            <div class="kIrRHa">
+                                <div class="lfsljL">
+                                    <div class="hdXhsm">
+                                        <img src="/wbl_odoo_marketplace/static/src/img/growth-2.png"
+                                             alt="Marketplace Ads Icon"
+                                             class="bSGFyK"/>
+                                        <h3 class="ksbphK">
+                                            Marketplace Ads
+                                        </h3>
+                                    </div>
+                                    <div class="rPjaM">Curious how your products will
+                                        stand out from your competitors and gain maximum visibility?
+                                    </div>
+                                    <a href="#" class="lfMigb">Learn
+                                        More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hjMMzw"
+                             style="border-radius: 4px; background-color: rgb(255, 255, 255); box-shadow: rgba(208, 208, 208, 0.5) 1px 1px 16px 1px; height: 190px; margin: 0px; position: relative; width: 636px; min-width: 222px; overflow: hidden; display: block; z-index: unset;">
+                            <div class="kIrRHa">
+                                <div class="lfsljL">
+                                    <div class="hdXhsm">
+                                        <img src="/wbl_odoo_marketplace/static/src/img/growth-3.png"
+                                             alt="Shopping Festivals Icon"
+                                             class="bSGFyK"/>
+                                        <h3 class="ksbphK">
+                                            Shopping Festivals
+                                        </h3>
+                                    </div>
+                                    <div class="rPjaM">Get access to India’s biggest
+                                        shopping festivals, The Big Billion Day, Big Diwali Sale, and more.
+                                    </div>
+                                    <a href="#" class="lfMigb">Learn
+                                        More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hjMMzw"
+                             style="border-radius: 4px; background-color: rgb(255, 255, 255); box-shadow: rgba(208, 208, 208, 0.5) 1px 1px 16px 1px; height: 190px; margin: 0px; position: relative; width: 636px; min-width: 222px; overflow: hidden; display: block; z-index: unset;">
+                            <div class="kIrRHa">
+                                <div class="lfsljL">
+                                    <div class="hdXhsm">
+                                        <img src="/wbl_odoo_marketplace/static/src/img/growth-4.png"
+                                             alt="Learning Center Icon"
+                                             class="bSGFyK"/>
+                                        <h3 class="ksbphK">
+                                            Learning Center
+                                        </h3>
+                                    </div>
+                                    <div class="rPjaM">Personalised learning modules,
+                                        exclusive webinars, tutorial videos, and more to help sell better faster.
+                                    </div>
+                                    <a href="#" class="lfMigb">
+                                        Learn More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hjMMzw"
+                             style="border-radius: 4px; background-color: rgb(255, 255, 255); box-shadow: rgba(208, 208, 208, 0.5) 1px 1px 16px 1px; height: 190px; margin: 0px; position: relative; width: 636px; min-width: 222px; overflow: hidden; display: block; z-index: unset;">
+                            <div class="kIrRHa">
+                                <div class="lfsljL">
+                                    <div class="hdXhsm">
+                                        <img src="/wbl_odoo_marketplace/static/src/img/growth-5.png"
+                                             alt="Account Management"
+                                             class="bSGFyK"/>
+                                        <h3 class="ksbphK">
+                                            Account Management
+                                        </h3>
+                                    </div>
+                                    <div class="rPjaM">Improve product selection,
+                                        product pricing, business insights, &amp; more with our expert in-house account
+                                        managers.
+                                    </div>
+                                    <a href="#" class="lfMigb">
+                                        Learn More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hjMMzw"
+                             style="border-radius: 4px; background-color: rgb(255, 255, 255); box-shadow: rgba(208, 208, 208, 0.5) 1px 1px 16px 1px; height: 190px; margin: 0px; position: relative; width: 636px; min-width: 222px; overflow: hidden; display: block; z-index: unset;">
+                            <div class="kIrRHa">
+                                <div class="lfsljL">
+                                    <div class="hdXhsm">
+                                        <img src="/wbl_odoo_marketplace/static/src/img/growth-6.png"
+                                             alt="Mobile App"
+                                             class="bSGFyK"/>
+                                        <h3 class="ksbphK">Mobile
+                                            App
+                                        </h3>
+                                    </div>
+                                    <div class="rPjaM">Manage your online seller
+                                        account 24x7 with Marketplace Seller Hub App. Compatible with all Android &amp;
+                                        iOS
+                                        devices.
+                                    </div>
+                                    <a href="#" class="lfMigb">Learn
+                                        More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div color="WHITE" class="dENCTu">
+                <div class="fZHUUn">
+                    <h2 class="fmmQPq">
+                        <span class="kwWgAB">We are happy to
+                            <span class="ibnKqc">help you 🙂</span>
+                        </span>
+                    </h2>
+                    <div class="kTEnLY">
+                        <div class="ioqnFe">
+                            <span class="dEEySg">Still have questions or queries that are
+                                left unanswered? Share your thoughts below which will help us improve your website
+                                experience.
+                            </span>
+                            <form class="jLCHGW">
+                                <div>
+                                    <div class="iRkbXM collection-input-container">
+                                        <input class="fPuYwe collection" type="text"
+                                               placeholder="Enter Full Name" label="Enter Full Name" name="fullName"
+                                               value="" required="True"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="iRkbXM collection-input-container">
+                                        <input class="fPuYwe collection" type="text"
+                                               label="Enter Mobile Number / Email ID"
+                                               placeholder="Enter Mobile Number / Email ID" name="contactInformation"
+                                               value="" required="True"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <select name="topic" class="kCbpt">
+                                        <option value="">Select a Topic</option>
+                                        <option value="Account Creation">Account Creation</option>
+                                        <option value="Fee Structure">Fee Structure</option>
+                                        <option value="What can I sell?">What can I sell?</option>
+                                        <option value="Account Management">Account Management</option>
+                                        <option value="How to run Ads?">How to run Ads?</option>
+                                        <option value="Shipping">Shipping</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <div class="iRkbXM collection-text-area-input-container">
+                                        <input class="fPuYwe collection-text-area"
+                                               type="text" label="Type Your Messsage" placeholder="Type Your Message"
+                                               name="message" value="" required="True"/>
+                                    </div>
+                                </div>
+                                <button class="klTPPh send-query-collection" type="submit">Send Query</button>
+                            </form>
+                        </div>
+                        <div class="dawqwO">
+                            <img src="/wbl_odoo_marketplace/static/src/img/seller-support.png"
+                                 alt="seller-support"/>
+                        </div>
+                    </div>
+                    <div class="Toastify"></div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+
+    <record id="action_marketplace_dashboard" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">owl.sales_dashboard</field>
+    </record>
+
+    <menuitem id="marketplace_menu_root"
+              name="Marketplace"
+              groups="group_marketplace_pending_seller"
+              web_icon="sale_management,static/description/icon.png">
+
+        <menuitem id="marketplace_dashboard_menu"
+                  name="Dashboard"
+                  groups="group_marketplace_seller"
+                  action="action_marketplace_dashboard"
+                  sequence="10"/>
+
+        <menuitem id="marketplace_seller_menu"
+                  name="Sellers"
+                  sequence="20">
+            <menuitem id="menu_mp_seller_profile"
+                      name="My Shop Profile"
+                      groups="group_marketplace_pending_seller"
+                      action="action_mp_seller_profile_view"
+                      sequence="10"/>
+
+            <menuitem id="menu_marketplace_sellers"
+                      name="Sellers"
+                      groups="group_marketplace_user"
+                      action="action_marketplace_seller"
+                      sequence="20"/>
+
+            <menuitem id="menu_marketplace_customer_query"
+                      name="Customer Queries"
+                      groups="group_marketplace_seller"
+                      action="action_marketplace_customer_query"
+                      sequence="30"/>
+        </menuitem>
+
+        <menuitem id="marketplace_sale_menu"
+                  name="Sales"
+                  sequence="25">
+            <menuitem id="menu_mp_sale_order"
+                      name="Orders"
+                      groups="group_marketplace_seller"
+                      action="action_mp_sale_order_view"
+                      sequence="10"/>
+        </menuitem>
+
+        <menuitem id="marketplace_inventory_menu"
+                  name="Inventory"
+                  sequence="25">
+            <menuitem id="menu_mp_delivery_order"
+                      name="Delivery Orders"
+                      groups="group_marketplace_seller"
+                      action="action_mp_delivery_order_view"
+                      sequence="10"/>
+        </menuitem>
+
+
+        <menuitem id="marketplace_catalog_menu"
+                  name="Catalog"
+                  sequence="30">
+            <menuitem id="menu_mp_catalog_products"
+                      name="Products"
+                      groups="group_marketplace_seller"
+                      action="action_marketplace_seller_product"
+                      sequence="10"/>
+        </menuitem>
+
+        <menuitem id="marketplace_global_configuration_menu"
+                  sequence="40"
+                  name="Configuration">
+            <menuitem name="Settings"
+                      id="menu_mp_settings"
+                      action="action_marketplace_configuration"
+                      sequence="10"/>
+        </menuitem>
+    </menuitem>
+</odoo>

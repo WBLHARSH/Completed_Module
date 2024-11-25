@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <record id="action_marketplace_seller" model="ir.actions.act_window">
+        <field name="name">Marketplace Seller</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">marketplace.seller</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+    <record id="view_marketplace_seller_kanban" model="ir.ui.view">
+        <field name="name">marketplace.seller.kanban</field>
+        <field name="model">marketplace.seller</field>
+        <field name="arch" type="xml">
+            <kanban sample="1" default_group_by="state">
+                <progressbar field="state"
+                             colors='{"approved": "success", "pending": "warning", "denied": "danger", "draft": "info"}'/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                            <t t-set="avatar_image"
+                               t-value="kanban_image('marketplace.seller', 'image_1920', record.id.raw_value)"/>
+                            <div class="o_kanban_image_fill_left d-none d-md-block">
+                                <img t-att-src="kanban_image('marketplace.seller', 'image_1920', record.id.raw_value)"
+                                     t-att-alt="record.id.value"/>
+                            </div>
+                            <div class="oe_kanban_details d-flex flex-column justify-content-between">
+                                <div>
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <ul>
+                                        <li t-if="record.city.raw_value or record.country_id.raw_value">
+                                            <t t-if="record.city.raw_value">
+                                                <field name="city"/>
+                                                <t t-if="record.country_id.raw_value">,</t>
+                                            </t>
+                                            <t t-if="record.country_id.raw_value">
+                                                <field name="country_id"/>
+                                            </t>
+                                        </li>
+                                        <li t-if="record.email.raw_value" class="o_text_overflow">
+                                            <field name="email"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left"/>
+                                    <div class="oe_kanban_bottom_right"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_marketplace_seller_tree" model="ir.ui.view">
+        <field name="name">marketplace.seller.tree</field>
+        <field name="model">marketplace.seller</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="shop_name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_marketplace_seller_form" model="ir.ui.view">
+        <field name="name">marketplace.seller.form</field>
+        <field name="model">marketplace.seller</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <header>
+                    <button id="seller_approved" name="action_seller_approved" string="Approve"
+                            class="btn-primary"
+                            invisible="state != 'pending'" type="object"/>
+                    <button id="seller_denied" name="action_seller_denied" string="Deny"
+                            class="btn-primary"
+                            invisible="state != 'pending'" type="object"
+                            confirm="Are you sure you want to deny this seller?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,pending,approved,denied"/>
+                </header>
+                <sheet>
+                    <field name="image_1920" widget="image" class="oe_avatar"
+                           options="{'preview_image': 'image_1920'}"/>
+                    <div class="oe_title">
+                        <label for="name" string="Seller Name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Jonny Bairstow"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <span class="o_form_label o_td_label" name="address_name">
+                                <b>Address</b>
+                            </span>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state_id" class="o_address_state" placeholder="State"
+                                       options="{'no_open': True, 'no_quick_create': True}"
+                                       context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                <div name="partner_address_country" class="d-flex justify-content-between">
+                                    <field name="country_id" placeholder="Country" class="o_address_country"
+                                           options='{"no_open": True, "no_create": True}'/>
+                                </div>
+                            </div>
+                            <field name="vat" placeholder="e.g. BE0477472701"/>
+                        </group>
+                        <group>
+                            <field name="phone" widget="phone"/>
+                            <field name="mobile" widget="phone"/>
+                            <field name="email" widget="email" context="{'gravatar_image': True}"/>
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Shop" name="shop">
+                            <field name="shop_image_logo" widget="image" class="oe_avatar"
+                                   options="{'preview_image': 'shop_image_logo'}"/>
+                            <div class="oe_title">
+                                <label for="name" string="Shop Name"/>
+                                <h1>
+                                    <field name="shop_name" placeholder="e.g. Dashing Fashion"/>
+                                </h1>
+                            </div>
+                            <group>
+                                <group name="mp_shop_description" string="Description">
+                                    <field name="description"/>
+                                </group>
+                                <group name="mp_shop_url" string="Url">
+                                    <field name="shop_url" string="Shop Url" widget="url"
+                                           placeholder="e.g. https://www.odoo.com"/>
+                                </group>
+                            </group>
+                            <group string="Banner" name="mp_shop_banner">
+                                <div>
+                                    <field name="shop_image_banner" widget="image"/>
+                                </div>
+                            </group>
+                        </page>
+                        <page string="Terms &amp; Conditions" name="terms_conditions">
+                            <field colspan="2" name="terms_conditions" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

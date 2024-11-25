@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">marketplace.res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="15"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Marketplace" string="Marketplace" name="wbl_odoo_marketplace">
+                    <block title="Auto Approval Settings" name="auto_approval_settings">
+                        <setting help="If enabled all seller's requests will be automatically approved.">
+                            <field name="seller_auto_approval"/>
+                        </setting>
+                        <setting help="If enabled all seller's products will be automatically approved.">
+                            <field name="product_auto_approval"/>
+                        </setting>
+                    </block>
+                    <block title="Payment Terms" name="payment_terms">
+                        <setting help="Global commission for marketplace seller.">
+                            <field name="commission" widget="percentage"/>
+                        </setting>
+                    </block>
+                    <block title="Mail &amp; Notifications" name="mail_notifications">
+                        <setting help="Email notification to admin when sellers request to approve their accounts.">
+                            <field name="seller_request_notify_to_admin"/>
+                        </setting>
+                        <setting help="Email notification to seller when their account sent to approval.">
+                            <field name="seller_request_notify_to_seller"/>
+                        </setting>
+                        <setting help="Email notification to seller when their account has been approved.">
+                            <field name="seller_approved_notify_to_seller"/>
+                        </setting>
+                        <setting help="Email notification to seller when their account has been denied.">
+                            <field name="seller_denied_notify_to_admin"/>
+                        </setting>
+                    </block>
+                    <!--  Marketing Page  -->
+                    <block title="Marketing Page" name="marketing_page">
+                        <setting string="Banner Header"
+                                 help="Enter the main headline for the banner. This text will be displayed prominently on the marketing page's banner, attracting users' attention.">
+                            <field name="banner_heading"/>
+                        </setting>
+
+                        <setting string="Seller Love Short Description"
+                                 help="Provide a short description that highlights the love or appreciation customers have for the seller. This text will be displayed in a smaller section, adding more context to the marketing page.">
+                            <field name="seller_love_short_description"/>
+                        </setting>
+
+                        <!-- New setting for Journey Short Description -->
+                        <setting string="Journey Short Description"
+                                 help="Provide a brief description of the customer journey or story. This text will appear in the marketing section dedicated to showcasing the journey.">
+                            <field name="journey_short_description"/>
+                        </setting>
+                        <setting/>
+                        <setting string="Promotion Number">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="seller_community" string="Seller Community" class="col-lg-3"/>
+                                    <field name="seller_community"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="online_business" string="Online Business" class="col-lg-3"/>
+                                    <field name="online_business"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="days_payment" string="Days Payment" class="col-lg-3"/>
+                                    <field name="days_payment"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="pincodes_served" string="Pincodes Served" class="col-lg-3"/>
+                                    <field name="pincodes_served"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Seller Love Key Points">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="opportunity" string="Opportunity" class="col-lg-3"/>
+                                    <field name="opportunity"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="ease_of_doing_business" string="Ease of doing business"
+                                           class="col-lg-3"/>
+                                    <field name="ease_of_doing_business"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="growth" string="Growth" class="col-lg-3"/>
+                                    <field name="growth"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="additional_support" string="Additional Support" class="col-lg-3"/>
+                                    <field name="additional_support"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Marketplace Journey Key Points">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="journey_create" string="Create" class="col-lg-3"/>
+                                    <field name="journey_create"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="journey_list" string="List"
+                                           class="col-lg-3"/>
+                                    <field name="journey_list"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="journey_payment" string="Payment"
+                                           class="col-lg-3"/>
+                                    <field name="journey_payment"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="journey_orders" string="Orders"
+                                           class="col-lg-3"/>
+                                    <field name="journey_orders"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label for="journey_shipment" string="Shipment"
+                                           class="col-lg-3"/>
+                                    <field name="journey_shipment"/>
+                                </div>
+
+                            </div>
+                        </setting>
+                    </block>
+
+
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_marketplace_configuration" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'wbl_odoo_marketplace', 'bin_size': False}</field>
+    </record>
+</odoo>
