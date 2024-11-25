@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  # Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)  -->
+<!--  # Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.  -->
+<odoo>
+    <data>
+        <record id="wbl_brand_menu" model="website.menu">
+            <field name="name">Brands</field>
+            <field name="url">/brands</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence">20</field>
+        </record>
+    </data>
+</odoo>

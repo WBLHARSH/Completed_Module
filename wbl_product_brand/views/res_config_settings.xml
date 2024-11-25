@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--  # Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)  -->
+<!--  # Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.  -->
+
+<odoo>
+    <record id="view_res_config_settings_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.website</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='website_info_settings']" position="after">
+                <block title="Shop - Brand" id="website_preorder">
+                    <setting help="Allow to Show Brand Name On Product Page">
+                        <field name="show_brand_name_on_product_page" string="Brand Name On Product Page"/>
+                    </setting>
+                    <setting help="Allow to Show Brand Name On Shop Page">
+                        <field name="show_brand_name_on_shop_page" string="Brand Name On Shop Page"/>
+                    </setting>
+                    <setting help="Allow to Show Brand Name On Website Menu">
+                        <field name="show_brand_name_on_website_menu" string="Brand Name On Website Menu"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

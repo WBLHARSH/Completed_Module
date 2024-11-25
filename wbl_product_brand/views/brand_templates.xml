@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  # Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)  -->
+<!--  # Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.  -->
+<odoo>
+    <template id="brand_page" name="Brand Page">
+        <t t-call="website.layout">
+            <t t-set="css" t-value="'/path/to/brand_page.css'"/>
+            <link rel="stylesheet" type="text/css" t-att-href="css"/>
+
+            <div class="container" id="wbl_brand_search">
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="input-group my-3">
+                            <input type="text" class="form-control" id="brand_search" placeholder="Search brands...."/>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-info" type="button" id="wbl_btn_search">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="brand_list">
+                    <t t-foreach="brands" t-as="brand">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 brand_item">
+                            <div class="card text-center border-0">
+                                <t t-if="brand.brand_logo">
+                                    <a t-attf-href="/product_brands/{{ str(brand.id) }}">
+                                        <img t-att-src="'data:image/png;base64,%s' % (brand.brand_logo and brand.brand_logo.decode('utf-8'))"
+                                             alt="Brand Logo"/>
+                                    </a>
+                                </t>
+                                <div class="card-body">
+                                    <a t-attf-href="/product_brands/{{ str(brand.id) }}">
+                                        <h5 class="card-title">
+                                            <t t-esc="brand.name"/>
+                                        </h5>
+                                    </a>
+                                    <p class="card-text">This brand has
+                                        <t t-esc="brand.pro_item_count"/>
+                                        products.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

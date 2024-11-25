@@ -1,0 +1,233 @@
+/* product_list.css */
+
+
+.oe_product_image {
+    width: 100%;
+    height: 228.75px;
+}
+
+
+.oe_product_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.prod_item .card-body > div {
+    width: 100%;
+    height: 71.19px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+
+.prod_item .card-body p {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.2;
+}
+card-img-top {
+    height: 80px;
+    object-fit: contain;
+    margin: auto;
+}
+
+.card-body a {
+    text-decoration: none;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+#prodbrand {
+    display: flex;
+    align-items: center;
+}
+
+#prodbrand .oe_kanban_image field[widget="image"] {
+    width: 50px;
+    height: 50px;
+}
+
+#prodbrand .oe_kanban_details {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#prodbrand .oe_kanban_details div {
+    margin-bottom: 5px;
+}
+
+#prodbrand field[style="display: none;"] {
+    display: none;
+}
+
+
+.oe_kanban_image field[widget="image"] {
+    width: 64px;
+    height: 64px;
+}
+
+.oe_kanban_details .oe_kanban_record_title,
+.oe_kanban_details .oe_kanban_detail {
+    margin-left: 80px;
+}
+
+
+.product-brands .img-fluid {
+    width: 60px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.product-brands p.mb-0 {
+    margin-left: 10px;
+}
+
+.product-brands a#wbl_notify {
+    /* Additional styling for Know More link if needed */
+}
+
+
+#message_popup .modal-body ul.list-unstyled .img-fluid {
+    width: 60px;
+    height: 40px;
+    object-fit: cover;
+}
+
+#message_popup .modal-body .ml-2 {
+    margin-left: 10px;
+    width: calc(100% - 70px);
+}
+
+#message_popup .modal-body hr {
+    margin: 10px 0;
+    border: 1px solid #ddd;
+}
+#mn{
+position: relative;
+    right: -1341px;
+
+}
+.oe_kanban_global_click {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-sizing: border-box;
+}
+
+.oe_kanban_image {
+    flex: 0 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oe_kanban_image field {
+    width: 50px;
+    height: 50px;
+}
+
+.oe_kanban_details {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.oe_kanban_details div {
+    margin-bottom: 5px;
+}
+
+#wbl_product_search .img-fluid {
+    width: 100%;
+    height: auto;
+}
+
+#wbl_product_search .card-img-top {
+    height: 80px;
+    width: 80px;
+    object-fit: contain;
+    margin-top: -60px;
+    position: relative;
+    right: 540px;
+}
+
+
+#wbl_product_search .oe_product_image {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 15px;
+
+}
+
+#wbl_product_search .oe_product_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+#wbl_product_search .card-body {
+    margin: 0;
+    padding: 15px;
+    text-align: left;
+}
+
+
+#wbl_product_search p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+
+#wbl_product_search .prod_item {
+    margin-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+}
+
+
+#wbl_product_search .btn-outline-info {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+#wbl_product_search .btn-outline-info:hover {
+    background-color: #138496;
+    color: #fff;
+}
+
+
+#wbl_product_search .form-control {
+    border-radius: 5px;
+}
+
+
+#wbl_product_search .product-name {
+
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+
+#wbl_product_search .product-price {
+    color: #000;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+    font-family: 'Arial', sans-serif;
+    text-align: left;
+}
+
+

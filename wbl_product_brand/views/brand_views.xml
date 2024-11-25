@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  # Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)  -->
+<!--  # Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.  -->
+<odoo>
+    <record id="view_product_brand_form" model="ir.ui.view">
+        <field name="name">product.brand.form</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_published"
+                                invisible="not is_published"
+                                class="oe_stat_button"
+                                type="object"
+                                icon="fa-globe">
+                            <div class="o_stat_info o_field_widget">
+                                <span class="o_stat_text text-success">Published</span>
+                            </div>
+                        </button>
+
+                        <button name="toggle_published"
+                                invisible="is_published"
+                                class="oe_stat_button"
+                                type="object"
+                                icon="fa-eye-slash">
+                            <div class="o_stat_info o_field_widget">
+                                <span class="o_stat_text text-danger">Unpublished</span>
+                            </div>
+                        </button>
+
+                        <button name="action_open_products"
+                                class="oe_stat_button"
+                                type="object"
+                                icon="fa-solid fa-arrow-right">
+
+                            <div class="o_stat_info o_field_widget">
+                                <div>
+                                    <span class="o_stat_text text-success">Items</span>
+                                </div>
+                                <field name="pro_item_count"/>
+                            </div>
+                        </button>
+                    </div>
+                    <field name="brand_logo" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                    <div class="oe_title">
+                        <label for="name" string="Brand Name"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field class="text-break" name="name" options="{'line_breaks': False}" widget="text"
+                                       placeholder="e.g. Apple"/>
+                            </div>
+                        </h1>
+                    </div>
+                    <field name="banner_image" widget="image"/>
+                    <field name="is_published" invisible="1"/>
+                    <notebook>
+                        <page name="Products">
+                            <field name="products" widget="one2many" mode="list,kanban">
+                                <list string="Products" editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="image_128" widget="image" class="oe_avatar float-start"/>
+                                    <field name="product_reference"/>
+                                    <field name="product_type"/>
+                                </list>
+                                <kanban class="o_kanban_mobile" create="false" delete="false">
+                                    <field name="product_id"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="d-flex flex-column justify-content-between">
+                                                <field name="product_id"/>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                        <page name="Description">
+                            <label for="description" string="Description"/>
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_product_brand_tree" model="ir.ui.view">
+        <field name="name">product.brand.tree</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="is_published"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_product_brand_kanban" model="ir.ui.view">
+        <field name="name">product.brand.kanban</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="oe_kanban_image">
+                                    <field name="brand_logo" widget="image" class="oe_avatar float-start"
+                                           style="width: 64px; height: 64px;" readonly="1"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <div class="oe_kanban_record_title" style="margin-left: 80px;">
+                                        <strong>
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                    <div class="oe_kanban_detail" style="margin-left: 80px;">
+                                        <label for="pro_item_count" string="Products"/>
+                                        <strong>
+                                            Products:
+                                            <field name="pro_item_count"/>
+                                        </strong>
+                                    </div>
+                                    <div class="oe_kanban_detail" style="margin-left: 80px;">
+                                        <label for="is_published" string="Published"/>
+                                        <strong>
+                                            <field name="is_published"/>
+                                            Published
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+
+        </field>
+    </record>
+
+    <record id="action_product_brand" model="ir.actions.act_window">
+        <field name="name">Product Brands</field>
+        <field name="res_model">product.brand</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+    <menuitem
+            id="product_sub_root"
+            name="Brands"
+            parent="sale.product_menu_catalog"
+            action="action_product_brand"
+            sequence="12"/>
+
+    <menuitem
+            id="product_website_sub_root"
+            name="Brands"
+            parent="website_sale.menu_catalog"
+            action="action_product_brand"
+            sequence="6"/>
+
+</odoo>

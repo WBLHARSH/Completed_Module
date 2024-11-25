@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  # Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)  -->
+<!--  # Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.  -->
+<odoo>
+    <template id="override_shopPag_item" inherit_id="website_sale.products_item">
+        <xpath expr="//div[contains(@class, 'o_wsale_product_information_text')]" position="after">
+            <t t-if="product.brand_id and show_brand_name_on_shop_page">
+                <div class="product_brand">
+                    <span class="brand_name">
+                        <strong>
+                            <t t-esc="product.brand_id.name"/>
+                        </strong>
+                    </span>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+
+    <template id="brands_recursive" name="Category list">
+        <div t-attf-data-link-href="/shop/brand/#{slug(c)}" class="form-check d-inline-block" id="selected_brands">
+            <input type="checkbox" t-att-id="c.id" t-att-name="c.name" t-att-value="c.id"
+                   class="form-check-input selected_product_types"
+                   t-att-checked="selected_brands and c.id in selected_brands"/>
+            <label class="form-check-label fw-normal" t-att-for="'checkbox_brand_' + str(c.id)" t-field="c.name"/>
+        </div>
+    </template>
+
+    <template id="products_attributes" inherit_id="website_sale.products" active="True" name="Product Brand Filter">
+        <xpath expr="//div[contains(@t-attf-class, 'products_attributes_filters')]" position="inside">
+            <div class="position-relative" id="wsale_products_brands_collapse">
+                <ul class="nav nav-pills flex-column mb-2">
+                    <a t-attf-href="/shop" class="form-check d-inline-block" style="color:black;">
+                        <input type="checkbox" t-att-id="all" t-att-name="all" t-att-value="0" t-att-checked="not brand"
+                               class="form-check-input pe-none"/>
+                        <label class="form-check-label fw-normal" t-att-for="All">All</label>
+                    </a>
+                    <t t-foreach="brands" t-as="c">
+                        <t t-call="wbl_product_brand.brands_recursive"/>
+                    </t>
+                </ul>
+            </div>
+        </xpath>
+    </template>
+
+
+    <template id="wbl_product_timer_view" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="after">
+            <t t-if="brand_names">
+                <div class="product-brands" t-if="show_brand_name_on_product_page">
+                    <ul class="list-unstyled">
+                        <t t-foreach="brand_names" t-as="brand_name">
+                            <li class="d-flex align-items-center mb-4">
+                                <img t-att-src="'data:image/png;base64,%s' % (brand_name.brand_logo and brand_name.brand_logo.decode('utf-8') or '')"
+                                     class="img-fluid"
+                                     alt="Brand Logo"
+                                     style="width: 60px; height: 40px; object-fit: cover;"/>
+                                <p class="mb-0 ml-2" style="margin-left: 10px;">
+                                    <strong style="margin-right: 5px;">
+                                        <t t-esc="brand_name.name"/>
+                                    </strong>
+                                    <t t-esc="brand_name.description_truncated"/>
+                                    <t t-if="brand_name.description_truncated">
+                                        <a href="#" id="wbl_notify">Know More</a>
+                                    </t>
+                                </p>
+                            </li>
+                        </t>
+                    </ul>
+                </div>
+
+                <div id="message_popup" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <ul class="list-unstyled">
+                                    <t t-foreach="brand_names" t-as="brand_name">
+                                        <div class="row align-items-center mb-4">
+                                            <div class="col-4">
+                                                <img t-att-src="'data:image/png;base64,%s' % (brand_name.brand_logo and brand_name.brand_logo.decode('utf-8') or '')"
+                                                     class="img-fluid"
+                                                     alt="Brand Logo"
+                                                     style="width: 60px; height: 40px; object-fit: cover;"/>
+                                            </div>
+                                            <div class="col-8">
+                                                <strong class="h4">
+                                                    <t t-esc="brand_name.name"/>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                        <hr style="margin: 10px 0; border: 1px solid #ddd;"/>
+                                        <div>
+                                            <t t-esc="brand_name.description"/>
+                                        </div>
+                                    </t>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="close btn btn-primary" data-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">Close</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
