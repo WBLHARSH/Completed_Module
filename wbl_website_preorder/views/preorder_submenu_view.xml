@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Show Submenu Preorder in shop's menu's ecommerce-->
+    <menuitem name="Preorders" id="product_preorder_sub_menu" parent="website_sale.menu_orders"
+              sequence="5"
+              action="action_product_preorder_form_tree_view"/>
+    <!--Show Submenu Notify in shop's menu's ecommerce-->
+    <menuitem name="Notify" id="product_notify_sub_menu" parent="website_sale.menu_orders" sequence="5"
+              action="action_product_notify_form_tree_view"/>
+</odoo>

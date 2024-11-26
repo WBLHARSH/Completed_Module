@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+     <!--Show Button On My Portal-->
+    <template id="portal_my_preorders" name="Preorders" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[@id='portal_vendor_category']" position="inside">
+            <div class="o_portal_index_card col-md-6 order-1">
+                <a href="/my/preorders" title="My Preorders"
+                   class="d-flex justify-content-start gap-2 gap-md-3 align-items-center py-3 pe-2 px-md-3 h-100 rounded text-decoration-none text-reset text-bg-light">
+                    <div class="o_portal_icon align-self-start">
+                        <img data-oe-model="ir.ui.view" data-oe-id="548" data-oe-field="arch"
+                             data-oe-xpath="/t[1]/div[1]/a[1]/div[1]/img[1]"
+                             src="/purchase/static/src/img/calculator.svg"
+                             loading="lazy"/>
+                    </div>
+                    <div>
+                        <h5 class="mt-0 mb-1 ">
+                            <span>My Preorders</span>
+                        </h5>
+                        <p class="m-0 text-600">See your Preorders</p>
+                    </div>
+                </a>
+            </div>
+        </xpath>
+    </template>
+</odoo>

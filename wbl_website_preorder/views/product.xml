@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Show Can_be_preorder_checkbox  On Product Detail Page-->
+    <record id="wbl_product_view" model="ir.ui.view">
+        <field name="name">wbl.product.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='purchase_ok']" position="after">
+                <field name="can_be_preorder"/>
+                <label for="can_be_preorder" string="Can be Preorder"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--Show Preorder Tab On Product Detail Page-->
+    <record id="wbl_product_preorder_view" model="ir.ui.view">
+        <field name="name">wbl.product.preorder.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='inventory']" position="after">
+                <page name="Preorder" invisible="not can_be_preorder">
+
+                    <group>
+                        <field name="override_default_preorder_configration"/>
+                        <field name="minimum_qty_per_customer"/>
+                        <field name="maximum_qty_per_customer"/>
+                        <field name="total_preorder_booking_qty"/>
+                    </group>
+                    <group>
+                        <field name="available_date"/>
+                        <field name="preorder_when_qty_less_than_or_equal"/>
+                        <field name="preorder_payment_type"/>
+                        <field name="deposit_amount" invisible="preorder_payment_type != 'Partial payment'"/>
+                    </group>
+                    <group>
+                        <field name="preorder_policy_on_product"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!--Show Preorder Button On Product Page-->
+    <template id="custom_product_details" inherit_id="website_sale.product">
+        <xpath expr="//a[@id='add_to_cart']" position="attributes">
+            <attribute name="t-if">not can_be_preorder</attribute>
+        </xpath>
+        <xpath expr="//a[@id='add_to_cart']" position="after">
+            <t t-if="can_be_preorder">
+                <button t-attf-class="btn btn-primary"
+                        t-attf-style="background-color: #{preorder_button_bc_color}; color: #{preorder_button_text_color};"
+                        id="add_to_cart" type="submit"
+                        t-att-disabled="max_booking_quantity >= product_maximum_qty_per_customer">
+                    <span t-esc="preorder_button_text">Preorder</span>
+                </button>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

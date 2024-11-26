@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!--Show Table On My Portal-->
+    <template id="wbl_my_portal_preorder_view" name="My Preorder">
+        <t t-call="website.layout">
+            <div id="wrap" class="o_portal_wrap">
+                <div class="container mb64 mt-3">
+                    <nav class="navbar navbar-expand-lg flex-wrap mb-4 p-0 o_portal_navbar">
+                        <ol class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1">
+                            <li class="breadcrumb-item ms-1" data-oe-model="ir.ui.view" data-oe-id="491"
+                                data-oe-field="arch" data-oe-xpath="/t[1]/ol[1]/li[1]">
+                                <a href="/my/home" aria-label="Home" title="Home">
+                                    <i class="fa fa-home"/>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active ">My Preorders</li>
+                        </ol>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#o_portal_navbar_content" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle filters" data-oe-model="ir.ui.view"
+                                data-oe-id="500" data-oe-field="arch" data-oe-xpath="/t[1]/nav[1]/button[1]">
+                            <span class="navbar-toggler-icon small"/>
+                        </button>
+                    </nav>
+                    <t t-if="count_preorder == 0">
+                        <div class="alert alert-warning" role="alert">
+                            There are currently no preorders for your account.
+                        </div>
+                    </t>
+                    <t t-if="count_preorder != 0">
+                        <div class="table-responsive border-0 ">
+                            <table class="table rounded mb-0 bg-white o_portal_my_doc_table">
+                                <thead data-oe-model="ir.ui.view" data-oe-id="837" data-oe-field="arch"
+                                       data-oe-xpath="/t[1]/t[1]/t[3]/thead[1]">
+                                    <tr class="active">
+                                        <th scope="col">Order Id</th>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">Qty</th>
+                                        <th scope="col">Total Amount</th>
+                                        <th scope="col">Paid Amount</th>
+                                        <th scope="col">Remaining Amount</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="preorder_details" t-as="detail">
+                                        <tr>
+                                            <td class="text-start">
+                                                <span t-esc="detail['sale_order_line'].order_id.name"/>
+                                            </td>
+                                            <td class="text-start">
+                                                <span t-esc="detail['sale_order_line'].product_id.name"/>
+                                            </td>
+                                            <td class="text-start">
+                                                <span t-esc="detail['sale_order_line'].product_uom_qty"/>
+                                            </td>
+                                            <td class="text-start">
+                                                <span t-esc="detail['total_amount']"/>
+                                            </td>
+                                            <td class="text-start">
+                                                <span t-esc="detail['preorder'].paid_amount"/>
+                                            </td>
+                                            <td class="text-start">
+                                                <span t-esc="detail['remaining_amount']"/>
+                                            </td>
+
+                                            <td class="td-action">
+                                                <form action="/shop/cart/update" method="POST" id="preorder_form">
+                                                    <input type="hidden" name="csrf_token"
+                                                           t-att-value="request.csrf_token()"
+                                                           t-nocache="The csrf token must always be up to date."/>
+                                                    <input type="hidden" class="product_id" name="product_id"
+                                                           t-att-value="installment_fees.id"/>
+
+                                                    <input type="hidden" class="price_unit" name="price_unit"
+                                                           t-att-value="detail['remaining_amount']"/>
+
+                                                    <input type="hidden" class="add_qty" name="add_qty"
+                                                           t-att-value="1"/>
+
+                                                    <input type="hidden" name="preorder_order_id"
+                                                           t-att-value="detail['preorder'].id"/>
+
+                                                    <input type="hidden" name="remaining_amount"
+                                                           t-att-value="detail['remaining_amount']"/>
+
+                                                    <t t-if="detail['remaining_amount'] != 0">
+                                                        <button name="o_payment_submit_button" type="submit"
+                                                                id="add_to_cart"
+                                                                t-attf-class="btn btn-primary js_check_product a-submit flex-grow-1 #{'btn-lg' if ctaSizeBig else ''}"
+                                                                href="#" data-oe-model="ir.ui.view">
+                                                            <span>Pay Due</span>
+                                                        </button>
+                                                    </t>
+                                                    <t t-if="detail['remaining_amount'] == 0">
+                                                        <button name="o_payment_submit_button" type="submit"
+                                                                id="add_to_cart_disabled"
+                                                                t-attf-class="btn btn-primary disabled flex-grow-1 #{'btn-lg' if ctaSizeBig else ''"
+                                                                href="#" data-oe-model="ir.ui.view">
+                                                            <span>Pay Due</span>
+                                                        </button>
+                                                    </t>
+                                                </form>
+                                            </td>
+                                            <td class="td-action">
+                                                <a t-attf-class="btn btn-primary flex-grow-1 #{'btn-lg' if ctaSizeBig else ''"
+                                                   t-attf-href="#{detail['view_order']}" data-oe-model="ir.ui.view">
+                                                    <span>Order Details</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

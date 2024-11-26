@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!-- Preorder Details List -->
+    <record model="ir.ui.view" id="product_preorder_tree_views">
+        <field name="name">product.preorder.tree</field>
+        <field name="model">product.preorder</field>
+        <field name="arch" type="xml">
+            <tree string="Product Preorder">
+                <field name="sale_order_id" string="Order Id"/>
+                <field name="partner_id" string="Partner Id"/>
+                <field name="sale_order_line_name" string="Product Name"/>
+                <field name="payment_type"/>
+                <field name="total_amount"/>
+                <field name="remaining_amount"/>
+                <field name="paid_amount"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Preorder Details List -->
+    <record model="ir.ui.view" id="product_notify_tree_views">
+        <field name="name">product.notify.tree</field>
+        <field name="model">notify.details</field>
+        <field name="arch" type="xml">
+            <tree string="Notify Details">
+                <field name="partner_id" string="Partner Id"/>
+                <field name="product_id" string="Product Id"/>
+                <field name="Name" string="Name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="comment"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Notify Details List -->
+    <record model="ir.actions.act_window" id="action_product_preorder_form_tree_view">
+        <field name="name">Product Preorder</field>
+        <field name="res_model">product.preorder</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <!-- Notify Details List -->
+    <record model="ir.actions.act_window" id="action_product_notify_form_tree_view">
+        <field name="name">Notify Details</field>
+        <field name="res_model">notify.details</field>
+        <field name="view_mode">tree,kanban</field>
+    </record>
+</odoo>

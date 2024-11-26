@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--  Show Notify On Product Page  -->
+    <template id="custom_notify_details" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='add_to_cart_wrap']" position="before">
+            <!--Show Form on Page-->
+            <div id="message_popup" class="modal" tabindex="1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center w-100">Notification Form</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="wbl_notify_product_id" id="wbl_notify_product_id"
+                                   t-att-value="product.id"/>
+                            <input type="hidden" name="wbl_notify_required_name" id="wbl_notify_required_name"
+                                   t-att-value="is_name_required"/>
+                            <input type="hidden" name="wbl_notify_required_email" id="wbl_notify_required_email"
+                                   t-att-value="is_email_required"/>
+                            <input type="hidden" name="wbl_notify_required_phone" id="wbl_notify_required_phone"
+                                   t-att-value="is_phone_required"/>
+                            <input type="hidden" name="wbl_notify_required_comment" id="wbl_notify_required_comment"
+                                   t-att-value="is_comment_required"/>
+
+                            <div class="mb-3" t-if="notify_name">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="wbl_name_notify" name="wbl_name_notify"/>
+                                <span class="error-message text-danger"></span>
+                            </div>
+                            <div class="mb-3" t-if="notify_email">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="wbl_email_notify" name="wbl_email_notify"/>
+                                <span class="error-message text-danger"></span>
+                            </div>
+                            <div class="mb-3" t-if="notify_phone">
+                                <label for="mobile" class="form-label">Mobile</label>
+                                <input type="tel" class="form-control" id="wbl_mobile_notify" name="wbl_mobile_notify"/>
+                                <span class="error-message text-danger"></span>
+                            </div>
+                            <div class="mb-3" t-if="notify_comment">
+                                <label for="comment" class="form-label">Comment</label>
+                                <textarea class="form-control" id="wbl_comment_notify" name="wbl_comment_notify"
+                                          rows="3"></textarea>
+                                <span class="error-message text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="wbl_notify_form" form="notifyForm">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Show Form on Page-->
+            <t t-if="enable_notify_me and can_be_preorder">
+                <t t-if="partner_id != 4 and not enable_notify_form ">
+                    <t t-if="notify_exists">
+                        <a class="btn btn-primary mx-2 disabled">
+                            <i class="fa fa-bell"/>
+                            <span>Notified</span>
+                        </a>
+                    </t>
+                    <t t-if="not notify_exists">
+                        <a t-attf-href="/shop/notify?product_id=#{product.id}" class="btn btn-primary mx-2">
+                            <i class="fa fa-bell"/>
+                            <span>Notify Me!</span>
+                        </a>
+                    </t>
+                </t>
+                <t t-if="partner_id == 4 ">
+                    <t t-if="notify_exists">
+                        <a class="btn btn-primary mx-2 disabled">
+                            <i class="fa fa-bell"/>
+                            <span>Notified</span>
+                        </a>
+                    </t>
+                    <t t-if="not notify_exists">
+                        <a id="wbl_notify" class="btn btn-primary mx-2">
+                            <i class="fa fa-bell"/>
+                            <span>Notify Me!</span>
+                        </a>
+                    </t>
+                </t>
+                <t t-if="partner_id != 4 and enable_notify_form ">
+                    <t t-if="notify_exists">
+                        <a class="btn btn-primary mx-2 disabled">
+                            <i class="fa fa-bell"/>
+                            <span>Notified</span>
+                        </a>
+                    </t>
+                    <t t-if="not notify_exists">
+                        <a id="wbl_notify" class="btn btn-primary mx-2">
+                            <i class="fa fa-bell"/>
+                            <span>Notify Me!</span>
+                        </a>
+                    </t>
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>

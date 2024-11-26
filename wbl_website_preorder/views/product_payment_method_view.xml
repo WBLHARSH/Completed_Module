@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--   This is Partial Payment  -->
+    <template id="wbl_payment_method_view" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="before">
+            <div id="partial_button" class="align-items-center mb-2 me-auto"
+                 t-if="can_be_preorder and preorder_payment_type == 'Partial payment'" name="partial_payment_btn">
+
+                <div class="btn-group btn-group-toggle" data-toggle="buttons" id="payment_type">
+                    <label class="btn btn-primary active" id="full_payment_label">
+                        <input type="radio" name="partial_radio_options" id="wbl_full_payment" autocomplete="off"
+                               class="active" value="full" checked="checked"/>
+                        Full Payment
+                    </label>
+
+                    <input type="hidden" name="wbl_product_booking_qty" id="wbl_product_booking_qty"
+                           t-att-value="total_booking_quantity"/>
+
+                    <input type="hidden" name="wbl_total_product_booking_qty" id="wbl_total_product_booking_qty"
+                           t-att-value="total_preorder_booking_qty"/>
+
+                    <input type="hidden" name="wbl_list_price" id="wbl_list_price"
+                           t-att-value="product.list_price"/>
+                    <input type="hidden" name="wbl_deposit_price" id="wbl_deposit_price"
+                           t-att-value="product.deposit_amount"/>
+                    <label class="btn btn-primary" id="Wbl_partial_label">
+                        <input type="radio" name="partial_radio_options" id="Wbl_partial_box" autocomplete="off"
+                               value="partial"/>
+                        <span>Partial Payment</span>
+                    </label>
+                </div>
+                <div class="toast" role="alert" style="margin: 5px 0px 10px 0px; box-shadow:None;"
+                     aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="mr-auto">Payment Details</strong>
+                    </div>
+                    <div class="toast-body">
+                        <p>
+                            <strong>Balance to Pay After :</strong>
+                            $
+                            <span t-esc="(product.list_price)-(product.list_price*product.deposit_amount)/100"
+                                  id="balance_to_pay_after"></span>
+                        </p>
+                        <br/>
+                        <p>
+                            <strong>Deposit Amount :</strong>
+                            <span t-esc="product.deposit_amount" id="deposit_amount"></span>%
+                        </p>
+                        <br/>
+                        <p>
+                            <strong>Balance to Pay Before :</strong>
+                            $
+                            <span t-esc="(product.list_price*product.deposit_amount)/100"
+                                  id="balance_to_pay_before"></span>
+                        </p>
+                        <br/>
+                        <p>
+                            <strong>Total Amount :</strong>
+                            <span t-esc="product.list_price" id="total_amount"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!--   This is Dynamic Payment  -->
+    <template id="wbl_dynamic_method_view" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="before">
+            <div class="container slider-container"
+                 t-if="can_be_preorder and preorder_payment_type == 'Dynamic payment'">
+                <div class="slider-wrapper">
+                    <div class="range-slider">
+                        <input type="range" class="rs-range" id="vol" name="vol"
+                               t-att-min="product.list_price / 2"
+                               t-att-max="product.list_price"
+                               t-att-value="product.list_price"/>
+                    </div>
+                    <div class="box-minmax">
+                        <span id="rangeValue" t-esc="product.list_price">200</span>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Define the cron job -->
+        <record id="ir_cron_notify_details" model="ir.cron">
+            <field name="name">Send Notification Emails</field>
+            <field name="model_id" ref="model_notify_details"/>
+            <field name="state">code</field>
+            <field name="code">model._send_notification_emails()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <!-- Define the email template -->
+        <record id="email_template_notify_details" model="mail.template">
+            <field name="name">Notify Details Email</field>
+            <field name="subject">Product Available {{ object.product_id.name }}</field>
+            <field name="model_id" ref="model_notify_details"/>
+            <field name="email_from">{{ (object.partner_id.user_id.email_formatted or object.partner_id.company_id.email_formatted or user.email_formatted or '') }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="description">Send notification to user when product is available.</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Hello<span style="font-weight:bold;" t-esc="object.Name or ''"/>,
+                        Your Product
+                        <span style="font-weight:bold;" t-esc="object.product_id.name or ''"/>
+                        is Available
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

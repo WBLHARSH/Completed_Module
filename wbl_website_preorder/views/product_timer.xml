@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!--Show Timer On Product Page-->
+    <template id="wbl_product_timer_view" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="before">
+            <!--Show Timer On Product Page-->
+            <t t-if="timer_on_product">
+                <t t-set="timer_design_class"
+                   t-value="preorder_timer_design == 'circle timer' and 'circle_timer' or 'square_timer'"/>
+                <div class="time-blocks product_timer_js" t-if="can_be_preorder">
+                    <div class="hello">
+                        <div t-attf-class="block #{timer_design_class}"
+                             t-attf-style="background-color: #{timer_theme_color};">
+                            <span class="time-text" t-attf-style="color: #{timer_text_color};" id="days">12</span>
+                        </div>
+                        <div class="side-text">DAYS</div>
+                    </div>
+                    <div>
+                        <div t-attf-class="block #{timer_design_class}"
+                             t-attf-style="background-color: #{timer_theme_color};">
+                            <span class="time-text" t-attf-style="color: #{timer_text_color};" id="hours">5</span>
+                        </div>
+                        <div class="side-text">HOURS</div>
+                    </div>
+                    <div>
+                        <div t-attf-class="block #{timer_design_class}"
+                             t-attf-style="background-color: #{timer_theme_color};">
+                            <span class="time-text" t-attf-style="color: #{timer_text_color};" id="minutes">42</span>
+                        </div>
+                        <div class="side-text">MINUTES</div>
+                    </div>
+                    <div>
+                        <div t-attf-class="block #{timer_design_class}"
+                             t-attf-style="background-color: #{timer_theme_color};">
+                            <span class="time-text" t-attf-style="color: #{timer_text_color};" id="seconds">42</span>
+                        </div>
+                        <div class="side-text">SECONDS</div>
+                    </div>
+                    <input type="hidden" name="wbl_product_available_date" id="wbl_product_available_date"
+                           t-att-value="timer"/>
+                </div>
+                <p t-if="can_be_preorder" class="preorder_date">
+                    This product will be available on
+                    <span style="color:red;" t-esc="timer"/>
+                </p>
+            </t>
+        </xpath>
+    </template>
+    <!--Show Timer On Shop Page-->
+
+    <template id="override_shopPag_item" inherit_id="website_sale.products_item">
+        <xpath expr="//*[hasclass('oe_product_image')]" position="after">
+            <t t-if="timer_on_category">
+                <div t-if="product.id in available_dates and available_dates[product.id] and can_be_preorder[product.id]">
+                    <div class="preorder-timer"
+                         t-att-data-theme-color="timer_theme_color">
+                        <div class="countdown-timer"
+                             t-att-data-available-date="available_dates[product.id]">
+                            <div class="timer-box">
+                                <div class="timer-section">
+                                    <span class="timer-number timer-days"
+                                          t-attf-style="background-color: #{timer_theme_color}; color: #{timer_text_color};">
+                                        00
+                                    </span>
+                                    <span class="timer-label">Days</span>
+                                </div>
+                                <div class="timer-section">
+                                    <span class="timer-number timer-hours"
+                                          t-attf-style="background-color: #{timer_theme_color}; color: #{timer_text_color};">
+                                        00
+                                    </span>
+                                    <span class="timer-label">Hours</span>
+                                </div>
+                                <div class="timer-section">
+                                    <span class="timer-number timer-minutes"
+                                          t-attf-style="background-color: #{timer_theme_color}; color: #{timer_text_color};">
+                                        00
+                                    </span>
+                                    <span class="timer-label">Minutes</span>
+                                </div>
+                                <div class="timer-section">
+                                    <span class="timer-number timer-seconds"
+                                          t-attf-style="background-color: #{timer_theme_color}; color: #{timer_text_color};">
+                                        00
+                                    </span>
+                                    <span class="timer-label">Seconds</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <!--Show Preorder Policy On Product Page-->
+    <template id="wbl_product_preorder_policy_view" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='o_product_terms_and_share']" position="after">
+            <div class="container">
+                <span t-esc="preorder_policy_on_product"/>
+            </div>
+        </xpath>
+    </template>
+
+
+</odoo>
+

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_preorder_public_public,product.preorder public,model_product_preorder,base.group_public,1,1,1,1
+access_product_preorder_public_portal,product.preorder public,model_product_preorder,base.group_portal,1,1,1,1
+access_product_preorder_public_employee,product.preorder public,model_product_preorder,base.group_user,1,1,1,1
+access_notify_details_public_public,notify.details public,model_notify_details,base.group_public,1,1,1,1
+access_notify_details_public_portal,notify.details public,model_notify_details,base.group_portal,1,1,1,1
+access_notify_details_public_employee,notify.details public,model_notify_details,base.group_user,1,1,1,1

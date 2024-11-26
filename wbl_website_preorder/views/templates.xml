@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!--  Minimum and Maximum Quantity on Product Page  -->
+    <template id="wbl_product_min_max_qty_limit_error" inherit_id="website_sale.product_quantity">
+        <xpath expr="//input[@name='add_qty']" position="replace">
+            <t t-if="product.can_be_preorder">
+                <span id="wbl_test_13">
+                    <input type="text" style="padding:6px; border-radius:0px"
+                           class="form-control quantity text-center wbl_test31"
+                           t-att-data-min="product.minimum_qty_per_customer"
+                           t-att-data-max="product.maximum_qty_per_customer" name="add_qty"
+                           t-att-value="product.minimum_qty_per_customer or 1"/>
+                </span>
+            </t>
+            <t t-else="">
+                <span id="wbl_test_13">
+                    <input type="text" style="padding:6px; border-radius:0px"
+                           class="form-control quantity text-center wbl_test31" name="add_qty"
+                           t-att-value="product.minimum_qty_per_customer or 1"/>
+                </span>
+            </t>
+        </xpath>
+    </template>
+    <!--  Minimum and Maximum Quantity on Cart Page  -->
+    <template id="wbl_cart_item_qty_min_max_limit" inherit_id="website_sale.cart_lines">
+        <xpath expr="//input[@t-att-data-line-id='line.id']" position="replace">
+            <t t-if="line.product_id.can_be_preorder">
+                <span id="wbl_test_12">
+                    <input type="text" style="padding:6px; border-radius:0px" class="js_quantity form-control quantity"
+                           t-att-data-line-id="line.id"
+                           t-att-data-product-id="line.product_id.id"
+                           t-att-data-max="line.product_id.maximum_qty_per_customer"
+                           t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty"/>
+                </span>
+            </t>
+            <t t-else="">
+                <span id="wbl_test_12">
+                    <input type="text" style="padding:6px; border-radius:0px" class="js_quantity form-control quantity"
+                           t-att-data-line-id="line.id"
+                           t-att-data-product-id="line.product_id.id"
+                           t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty"/>
+                </span>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

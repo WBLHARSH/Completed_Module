@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_res_config_settings_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.website</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='website_info_settings']" position="after">
+                <block title="Shop - Preorder" id="website_preorder">
+                    <setting string="Purchase Quantity" help="Minimum and maximum purchase quantity">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Minimum Quantity"
+                                       for="minimum_purchase_qty"/>
+                                <field name="minimum_purchase_qty"/>
+                            </div>
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Maximum Quantity"
+                                       for="maximum_purchase_qty"/>
+                                <field name="maximum_purchase_qty"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Preorder Booking Quantity" help="Total preorder booking quantity">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Booking Quantity"
+                                       for="total_preorder_booking_qty"/>
+                                <field name="total_preorder_booking_qty"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Preorder Button" help="Preorder button features">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Button Text"
+                                       for="preorder_button_text"/>
+                                <field name="preorder_button_text"/>
+                            </div>
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Background Color"
+                                       for="preorder_button_bc_color"/>
+                                <field name="preorder_button_bc_color" widget="color"/>
+                            </div>
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Text Color"
+                                       for="preorder_button_text_color"/>
+                                <field name="preorder_button_text_color" widget="color"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Timer Theme" help="Timer theme and text color">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Theme Color"
+                                       for="timer_theme_color"/>
+                                <field name="timer_theme_color" widget="color"/>
+                            </div>
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Text Color"
+                                       for="timer_text_color"/>
+                                <field name="timer_text_color" widget="color"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting help="Allow to enable timer on product page">
+                        <field name="timer_on_product" string="Timer On Product Page"/>
+                    </setting>
+
+                    <setting help="Allow to enable timer on shop page">
+                        <field name="timer_on_category" string="Timer On Shop Page"/>
+                    </setting>
+
+                    <setting string="Preorder Less Than Or Equal Quantity"
+                             help="Allow when preorder quantity less than or equal">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Quantity"
+                                       for="preorder_when_qty_less_than_or_equal"/>
+                                <field name="preorder_when_qty_less_than_or_equal"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting>
+                        <field name="available_date" string="Available Date"/>
+                    </setting>
+
+
+                    <setting>
+                        <field name="preorder_payment_type" string="Payment Type"/>
+                        <div class="row mt16" invisible="preorder_payment_type != 'Partial payment'">
+                            <label class="o_light_label col-lg-3" string="Deposit Amount"
+                                   for="deposit_amount"/>
+                            <field name="deposit_amount"/>
+                        </div>
+                    </setting>
+
+                    <setting>
+                        <field name="preorder_policy_on_product" widget="textarea"/>
+                    </setting>
+
+                    <setting help="Allow to enable label on product page">
+                        <field name="enable_preorder_label_on_product_page" string="Preorder Label On Product Page"/>
+                    </setting>
+
+                    <setting help="Allow to enable label on shop/category page">
+                        <field name="enable_preorder_label_on_shop_or_category_page"
+                               string="Preorder Label On Shop/Category Page"/>
+                    </setting>
+                    <setting string="Purchase Label Settings"
+                             help="Add preorder label text,background color and text color">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Label Text"
+                                       for="preorder_label_text"/>
+                                <field name="preorder_label_text"/>
+                            </div>
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Background Color"
+                                       for="preorder_label_bc_color"/>
+                                <field name="preorder_label_bc_color" widget="color"/>
+                            </div>
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Text Color"
+                                       for="preorder_label_text_color"/>
+                                <field name="preorder_label_text_color" widget="color"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting>
+                        <field name="preorder_timer_design" string="Timer Design" widget='radio'/>
+                    </setting>
+                    <setting help="Allow to enable display message under product on Cart Page">
+                        <field name="enable_message_on_cart_page" string="Preorder Cart Message On Cart Page"/>
+                    </setting>
+                    <setting string="Preorder Cartpage Message Settings"
+                             help="Add Message and theme on Cart Page">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Cart Page Message"
+                                       for="preorder_cart_page_message"/>
+                                <field name="preorder_cart_page_message"/>
+                            </div>
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Cart Page Message Theme"
+                                       for="preorder_cart_page_message_theme"/>
+                                <field name="preorder_cart_page_message_theme"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <!-- Notify Settings -->
+                    <setting help="Allow to enable display Notify me Button on Product Page">
+                        <field name="enable_notify_me" string="Enable Notify Me"/>
+                    </setting>
+                    <setting help="Allow to enable Notify Form on Product Page">
+                        <field name="enable_notify_form" string="Enable Notify Form"/>
+                    </setting>
+
+                    <setting help="Allow to enable Name Field on Notify Form">
+                        <field name="enable_notify_name" string="Enable Name Field on Form"/>
+                    </setting>
+                    <setting help="Allow to Required Name Field on Notify Form" invisible="not enable_notify_name">
+                        <field name="is_name_required" string="Enable to Required Name Field On Form"/>
+                    </setting>
+                    <setting help="Allow to enable Email Field on Notify Form">
+                        <field name="enable_notify_email" string="Enable Email Field on Form"/>
+                    </setting>
+                    <setting help="Allow to Required Email Field on Notify Form" invisible="not enable_notify_email">
+                        <field name="is_email_required" string="Enable to Required Email Field On Form"/>
+                    </setting>
+                    <setting help="Allow to enable Mobile Field on Notify Form">
+                        <field name="enable_notify_phone" string="Enable Mobile Field on Form"/>
+                    </setting>
+                    <setting help="Allow to Required Phone Field on Notify Form" invisible="not enable_notify_phone">
+                        <field name="is_phone_required" string="Enable to Required Phone Field On Form"/>
+                    </setting>
+                    <setting help="Allow to enable Comment Field on Notify Form">
+                        <field name="enable_notify_comment" string="Enable Comment Field on Form"/>
+                    </setting>
+                    <setting help="Allow to Required Comment Field on Notify Form"
+                             invisible="not enable_notify_comment">
+                        <field name="is_comment_required" string="Enable to Required Comment Field On Form"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

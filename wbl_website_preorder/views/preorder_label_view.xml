@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<odoo>
+    <!--Show Label On Product Page-->
+    <template id='wbl_product_ribbon' inherit_id='website_sale.shop_product_image'>
+        <xpath expr="//div[@t-field='product_image.image_1920']" position='before'>
+            <!--            <t t-if="can_be_preorder">-->
+
+            <!--                    <div class="wbl_preorder_label" t-attf-style="background-color: #{preorder_label_bc_color};">-->
+            <div class="wbl_preorder_label">
+                <!--                                            <t t-esc="preorder_label_text"/>-->
+                Preorder
+            </div>
+
+            <!--            </t>-->
+        </xpath>
+    </template>
+
+    <!--Show Label On Shop Page-->
+    <template id="product_list_item" name="Product List Item" inherit_id="website_sale.products_item">
+        <xpath expr="//*[hasclass('oe_product_image')]" position="before">
+            <t t-if="enable_preorder_label_on_shop_or_category_page">
+                <t t-if="can_be_preorder[product.id]">
+                    <div class="wbl-preorder-ribbon"
+                         t-attf-style="background-color: #{preorder_label_bc_color}; color: #{preorder_label_text_color};">
+                        <span t-esc="preorder_label_text"/>
+                    </div>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+    <!--Show Label On Cart Page-->
+    <template id="product_list_item_cart" name="Product List Item" inherit_id="website_sale.cart_lines">
+        <xpath expr="//a[@class='js_delete_product d-none d-md-inline-block small']" position="before">
+            <t t-if="enable_message_on_cart_page and can_be_preorder.get(line.product_id.id, False)">
+                <div t-attf-class="alert #{preorder_cart_page_message_theme} wbl-preorder-label" role="alert">
+                    <span t-esc="preorder_cart_page_message"/>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
+        <!-- background: linear-gradient(#9BC90D 0%, #79A70A 100%);-->
