@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="klarna_payment_gateway_form_render">
+        <t t-call="website.layout">
+            <!-- Hidden field to hold the data -->
+            <div id="klarna_payment_div">
+                <textarea t-esc="data" style="display:None;" id="KCO"/>
+                <!-- Checkout container -->
+                <div id="my-checkout-container"></div>
+            </div>
+
+            <!-- JavaScript to dynamically insert the Klarna checkout script -->
+            <!--            <script type="text/javascript">-->
+            <!--                document.addEventListener("DOMContentLoaded", function() {-->
+            <!--                var checkoutContainer = document.getElementById('my-checkout-container');-->
+            <!--                var kcoData = document.getElementById('KCO').value;-->
+
+            <!--                // Replace escaped characters and inject into the container-->
+            <!--                checkoutContainer.innerHTML = kcoData.replace(/\\"/g, "\"").replace(/\\n/g, "");-->
+
+            <!--                // Process any script tags inside the checkout container-->
+            <!--                var scriptsTags = checkoutContainer.getElementsByTagName('script');-->
+            <!--                for (var i = 0; i< scriptsTags.length; i++) {-->
+            <!--                var parentNode = scriptsTags[i].parentNode;-->
+            <!--                var newScriptTag = document.createElement('script');-->
+            <!--                newScriptTag.type = 'text/javascript';-->
+            <!--                newScriptTag.text = scriptsTags[i].text;-->
+            <!--                parentNode.removeChild(scriptsTags[i]);-->
+            <!--                parentNode.appendChild(newScriptTag);-->
+            <!--                }-->
+            <!--                });-->
+            <!--            </script>-->
+        </t>
+    </template>
+</odoo>

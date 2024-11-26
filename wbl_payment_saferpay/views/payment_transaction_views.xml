@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <!--  Payment Transaction Form  -->
+    <record id="transaction_form_saferPay" model="ir.ui.view">
+        <field name="name">Transaction Form</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.payment_transaction_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook invisible="provider_code != 'saferPay'">
+                    <page name="saferPay_transaction_details" string="saferPay Transaction Details"
+                          invisible="saferPay_transaction_type != 'PAYMENT'">
+                        <group>
+                            <field name="saferPay_transaction_id"/>
+                            <field name="saferPay_transaction_currency"/>
+                            <field name="saferPay_transaction_status"/>
+                            <field name="saferPay_transaction_type" invisible="1"/>
+                        </group>
+                    </page>
+                    <page name="saferPay_transaction_details" string="saferPay Refund Details"
+                          invisible="saferPay_transaction_type != 'REFUND'">
+                        <group>
+                            <field name="saferPay_refund_id"/>
+                            <field name="saferPay_refund_currency"/>
+                            <field name="saferPay_refund_status"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>

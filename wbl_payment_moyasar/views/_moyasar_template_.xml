@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <template id="moyasar_payment_gateway_form_render">
+        <t t-call="website.layout">
+            <div id="moyasar_payment_div" class="moyasar-payment-center">
+                <input type="hidden" name="publishable_api_key" id="moyasar_publishable_api_key"
+                       t-att-value="publishable_api_key"/>
+                <input type="hidden" name="moyasar_currency" id="moyasar_currency"
+                       t-att-value="currency"/>
+                <input type="hidden" name="moyasar_amount" id="moyasar_amount"
+                       t-att-value="amount"/>
+                <input type="hidden" name="moyasar_reference" id="moyasar_reference"
+                       t-att-value="description"/>
+                 <input type="hidden" name="callback_url" id="callback_url"
+                       t-att-value="callback_url"/>
+                <div class="mysr-form"/>
+            </div>
+        </t>
+    </template>
+
+
+</odoo>

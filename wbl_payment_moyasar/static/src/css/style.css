@@ -1,0 +1,6 @@
+.moyasar-payment-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60vh; /* This makes the div vertically centered in the viewport */
+}

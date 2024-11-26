@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo noupdate="1">
+    <record id="payment_provider_thawani" model="payment.provider">
+        <field name="name">Thawani</field>
+        <field name="code">thawani</field>
+        <field name="image_128" type="base64" file="wbl_payment_thawani/static/description/logo.png"/>
+        <field name="module_id" ref="base.module_wbl_payment_thawani"/>
+        <field name="payment_method_ids"
+               eval="[Command.set([
+                         ref('wbl_payment_thawani.payment_method_thawani'),
+                         ])]"/>
+        <field name="redirect_form_view_id" ref="redirect_form"/>
+    </record>
+</odoo>

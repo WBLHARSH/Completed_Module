@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+
+<odoo>
+    <record id="payment_provider_moyasar" model="payment.provider">
+        <field name="name">Moyasar</field>
+        <field name="code">moyasar</field>
+        <field name="image_128" type="base64" file="wbl_payment_moyasar/static/description/logo.png"/>
+        <field name="module_id" ref="base.module_wbl_payment_moyasar"/>
+        <field name="redirect_form_view_id" ref="redirect_form"/>
+        <field name="inline_form_view_id" ref="inline_form"/>
+        <field name="payment_method_ids"
+               eval="[Command.set([ ref('wbl_payment_moyasar.payment_method_moyasar')])]"/>
+
+    </record>
+</odoo>
