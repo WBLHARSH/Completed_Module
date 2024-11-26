@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <template id="custom_address_change_on_my_home" inherit_id="portal.side_content">
+        <xpath expr="//div[@class ='o_portal_my_details']" position="replace">
+            <div class="o_portal_my_details">
+                <i class="fa fa-map-marker fa-fw" role="img" style="color: #adb5bd;" aria-label="Address"
+                   title="Address"/>
+                <t t-esc="user_id.partner_id.address"/>
+                <div t-field="user_id.partner_id"
+                     t-options='{"widget": "contact", "fields": ["email", "phone"]}'/>
+            </div>
+        </xpath>
+
+    </template>
+</odoo>

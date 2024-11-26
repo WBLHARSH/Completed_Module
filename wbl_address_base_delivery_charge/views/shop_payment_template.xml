@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <template id="custom_my_order_view" inherit_id="website_sale.address_on_payment">
+        <xpath expr="//div[contains(@class, 'card-body')]" position="replace">
+            <div class="card-body" id="shipping_and_billing">
+                <a t-if="not disable_edit" class="float-end no-decoration" href="/shop/checkout"><i
+                        class="fa fa-pencil me-1"/>Edit
+                </a>
+                <t t-set="same_shipping"
+                   t-value="bool(order.partner_shipping_id==order.partner_invoice_id or only_services)"/>
+                <t t-set="order_address" t-value="order.with_context(show_address=True)"/>
+                <div>
+                    <b>Billing<t t-if="same_shipping and not only_services">&amp; Shipping</t>:
+                    </b>
+                    <span
+                            t-esc="order_address.partner_invoice_id.address"
+                            class="address-inline lh-sm o_address_font_sm"/>
+                </div>
+                <div t-if="not same_shipping and not only_services" groups="account.group_delivery_invoice_address">
+                    <b>Shipping:</b>
+                    <span
+                            id="shipping_on_payment_details"
+                            t-esc="order_address.partner_shipping_id.address"
+                            class="address-inline lh-sm o_address_font_sm"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

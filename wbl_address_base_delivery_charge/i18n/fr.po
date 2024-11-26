@@ -1,0 +1,358 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* wbl_address_base_delivery_charge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-04 08:30+0000\n"
+"PO-Revision-Date: 2024-10-04 08:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.custom_my_order_view
+msgid "&amp; Shipping"
+msgstr "&amp; Expédition"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.custom_my_order_view
+msgid "<b>Shipping:</b>"
+msgstr "<b>Expédition :</b>"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.custom_address_change_on_my_home
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.custom_my_order_view_inherit
+msgid ""
+"<i class=\"fa fa-map-marker fa-fw\" role=\"img\" style=\"color: #adb5bd;\" "
+"aria-label=\"Address\" title=\"Address\"/>"
+msgstr ""
+"<i class=\"fa fa-map-marker fa-fw\" role=\"img\" style=\"color: #adb5bd;\" "
+"aria-label=\"Adresse\" title=\"Adresse\"/>"
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.custom_address_change
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.custom_my_order_view
+msgid "<i class=\"fa fa-pencil me-1\"/>Edit"
+msgstr "<i class=\"fa fa-pencil me-1\"/>Modifier"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.add_portal_my_details_fields_inherited
+msgid "<option value=\"\">Choose Abidjans...</option>"
+msgstr "<option value=\"\">Choisissez Abidjans...</option>"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.website_address_connector
+msgid "<option value=\"\">Choose Abidjans..</option>"
+msgstr "<option value=\"\">Choisissez Abidjans..</option>"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.add_portal_my_details_fields_inherited
+msgid "<option value=\"\">Choose Countries...</option>"
+msgstr "<option value=\"\">Choisissez des pays...</option>"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.website_address_connector
+msgid "<option value=\"\">Choose Countries..</option>"
+msgstr "<option value=\"\">Choisissez des pays..</option>"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.add_portal_my_details_fields_inherited
+msgid "<option value=\"\">Choose Ivory Coast...</option>"
+msgstr "<option value=\"\">Choisissez la Côte d'Ivoire...</option>"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.website_address_connector
+msgid "<option value=\"\">Choose Ivory Coast..</option>"
+msgstr "<option value=\"\">Choisissez la Côte d'Ivoire..</option>"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.custom_address_inherited
+msgid "<span style=\"display:None;\">Hello</span>"
+msgstr "<span style=\"display:None;\">Bonjour</span>"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model,name:wbl_address_base_delivery_charge.model_abidjan
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_partner__abidjan
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_users__abidjan
+#: model:ir.ui.menu,name:wbl_address_base_delivery_charge.menu_ecommerce_abidjan
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.add_portal_my_details_fields_inherited
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.website_address_connector
+msgid "Abidjan"
+msgstr "Abidjan"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_config_settings__abidjans
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.add_portal_my_details_fields_inherited
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.view_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.website_address_connector
+msgid "Abidjans"
+msgstr "Abidjans"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_sale_order__additional_price
+msgid "Additional Price"
+msgstr "Prix supplémentaire"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_partner__address
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_users__address
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.add_portal_my_details_fields_inherited
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.view_order_form_inherit
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.website_address_connector
+msgid "Address"
+msgstr "Adresse"
+
+#. module: wbl_address_base_delivery_charge
+#: model:product.template,name:wbl_address_base_delivery_charge.address_base_product_product_template
+msgid "Address Base Fee"
+msgstr "Frais de base d'adresse"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.custom_my_order_view
+msgid "Billing"
+msgstr "Facturation"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_delivery_carrier__calc_distance_prc
+msgid "Calculate Distance Price"
+msgstr "Calculer le prix à distance"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model,name:wbl_address_base_delivery_charge.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model,name:wbl_address_base_delivery_charge.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_config_settings__countries
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.add_portal_my_details_fields_inherited
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.view_res_config_settings_form
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.website_address_connector
+msgid "Countries"
+msgstr "Pays"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_partner__country
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_users__country
+msgid "Country"
+msgstr "Pays"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model,name:wbl_address_base_delivery_charge.model_country_details
+msgid "Country Details"
+msgstr "Détails du pays"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_abidjan__create_uid
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_country_details__create_uid
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_ivory_coast__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_abidjan__create_date
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_country_details__create_date
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_ivory_coast__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_abidjan__currency_id
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_country_details__currency_id
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_ivory_coast__currency_id
+msgid "Currency"
+msgstr "Devise"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_abidjan__display_name
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_country_details__display_name
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_ivory_coast__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.custom_address_change
+msgid "Edit this address"
+msgstr "Modifier cette adresse"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.ui.menu,name:wbl_address_base_delivery_charge.menu_ecommerce_field_option
+msgid "Field Option"
+msgstr "Option de champ"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_abidjan__id
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_country_details__id
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_ivory_coast__id
+msgid "ID"
+msgstr "IDENTIFIANT"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.custom_my_order_view_inherit
+msgid "Invoicing Address"
+msgstr "Adresse de facturation"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.custom_my_order_view_inherit
+msgid "Invoicing and Shipping Address"
+msgstr "Adresse de facturation et d'expédition"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_sale_order_line__is_address_fee
+msgid "Is Address Fee"
+msgstr "Est-ce que les frais d'adresse"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model,name:wbl_address_base_delivery_charge.model_ivory_coast
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_partner__ivory_coast
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_users__ivory_coast
+#: model:ir.ui.menu,name:wbl_address_base_delivery_charge.menu_ecommerce_ivory_coast
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.add_portal_my_details_fields_inherited
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.website_address_connector
+msgid "Ivory Coast"
+msgstr "Côte d'Ivoire"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_config_settings__ivory_coast
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.view_res_config_settings_form
+msgid "Ivory Coasts"
+msgstr "Côte d'Ivoire"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_abidjan__name
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_country_details__name
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_ivory_coast__name
+msgid "Label"
+msgstr "Étiquette"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_abidjan__write_uid
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_country_details__write_uid
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_ivory_coast__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_abidjan__write_date
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_country_details__write_date
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_ivory_coast__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.actions.act_window,name:wbl_address_base_delivery_charge.action_base_charge_other_countries
+#: model:ir.ui.menu,name:wbl_address_base_delivery_charge.menu_ecommerce_other_countries
+msgid "Other Countries"
+msgstr "Autres pays"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_sale_order__partner_abidjan
+msgid "Partner Abidjan"
+msgstr "Partenaire Abidjan"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_sale_order__partner_address
+msgid "Partner Address"
+msgstr "Adresse du partenaire"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_sale_order__partner_country
+msgid "Partner Country"
+msgstr "Pays partenaire"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_sale_order__partner_ivory_coast
+msgid "Partner Ivory Coast"
+msgstr "Partenaire Côte d'Ivoire"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_abidjan__price
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_country_details__price
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_ivory_coast__price
+msgid "Price"
+msgstr "Prix"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.add_portal_my_details_fields_inherited
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.website_address_connector
+msgid "Regions"
+msgstr "Régions"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model,name:wbl_address_base_delivery_charge.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model,name:wbl_address_base_delivery_charge.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commande"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_partner__selected_option
+#: model:ir.model.fields,field_description:wbl_address_base_delivery_charge.field_res_users__selected_option
+msgid "Selected Option"
+msgstr "Option sélectionnée"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.custom_my_order_view_inherit
+msgid "Shipping Address"
+msgstr "adresse de livraison"
+
+#. module: wbl_address_base_delivery_charge
+#: model:ir.model,name:wbl_address_base_delivery_charge.model_delivery_carrier
+msgid "Shipping Methods"
+msgstr "Modes d'expédition"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.view_res_config_settings_form
+msgid "Shop - Address Connector"
+msgstr "Boutique - Connecteur d'adresse"
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.view_order_form_inherit
+msgid "Street..."
+msgstr "Rue..."
+
+
+#. module: wbl_address_base_delivery_charge
+#. odoo-python
+#: code:addons/wbl_address_base_delivery_charge/controllers/shop_address.py:0
+#, python-format
+msgid "The Abidjan field is required when the selected option is Abidjan."
+msgstr "Le champ Abidjan est obligatoire lorsque l'option sélectionnée est Abidjan."
+
+#. module: wbl_address_base_delivery_charge
+#. odoo-python
+#: code:addons/wbl_address_base_delivery_charge/controllers/shop_address.py:0
+#, python-format
+msgid ""
+"The Ivory Coast field is required when the selected option is Ivory Coast."
+msgstr ""
+"Le champ Côte d'Ivoire est obligatoire lorsque l'option sélectionnée est Côte d'Ivoire."
+
+#. module: wbl_address_base_delivery_charge
+#. odoo-python
+#: code:addons/wbl_address_base_delivery_charge/controllers/shop_address.py:0
+#, python-format
+msgid ""
+"The Other Country field is required when the selected option is Other "
+"Country."
+msgstr ""
+"Le champ Autre pays est obligatoire lorsque l'option sélectionnée est Autre"
+"Pays."
+
+#. module: wbl_address_base_delivery_charge
+#: model_terms:ir.ui.view,arch_db:wbl_address_base_delivery_charge.view_order_form_inherit
+msgid "Type to find a customer..."
+msgstr "Tapez pour trouver un client..."
+

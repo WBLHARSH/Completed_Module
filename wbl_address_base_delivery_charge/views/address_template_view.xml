@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <template id="custom_address_change" inherit_id="website_sale.address_kanban">
+        <xpath expr="//div[contains(@t-attf-class, 'card position-relative h-100')]" position="replace">
+            <div t-attf-class="card position-relative h-100 #{selected and 'bg-primary border border-primary' or is_invoice and 'js_change_billing' or 'js_change_shipping'}">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <t t-esc="contact" t-options="dict(widget='contact', fields=['name'], no_marker=True)"/>
+                    <t t-esc="contact.address"/>
+                    <t t-if="contact._can_be_edited_by_current_customer(website_sale_order, mode)">
+                        <t t-set="new_address_href" t-value="'/shop/address?mode=' + mode"/>
+                        <a
+                                t-att-href="new_address_href + '&amp;partner_id=' + str(contact.id)"
+                                class="js_edit_address btn btn-link p-0 mt-auto"
+                                role="button"
+                                title="Edit this address"
+                                aria-label="Edit this address">
+                            <i class="fa fa-pencil me-1"/>Edit
+                        </a>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+
+    </template>
+</odoo>

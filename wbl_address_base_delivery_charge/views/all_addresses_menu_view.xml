@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_base_charge_abidjan" model="ir.actions.act_window">
+        <field name="name">Abidjan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">abidjan</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <record id="action_base_charge_ivory_coast" model="ir.actions.act_window">
+        <field name="name">Ivory Coast</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ivory.coast</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <record id="action_base_charge_other_countries" model="ir.actions.act_window">
+        <field name="name">Other Countries</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">country.details</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <menuitem id="menu_ecommerce_field_option"
+              name="Field Option"
+              parent="website.menu_website_global_configuration"
+              sequence="51"
+    >
+        <menuitem id="menu_ecommerce_abidjan"
+                  name="Abidjan"
+                  action="wbl_address_base_delivery_charge.action_base_charge_abidjan"
+                  sequence="1"/>
+
+        <menuitem id="menu_ecommerce_ivory_coast"
+                  name="Ivory Coast"
+                  action="wbl_address_base_delivery_charge.action_base_charge_ivory_coast"
+                  sequence="2"/>
+
+        <menuitem id="menu_ecommerce_other_countries"
+                  name="Other Countries"
+                  action="wbl_address_base_delivery_charge.action_base_charge_other_countries"
+                  sequence="3"/>
+    </menuitem>
+
+</odoo>

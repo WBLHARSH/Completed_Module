@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <template id="custom_my_order_view_inherit" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//div[@id='customer_info']" position="replace">
+            <div id="customer_info_harsh" class="col-12 col-lg-6 mb-4">
+                <h4 class="mb-1">
+                    <t t-if="sale_order.partner_shipping_id == sale_order.partner_invoice_id">
+                        Invoicing and Shipping Address
+                    </t>
+                    <t t-else="">
+                        Invoicing Address
+                    </t>
+                    <small t-if="sale_order.partner_id == sale_order.partner_invoice_id == sale_order.env.user.partner_id">
+                        <a class="small" t-attf-href="/my/account?redirect={{sale_order.get_portal_url()}}">
+                            <i class="fa fa-fw fa-pencil"/>
+                        </a>
+                    </small>
+                </h4>
+                <hr class="mt-1 mb-2"/>
+                <div t-field="sale_order.partner_invoice_id"
+                     t-options="{'widget': 'contact', 'fields': ['name']}"/>
+                <i class="fa fa-map-marker fa-fw" role="img" style="color: #adb5bd;" aria-label="Address"
+                   title="Address"/>
+                <t t-esc="sale_order.partner_invoice_id.address"/>
+                <div t-field="sale_order.partner_invoice_id"
+                     t-options="{'widget': 'contact', 'fields': ['phone', 'email']}"/>
+                <span t-if="sale_order.partner_shipping_id != sale_order.partner_invoice_id"
+                      id="shipping_address"
+                      class="col-lg-6">
+                    <br/>
+                    <h4 class="mb-1">
+                        Shipping Address
+                    </h4>
+                    <hr class="mt-1 mb-2"/>
+                    <div t-field="sale_order.partner_shipping_id"
+                         t-options='{ "widget": "contact", "fields": [ "name"]}'/>
+                    <i class="fa fa-map-marker fa-fw" role="img" style="color: #adb5bd;" aria-label="Address"
+                       title="Address"/>
+                    <t t-esc="sale_order.partner_shipping_id.address"/>
+                </span>
+            </div>
+        </xpath>
+
+
+    </template>
+</odoo>

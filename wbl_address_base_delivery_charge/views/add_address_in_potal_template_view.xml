@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <template id="add_portal_my_details_fields_inherited" inherit_id="portal.portal_my_details_fields">
+        <xpath expr="(//div[contains(@t-attf-class, 'col-xl-6')])[5]"
+               position="after">
+            <!-- Address Textarea -->
+            <div t-attf-class="mb-3 #{error.get('email') and 'o_has_error' or ''} col-xl-12">
+                <label for="address" class="form-label">Lieu de livraison</label>
+                <textarea name="address" class="form-control" rows="3"
+                          t-esc="partner.address or ' '"></textarea>
+            </div>
+
+            <!-- Regions Selection -->
+            <div t-attf-class="mb-3 #{error.get('email') and 'o_has_error' or ''} col-xl-6" id="div_addresses">
+                <label for="addresses">Zones</label>
+                <div class="d-flex justify-content-start flex-wrap"> <!-- Aligned radio buttons to the left -->
+                    <div class="form-check me-3">
+                        <input type="radio" class="form-check-input" id="address_abidjan"
+                               name="selected_option"
+                               value="Abidjan"
+                               t-att-checked="partner.selected_option == 'Abidjan' or selected_option"/>
+                        <label class="form-check-label" for="address_abidjan">Abidjan</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="radio" class="form-check-input" id="address_ivory_coast"
+                               name="selected_option"
+                               value="Ivory Coast"
+                               t-att-checked="partner.selected_option == 'Ivory Coast' or selected_option"/>
+                        <label class="form-check-label" for="address_ivory_coast">Ivory Coast</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="radio" class="form-check-input" id="address_countries"
+                               name="selected_option"
+                               value="Countries"
+                               t-att-checked="partner.selected_option == 'Countries' or selected_option"/>
+                        <label class="form-check-label" for="address_countries">Autres Pays</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Select Fields Section -->
+            <div t-attf-class="mb-3 #{error.get('email') and 'o_has_error' or ''} col-xl-12"> <!-- Adjust the column size for even layout -->
+                <div id="wbl_abidjan" class="mb-2" style="display:none;">
+                    <label for="abidjans_id" class="form-label">Abidjan</label>
+                    <select name="abidjan" class="form-select">
+                        <option value="">Choose Abidjan...</option>
+                        <t t-foreach="abidjans" t-as="a">
+                            <option t-att-value="a.id">
+                                <t t-esc="a.name"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
+                <div id="wbl_ivory_coast" class="mb-2" style="display:none;">
+                    <label for="ivory_coast_id" class="form-label">Ivory Coast</label>
+                    <select name="ivory_coast" class="form-select">
+                        <option value="">Choose Ivory Coast...</option>
+                        <t t-foreach="ivory_coast" t-as="a">
+                            <option t-att-value="a.id">
+                                <t t-esc="a.name"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
+                <div id="wbl_countries" class="mb-2" style="display:none;">
+                    <label for="countries_id" class="form-label">Autres Pay</label>
+                    <select name="country" class="form-select">
+                        <option value="">Choose Other Country...</option>
+                        <t t-foreach="country" t-as="a">
+                            <option t-att-value="a.id">
+                                <t t-esc="a.name"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
+            </div>
+
+        </xpath>
+    </template>
+</odoo>

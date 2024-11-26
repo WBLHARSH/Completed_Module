@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_abidjan_public_public,abidjan public,model_abidjan,base.group_public,1,1,1,1
+access_abidjan_public_portal,abidjan public,model_abidjan,base.group_portal,1,1,1,1
+access_abidjan_public_employee,abidjan public,model_abidjan,base.group_user,1,1,1,1
+access_ivory_coast_public_public,ivory.coast public,model_ivory_coast,base.group_public,1,1,1,1
+access_ivory_coast_public_portal,ivory.coast public,model_ivory_coast,base.group_portal,1,1,1,1
+access_ivory_coast_public_employee,ivory.coast public,model_ivory_coast,base.group_user,1,1,1,1
+access_country_details_public_public,country.details public,model_country_details,base.group_public,1,1,1,1
+access_country_details_public_portal,country.details public,model_country_details,base.group_portal,1,1,1,1
+access_country_details_public_employee,country.details public,model_country_details,base.group_user,1,1,1,1
+access_delivery_carrier_public_public,delivery.carrier public,model_delivery_carrier,base.group_public,1,1,1,1
+access_delivery_carrier_public_portal,delivery.carrier public,model_delivery_carrier,base.group_portal,1,1,1,1
+access_delivery_carrier_public_employee,delivery.carrier public,model_delivery_carrier,base.group_user,1,1,1,1
+
+

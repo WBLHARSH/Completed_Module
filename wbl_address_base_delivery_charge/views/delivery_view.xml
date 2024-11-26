@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <!--  Show Boolean Field in Shipping Field  -->
+    <record id="view_delivery_carrier_calculate_distance_price" model="ir.ui.view">
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="name">Delivery Carrier Calculate Distance Price</field>
+        <field name="model">delivery.carrier</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='fixed_price']" position="before">
+                <field name="calc_distance_prc"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

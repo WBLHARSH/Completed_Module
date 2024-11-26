@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <template id="custom_address_inherited" inherit_id="website_sale.address">
+        <!-- Hide The Address Form Field -->
+        <xpath expr="//div[contains(@t-attf-class, 'div_street')]" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'div_street2')]" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//t[1]/t[2]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/t[4]/div[1]/label[1]"
+               position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//t[1]/t[2]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/t[4]/div[1]/input[1]"
+               position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'div_city')]" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'div_country')]" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'div_state')]" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'div_state')]" position="replace">
+            <span style="display:none"></span>
+        </xpath>
+        <xpath expr="//t[@t-if='website._display_partner_b2b_fields()']" position="replace">
+            <span style="display:None;">Hello</span>
+
+        </xpath>
+    </template>
+</odoo>

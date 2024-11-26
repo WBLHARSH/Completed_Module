@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <template id="website_address_connector" inherit_id="website_sale.address">
+        <!--    Adding Some Field in Address Form    -->
+        <xpath expr="//div[contains(@t-attf-class, 'div_state')]" position="after">
+            <!-- TextArea Field Section -->
+            <div id="select_fields" class="col-lg-12">
+                <label t-attf-class="col-form-label #{mode[1] == 'shipping' and 'label-optional' or ''}"
+                       for="address">Lieu de livraison
+                </label> <!-- Label for the textarea -->
+                <t t-if="'address' in checkout">
+                    <textarea name="address" class="form-control mb-2" t-esc="checkout['address']  or ' '" rows="3"/>
+                </t>
+                <t t-if="'address' not in checkout">
+                    <textarea name="address" class="form-control mb-2" rows="3"/>
+                </t>
+            </div>
+            <!-- Radio Field Section -->
+            <div t-attf-class="col-lg-6 mb-2" id="div_addresses">
+                <label t-attf-class="col-form-label #{mode[1] == 'shipping' and 'label-optional' or ''}"
+                       for="addresses">
+                    Zones
+                </label>
+                <div class="d-flex flex-wrap">
+                    <div class="form-check me-3"> <!-- Added margin-end to space out radio buttons -->
+                        <t t-if="'selected_option' in checkout">
+                            <input type="radio" class="form-check-input" id="address_abidjan" name="selected_option"
+                                   value="Abidjan" t-att-checked="checkout['selected_option'] == 'Abidjan'"/>
+                        </t>
+                        <t t-if="'selected_option' not in checkout">
+                            <input type="radio" class="form-check-input" id="address_abidjan" name="selected_option"
+                                   value="Abidjan"/>
+                        </t>
+                        <label class="form-check-label" for="address_abidjan">
+                            Abidjan
+                        </label>
+                    </div>
+                    <div class="form-check me-3"> <!-- Added margin-end to space out radio buttons -->
+                        <t t-if="'selected_option' in checkout">
+                            <input type="radio" class="form-check-input" id="address_ivory_coast" name="selected_option"
+                                   value="Ivory Coast" t-att-checked="checkout['selected_option'] == 'Ivory Coast'"/>
+                        </t>
+                        <t t-if="'selected_option' not in checkout">
+                            <input type="radio" class="form-check-input" id="address_ivory_coast" name="selected_option"
+                                   value="Ivory Coast"/>
+                        </t>
+                        <label class="form-check-label" for="address_ivory_coast">
+                            Ivory Coast
+                        </label>
+                    </div>
+                    <div class="form-check me-3"> <!-- Added margin-end to space out radio buttons -->
+                        <t t-if="'selected_option' in checkout">
+                            <input type="radio" class="form-check-input" id="address_countries" name="selected_option"
+                                   value="Countries" t-att-checked="checkout['selected_option'] == 'Countries'"/>
+                        </t>
+                        <t t-if="'selected_option' not in checkout">
+                            <input type="radio" class="form-check-input" id="address_countries" name="selected_option"
+                                   value="Countries"/>
+                        </t>
+                        <label class="form-check-label" for="address_countries">
+                            Autres Pay
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Select Fields Section (will be at the bottom) -->
+            <div id="select_fields" class="col-lg-12"> <!-- Added a margin-top for spacing -->
+                <div id="wbl_abidjan" class="mb-2 t-att-class='error.get('abidjans_id') and 'o_has_error div_state''"
+                     style="display:none;">
+                    <label class="col-form-label" for="abidjans_id">Abidjan</label>
+                    <select name="abidjans_id"
+                            class="form-select t-att-class='error.get('abidjans_id') and 'is-invalid''"
+                            data-init="1">
+
+                        <option value="">Choose Abidjan...</option>
+                        <t t-foreach="abidjans" t-as="a">
+                            <t t-if="'abidjan' in checkout">
+                                <option t-att-value="a.id"
+                                        t-att-selected="checkout['abidjan'] and checkout['abidjan'].id == a.id">
+                                    <t t-esc="a.name"/>
+                                </option>
+                            </t>
+                            <t t-if="'abidjan' not in checkout">
+                                <option t-att-value="a.id">
+                                    <t t-esc="a.name"/>
+                                </option>
+                            </t>
+                        </t>
+                    </select>
+                </div>
+                <div id="wbl_ivory_coast"
+                     class="mb-2 t-att-class='error.get('ivory_coast_id') and 'o_has_error div_state''"
+                     style="display:none;">
+                    <label class="col-form-label" for="ivory_coast_id">Ivory Coast</label>
+                    <select name="ivory_coast_id"
+                            class="form-select t-att-class='error.get('ivory_coast_id') and 'is-invalid''"
+                            data-init="1">
+                        <option value="">Choose Ivory Coast...</option>
+                        <t t-foreach="ivory_coast" t-as="a">
+                            <t t-if="'ivory_coast' in checkout">
+                                <option t-att-value="a.id"
+                                        t-att-selected="checkout['ivory_coast'] and checkout['ivory_coast'].id == a.id">
+                                    <t t-esc="a.name"/>
+                                </option>
+                            </t>
+                            <t t-if="'ivory_coast' not in checkout">
+                                <option t-att-value="a.id">
+                                    <t t-esc="a.name"/>
+                                </option>
+                            </t>
+                        </t>
+                    </select>
+                </div>
+                <div id="wbl_countries" class="mb-2 t-att-class='error.get('countries_id') and 'o_has_error div_state''"
+                     style="display:none;">
+                    <label class="col-form-label" for="countries_id">Autres Pay</label>
+                    <select name="countries_id"
+                            class="form-select t-att-class='error.get('countries_id') and 'is-invalid''"
+                            data-init="1">
+                        <option value="">Choose Other Country...</option>
+                        <t t-foreach="countries" t-as="a">
+                            <t t-if="'country' in checkout">
+                                <option t-att-value="a.id"
+                                        t-att-selected="checkout['country'] and checkout['country'].id == a.id">
+                                    <t t-esc="a.name"/>
+                                </option>
+                            </t>
+                            <t t-if="'country' not in checkout">
+                                <option t-att-value="a.id">
+                                    <t t-esc="a.name"/>
+                                </option>
+                            </t>
+                        </t>
+                    </select>
+                </div>
+
+            </div>
+        </xpath>
+    </template>
+</odoo>

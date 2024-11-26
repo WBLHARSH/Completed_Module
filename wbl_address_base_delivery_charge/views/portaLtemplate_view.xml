@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <template id="portal_my_details_fields_inherited" inherit_id="portal.portal_my_details_fields">
+        <!-- Hide Company Name -->
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//label[@for='company_name']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//input[@name='company_name']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <!-- Hide Vat Number -->
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//label[@for='vat']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//input[@name='vat']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <!-- Hide Street -->
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//label[@for='street']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//input[@name='street']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <!-- Hide City -->
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//label[@for='city']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//input[@name='city']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <!-- Hide Zipcode -->
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//label[@for='zipcode']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//input[@name='zipcode']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <!-- Hide Country -->
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//label[@for='country_id']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//select[@name='country_id']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <!-- Hide State -->
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//label[@for='state_id']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'col-xl-6')]//select[@name='state_id']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+
+    </template>
+</odoo>
