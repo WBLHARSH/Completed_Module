@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+
+<odoo>
+    <record id="view_res_config_settings_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.website</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='website_info_settings']" position="after">
+                <block title="Shop - Order Notes" id="website_order_notes">
+
+                     <setting string="Website For Order Notes And Date" help="Choose Your Website For Order Message And Desire Date">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label class="o_light_label col-lg-3" string="Website" for="website"/>
+                                <field name="website" widget="many2one" options="{'no_create_edit': True, 'no_quick_create': True}"/>
+                            </div>
+
+                        </div>
+                    </setting>
+                    <setting>
+                        <div class="row mt8">
+                            <label class="col-lg-3" string="Minimum Number Of Days" for="minimum_number_of_days"/>
+                            <field name="minimum_number_of_days"/>
+                        </div>
+                    </setting>
+
+                    <setting id="website_message" string="Website Message"
+                             help="Allows your visitors to write about the order.">
+                        <field name="enable_order_message_field"/>
+                    </setting>
+                    <setting>
+                        <div class="content-group">
+                            <div class="row mt8">
+                                <label class="col-lg-3" string="Maximum Number Of Days" for="maximum_number_of_days"/>
+                                <field name="maximum_number_of_days"/>
+                            </div>
+                        </div>
+                    </setting>
+
+                    <setting id="website_desirable_date" string="Website Desire Date"
+                             help="Allows your visitors to choose a desirable date for delivery.">
+                        <field name="enable_desire_date_field"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
