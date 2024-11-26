@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+
+<odoo>
+    <template id="payment_fee" inherit_id="website_sale.total">
+        <tr id="order_total_untaxed" position="before">
+            <tr id="cod_payment_fee" style="display:none;">
+                <td colspan="2" class="ps-0 pt-0 pb-2 border-0 text-muted">
+                    <span>Payment Fee</span>
+                </td>
+                <td class="text-end pe-0 pt-0 pb-2 border-0">
+                    <span id="wbl_payment_fee"
+                          class="monetary_field"
+                          style="white-space: nowrap;"
+                          t-options='{"widget": "monetary", "display_currency": website_sale_order.currency_id}'/>
+                </td>
+            </tr>
+        </tr>
+    </template>
+
+</odoo>

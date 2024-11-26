@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+
+<odoo>
+    <record id="payment_provider_form" model="ir.ui.view">
+        <field name="name">Payment Fee Form</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='payment_state']" position="inside">
+                <field name="enable_payment_fee"/>
+            </xpath>
+            <xpath expr="//page[@name='messages']" position="after">
+                <page name="Payment Fee" invisible="not enable_payment_fee">
+
+                    <group string="General">
+                        <group>
+                            <field name="fee" widget="radio"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="fee_amount" invisible="fee != 'fixed_amount'" widget="monetary"/>
+                            <field name="fee_percentage" invisible="fee != 'order_percentage'" widget="percentage"/>
+                        </group>
+                        <group>
+                            <field name="payment_fee_product" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Fee By Customer">
+                            <field name="partner_ids" widget="many2many_tags"/>
+                        </group>
+                        <group string="Fee By Product">
+                            <field name="products_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Fee By Website">
+                            <field name="website_ids" widget="many2many_tags"/>
+                        </group>
+                        <group string="Fees By Country">
+                            <field name="country_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Fee By Calender">
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                        </group>
+                        <group string="Fee By Order Amount">
+                            <field name="minimum_order_amount" widget="monetary"/>
+                            <field name="tax_excluded"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

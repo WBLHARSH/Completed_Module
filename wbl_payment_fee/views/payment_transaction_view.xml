@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+
+<odoo>
+    <!--  Payment Transaction Form  -->
+    <record id="transaction_form_payment_fee" model="ir.ui.view">
+        <field name="name">Transaction Form</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.payment_transaction_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='transaction_details']/field[@name='amount']" position="after">
+                <field name="currency_id" invisible="1"/>
+                <field name="payment_fee" widget='monetary' readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

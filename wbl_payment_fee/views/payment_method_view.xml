@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+
+<odoo>
+    <template id="payment_method_form_customization" inherit_id="payment.method_form">
+        <xpath expr="//label[@class='o_payment_option_label mb-0 text-break']" position="after">
+            <!-- Display the fee only if the provider has a fee and enable_payment_fee is True -->
+            <t t-if="providers.get(pm_sudo.id)">
+                <span class="bg-primary text-white"
+                      style="border-radius: 20px; padding: 0px 6px; text-align: center;">
+                    <t t-if="providers.get(pm_sudo.id)['fee_type'] == 'fixed_amount'">
+                        + USD$
+                        <t t-esc="providers.get(pm_sudo.id)['fee_amount']"/>
+                    </t>
+                    <t t-if="providers.get(pm_sudo.id)['fee_type'] == 'order_percentage'">
+                        +<t t-esc="providers.get(pm_sudo.id)['fee_percentage']"/>%
+                    </t>
+                    Fees
+                </span>
+            </t>
+        </xpath>
+    </template>
+</odoo>
+
