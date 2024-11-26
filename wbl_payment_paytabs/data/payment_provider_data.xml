@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo noupdate="1">
+    <record id="payment_provider_payTabs" model="payment.provider">
+        <field name="name">PayTabs</field>
+        <field name="code">payTabs</field>
+        <field name="image_128" type="base64" file="wbl_payment_paytabs/static/description/logo.png"/>
+        <field name="module_id" ref="base.module_wbl_payment_paytabs"/>
+        <field name="payment_method_ids"
+               eval="[Command.set([
+                         ref('wbl_payment_paytabs.payment_method_payTabs'),
+                         ])]"/>
+        <field name="redirect_form_view_id" ref="redirect_form"/>
+    </record>
+</odoo>
