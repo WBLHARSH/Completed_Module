@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--  Payment Transaction Form  -->
+    <record id="transaction_form_braintree" model="ir.ui.view">
+        <field name="name">Transaction Form</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.payment_transaction_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page name="braintree_transaction_details" string="Braintree Transaction Details"
+                          invisible="provider_code != 'braintree'">
+                        <group>
+                            <field name="braintree_transaction_id"/>
+                            <field name="braintree_payment_currency"/>
+                            <field name="braintree_payment_status"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>

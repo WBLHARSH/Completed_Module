@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--  Payment Provider Form  -->
+    <record id="payment_provider_form" model="ir.ui.view">
+        <field name="name">Braintree Payment Gateway Form</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <group name="provider_credentials" position="inside">
+                <group invisible="code != 'braintree'">
+                    <field name="braintree_merchant_id" string="Merchant Id"
+                           required="code == 'braintree' and state != 'disabled'"/>
+                    <field name="braintree_public_key" string="Public Key"
+                           required="code == 'braintree' and state != 'disabled'" password="True"/>
+                    <field name="braintree_private_key" string="Private Key"
+                           required="code == 'braintree' and state != 'disabled'" password="True"/>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--   Redirect Form     -->
+    <template id="redirect_form">
+        <form t-att-action="api_url" method="post">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <input type="hidden" name="reference" t-att-value="reference"/>
+        </form>
+    </template>
+
+    <!--   Braintree Card Page     -->
+    <template id="inline_form">
+        <input type="hidden" name="wbl_client_token" id="wbl_client_token"
+               t-att-value="client_token"/>
+        <div id="dropin-container"/>
+        <div  id="error-message"/>
+    </template>
+</odoo>
