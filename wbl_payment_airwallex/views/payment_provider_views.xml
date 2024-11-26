@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <!--  Payment Provider Form  -->
+    <record id="payment_provider_form" model="ir.ui.view">
+        <field name="name">Airwallex Payment Gateway Form</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <group name="provider_credentials" position="inside">
+                <group invisible="code != 'airwallex'">
+                    <field name="airwallex_client_id" string="Client Id"
+                           required="code == 'airwallex' and state != 'disabled'"/>
+                    <field name="airwallex_api_key" string="Api Key"
+                           required="code == 'airwallex' and state != 'disabled'" password="True"/>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
