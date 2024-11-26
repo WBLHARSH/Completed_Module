@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+
+    <template id="redirect_form">
+        <form t-att-action="api_url" method="get">
+        </form>
+    </template>
+
+</odoo>

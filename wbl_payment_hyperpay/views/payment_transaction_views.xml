@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <!--  Payment Transaction Form  -->
+    <record id="transaction_form_hyperPay" model="ir.ui.view">
+        <field name="name">Transaction Form</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.payment_transaction_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook invisible="provider_code != 'hyperPay'">
+                    <page name="hyperPay_transaction_details" string="HyperPay Transaction Details"
+                          invisible="hyperpay_payment_type != 'DB'">
+                        <group>
+                            <field name="hyperpay_transaction_id"/>
+                            <field name="hyperpay_transaction_currency"/>
+                            <field name="hyperpay_transaction_status"/>
+                            <field name="hyperpay_payment_type" invisible="1"/>
+                        </group>
+                    </page>
+                    <page name="hyperPay_transaction_details" string="HyperPay Refund Details"
+                          invisible="hyperpay_payment_type != 'RF'">
+                        <group>
+                            <field name="hyperpay_refund_id"/>
+                            <field name="hyperpay_refund_currency"/>
+                            <field name="hyperpay_refund_status"/>
+                        </group>
+                    </page>
+                </notebook>
+
+            </xpath>
+        </field>
+    </record>
+</odoo>

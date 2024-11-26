@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo noupdate="1">
+
+    <record id="payment_method_hyperPay" model="payment.method">
+        <field name="name">HyperPay</field>
+        <field name="code">hyperPay</field>
+        <field name="sequence">1000</field>
+        <field name="image" type="base64" file="wbl_payment_hyperpay/static/description/logo.png"/>
+        <field name="support_tokenization">False</field>
+        <field name="support_express_checkout">False</field>
+    </record>
+
+</odoo>
+
+
+
