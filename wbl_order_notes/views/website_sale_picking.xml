@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+
+<odoo>
+    <template id="website_sale_payment_override" inherit_id="website_sale.payment">
+        <xpath expr="//div[@name='website_sale_non_free_cart'] | //t[@name='website_sale_non_free_cart']"
+               position="after">
+            <t t-if="enable_order_message_field or enable_desire_date_field">
+                <h4 class="fs-6 small text-uppercase fw-bolder">Add Notes and Desired Date</h4>
+                <div id="schedule_delivery" class="card border-0">
+                    <ul class="list-group">
+                        <li class="list-group-item" t-if="enable_order_message_field">
+
+                            <div class="mb-3">
+                                <label for="note_field_id" class="form-label">Order Message</label>
+                                <textarea name="note_field" class="form-control" id="note_field_id" rows="3"></textarea>
+                            </div>
+                        </li>
+                        <li class="list-group-item" t-if="enable_desire_date_field">
+
+                            <div class="form-group">
+                                <label class="mb-2" for="wbl_desire_date">Desire Date</label>
+                                <input type="date" class="form-control" name="wbl_desire_date"
+                                       id="wbl_desire_date"/>
+                                <input type="hidden" name="minimum_desire" id="minimum_desire"
+                                       t-att-value="minimum_desire"/>
+                                <input type="hidden" name="maximum_desire" id="maximum_desire"
+                                       t-att-value="maximum_desire"/>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- This Line Start For Modal -->
+                    <div id="message_popup" class="modal" tabindex="1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Notification</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p id="popup_message_text">Desire date is invalid or out of range.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- This Line End For Modal -->
+                </div>
+            </t>
+        </xpath>
+    </template>
+    <!--  Sale Desire Date and Note Field  -->
+    <record id="view_sale_date_note_form" model="ir.ui.view">
+        <field name="name">view.sale.date.note.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="desire_date_field" string="Desire Date"/>
+            </xpath>
+            <xpath expr="//page[@name='customer_signature']" position="after">
+                <page name="Order Note">
+                    <label for="order_message_field" string="Order Note"/>
+                    <field name="order_message_field"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <!-- Stock Pick Desire Date And Order Note   -->
+    <record id="view_stock_picking_date_note_form" model="ir.ui.view">
+        <field name="name">view.stock.picking.date.note.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='scheduled_date']" position="before">
+                <field name="desire_date_field" string="Desire Date"/>
+            </xpath>
+            <xpath expr="//page[@name='note']" position="after">
+                <page name="Order Note">
+                    <label for="order_message_field" string="Order Note"/>
+                    <field name="order_message_field"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
