@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+
+<odoo>
+    <record id="inherit_view_delivery_price_rule_form" model="ir.ui.view">
+        <field name="name">delivery.price.rule.inherit.form</field>
+        <field name="model">delivery.price.rule</field>
+        <field name="inherit_id" ref="delivery.view_delivery_price_rule_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='max_value']" position="after">
+                <field name="distance_unit" invisible="variable != 'distance'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
