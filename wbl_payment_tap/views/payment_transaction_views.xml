@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <!--  Payment Transaction Form  -->
+    <record id="transaction_form_tap" model="ir.ui.view">
+        <field name="name">Transaction Form</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.payment_transaction_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page name="tap_transaction_details" string="Tap Transaction Details"
+                          invisible="provider_code != 'tap'">
+                        <group>
+                            <field name="tap_transaction_id"/>
+                            <field name="tap_transaction_currency"/>
+                            <field name="tap_transaction_status"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>
