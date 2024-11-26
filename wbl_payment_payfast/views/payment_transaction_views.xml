@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <!--  Payment Transaction Form  -->
+    <record id="transaction_form_payfast" model="ir.ui.view">
+        <field name="name">Transaction Form</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.payment_transaction_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook invisible="provider_code != 'payfast'">
+                    <page name="payfast_transaction_details" string="Payfast Transaction Details">
+                        <group>
+                            <field name="payfast_transaction_id"/>
+                            <field name="payfast_transaction_status"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <!--  Payment Provider Form  -->
+    <record id="payfast_payment_provider_form" model="ir.ui.view">
+        <field name="name">Payfast Payment Gateway Form</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <group name="provider_credentials" position="inside">
+                <group invisible="code != 'payfast'">
+                    <field name="payfast_merchant_id" string="Payfast Merchant Id"
+                           required="code == 'payfast' and state != 'disabled'"/>
+                    <field name="payfast_merchant_key" string="Payfast Merchant Key"
+                           required="code == 'payfast' and state != 'disabled'" password="True"/>
+                    <field name="payfast_passphrase" string="Payfast Passphrase"
+                           required="code == 'payfast' and state != 'disabled'"/>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

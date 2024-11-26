@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+
+    <!--   Redirect Form     -->
+    <template id="redirect_form">
+        <form t-att-action="api_url" method="post">
+            <input name="merchant_id" type="hidden" t-att-value="merchant_id"/>
+            <input name="merchant_key" type="hidden" t-att-value="merchant_key"/>
+            <input name="return_url" type="hidden" t-att-value="return_url"/>
+            <input name="cancel_url" type="hidden" t-att-value="cancel_url"/>
+            <input name="notify_url" type="hidden" t-att-value="notify_url"/>
+            <input name="name_first" type="hidden" t-att-value="name_first"/>
+            <input name="name_last" type="hidden" t-att-value="name_last"/>
+            <input name="email_address" type="hidden" t-att-value="email_address"/>
+            <input name="m_payment_id" type="hidden" t-att-value="m_payment_id"/>
+            <input name="amount" type="hidden" t-att-value="amount"/>
+            <input name="signature" type="hidden" t-att-value="signature"/>
+            <input name="item_name" type="hidden" t-att-value="item_name"/>
+
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <input type="hidden" name="reference" t-att-value="reference"/>
+        </form>
+    </template>
+
+    <template id="inline_form">
+        <!--        <div class="mysr-form"></div>-->
+    </template>
+</odoo>

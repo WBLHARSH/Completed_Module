@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <record id="payment_method_payfast" model="payment.method">
+        <field name="name">Payfast</field>
+        <field name="code">payfast</field>
+        <field name="image" type="base64" file="wbl_payment_payfast/static/description/logo.png"/>
+        <field name="sequence">2</field>
+        <field name="support_tokenization">True</field>
+        <field name="support_express_checkout">False</field>
+        <field name="support_refund">partial</field>
+    </record>
+</odoo>
