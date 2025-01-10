@@ -21,7 +21,6 @@ publicWidget.registry.WblsearchBar = publicWidget.Widget.extend({
     _searchProduct: function (ev) {
         ev.preventDefault(); // Prevent the default form submission
         const search = this.$el.find('.search-query').val().trim(); // Fetch and trim the input value
-        console.log("Search Value:", search); // Log the input value
 
         if (search) {
              const currentUrl = new URL(window.location.href); // Get the current URL

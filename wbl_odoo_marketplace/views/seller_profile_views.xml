@@ -26,7 +26,7 @@
                     <field name="image_1920" widget="image" class="oe_avatar"
                            options="{'preview_image': 'image_1920'}"/>
                     <div class="oe_title">
-                        <label for="name" string="Auditorium Name"/>
+                        <label for="name" string="Seller Name"/>
                         <h1>
                             <field name="name" placeholder="e.g. Jonny Bairstow"/>
                         </h1>
@@ -62,7 +62,7 @@
                             <field name="shop_image_logo" widget="image" class="oe_avatar"
                                    options="{'preview_image': 'shop_image_logo'}"/>
                             <div class="oe_title">
-                                <label for="name" string="Shop Name"/>
+                                <label for="name" string="Shop Name" help="Name of the seller's shop."/>
                                 <h1>
                                     <field name="shop_name" placeholder="e.g. Dashing Fashion"/>
                                 </h1>
@@ -76,7 +76,7 @@
                                            placeholder="e.g. https://www.odoo.com"/>
                                 </group>
                             </group>
-                            <group string="Banner" name="mp_shop_banner">
+                            <group string="Banner" help="Name of the seller's shop." name="mp_shop_banner">
                                 <div>
                                     <field name="shop_image_banner" widget="image"/>
                                 </div>

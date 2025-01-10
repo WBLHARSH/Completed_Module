@@ -165,8 +165,8 @@
             <field name="name">Seller Account Submission Notification</field>
             <field name="model_id" ref="wbl_odoo_marketplace.model_marketplace_seller"/>
             <field name="subject">New Seller Account Pending Approval</field>
-            <field name="email_from">{{ object.user_id.company_id.email_formatted or user.email_formatted }}</field>
-            <field name="email_to">{{ user.email }}</field>
+            <field name="email_from">{{ user.email }}</field>
+            <field name="email_to">{{ object.user_id.company_id.email_formatted or user.email_formatted }}</field>
             <field name="description">Notification to admin regarding seller account submission for approval.</field>
             <field name="body_html" type="html">
                 <table border="0" cellpadding="0" cellspacing="0"
@@ -384,13 +384,13 @@
                                                                 </t>
                                                             </strong>
                                                             <br/>
-                                                            To gain access to your seller account, you can use the
+                                                            To access your seller account, you can use the
                                                             following
                                                             link:
                                                             <div style="margin: 16px 0px 16px 0px;">
                                                                 <a t-attf-href="/web/login?auth_login={{object.email}}"
                                                                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
-                                                                    Go to My Account
+                                                                    Access your Dashboard
                                                                 </a>
                                                             </div>
                                                             Thanks,
@@ -533,21 +533,6 @@
                                                             <br/>
                                                             Your seller account has been denied!
                                                             <br/>
-                                                            Your login is
-                                                            <strong>
-                                                                <t t-out="object.email or ''">mark.brown23@example.com
-                                                                </t>
-                                                            </strong>
-                                                            <br/>
-                                                            To gain access to your seller account, you can use the
-                                                            following
-                                                            link:
-                                                            <div style="margin: 16px 0px 16px 0px;">
-                                                                <a t-attf-href="/web/login?auth_login={{object.email}}"
-                                                                   style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
-                                                                    Go to My Account
-                                                                </a>
-                                                            </div>
                                                             Thanks,
                                                             <br/>
                                                             <t t-if="user.signature">
@@ -628,5 +613,1503 @@
                 </table>
             </field>
         </record>
+
+        <!-- Seller Product Submission Notification Template for Admin -->
+        <record id="mail_template_seller_product_submission_admin" model="mail.template">
+            <field name="name">Seller Product Submission Notification</field>
+            <field name="model_id" ref="wbl_odoo_marketplace.model_mp_seller_product"/>
+            <field name="subject">New Seller Product Pending Approval</field>
+            <field name="email_from">{{ user.email }}</field>
+            <field name="email_to">{{ (object.user_id.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="description">Notification to admin regarding seller product submission for approval.</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0"
+                       style="padding-top: 16px; background-color: #FFFFFF; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="padding: 16px; background-color: #FFFFFF; color: #454748; border-collapse:separate;">
+                                <tbody>
+                                    <!-- HEADER -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="middle">
+                                                        <span style="font-size: 16px; font-weight: bold;">Seller Product
+                                                            Submission
+                                                        </span>
+                                                        <br/>
+                                                        <span style="font-size: 12px; color: #888888;">A new seller
+                                                            product request has been submitted for approval.
+                                                        </span>
+                                                    </td>
+                                                    <td valign="middle" align="right">
+                                                        <img t-attf-src="/logo.png?company={{ object.user_id.company_id.id }}"
+                                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                                             t-att-alt="object.user_id.company_id.name"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:none;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- CONTENT -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 16px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="top" style="font-size: 14px;">
+                                                        <div>
+                                                            Dear Admin,
+                                                            <br/>
+                                                            <br/>
+                                                            A new seller product has been submitted for approval. The
+                                                            details are as follows:
+                                                            <br/>
+                                                            <br/>
+                                                            <strong>Product Name:</strong>
+                                                            <t t-out="object.name or ''">[Product Name]</t>
+                                                            <br/>
+                                                            <strong>Product Category:</strong>
+                                                            <t t-out="object.categ_id.name or ''">[Category]</t>
+                                                            <br/>
+                                                            <strong>Product Price:</strong>
+                                                            <t t-out="object.list_price or ''">[Price]</t>
+                                                            <br/>
+                                                            <strong>Submitted By:</strong>
+                                                            <t t-out="object.user_id.name or ''">[User]</t>
+                                                            <br/>
+                                                            <br/>
+                                                            You can review and approve or deny this product by accessing
+                                                            the marketplace admin dashboard.
+                                                            <br/>
+                                                            <br/>
+                                                            <a t-attf-href="/web/login?auth_login={{ user.email }}"
+                                                               style="background-color: #875A7B; padding: 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                                Access Admin Dashboard
+                                                            </a>
+                                                            <br/>
+                                                            <br/>
+                                                            Best regards,
+                                                            <br/>
+                                                            <t t-if="user.signature">
+                                                                <t t-out="user.signature or ''">[Admin Signature]</t>
+                                                            </t>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:none;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- FOOTER -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; font-size: 11px; padding: 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="middle" align="left">
+                                                        <t t-out="object.user_id.company_id.name or ''">[Company Name]
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="middle" align="left" style="opacity: 0.7;">
+                                                        <t t-out="object.user_id.company_id.phone or ''">[Phone]</t>
+                                                        <t t-if="object.user_id.company_id.email">
+                                                            |
+                                                            <a t-attf-href="'mailto:%s' % {{ object.user_id.company_id.email }}"
+                                                               style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.user_id.company_id.email or ''">
+                                                                    [Email]
+                                                                </t>
+                                                            </a>
+                                                        </t>
+                                                        <t t-if="object.user_id.company_id.website">
+                                                            |
+                                                            <a t-attf-href="'%s' % {{ object.user_id.company_id.website }}"
+                                                               style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.user_id.company_id.website or ''">
+                                                                    [Website]
+                                                                </t>
+                                                            </a>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- POWERED BY -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                                <tr>
+                                    <td style="text-align: center; font-size: 13px;">
+                                        Powered by
+                                        <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth"
+                                           style="color: #875A7B;">Odoo
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!--Seller Product Request Approved Template-->
+        <record id="mail_template_seller_product_request_approved" model="mail.template">
+            <field name="name">Seller Product: Request Approved</field>
+            <field name="model_id" ref="wbl_odoo_marketplace.model_mp_seller_product"/>
+            <field name="subject">Congratulations! Your Seller Product is Now Approved.</field>
+            <field name="email_from">{{ (object.user_id.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="email_to">{{ object.user_id.email }}</field>
+            <field name="description">Sent to portal user when their seller product request approved.</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0"
+                       style="padding-top: 16px; background-color: #FFFFFF; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="padding: 16px; background-color: #FFFFFF; color: #454748; border-collapse:separate;">
+                                <tbody>
+                                    <!-- HEADER -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="middle">
+                                                        <span style="font-size: 10px;">Your Account</span>
+                                                        <br/>
+                                                        <br/>
+                                                        <span style="font-size: 12px; color: #888888;"><t
+                                                                t-out="object.user_id.name or ''">Marc Demo</t>.
+                                                        </span>
+                                                    </td>
+                                                    <td valign="middle" align="right">
+                                                        <img t-attf-src="/logo.png?company={{ object.user_id.company_id.id }}"
+                                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                                             t-att-alt="object.user_id.company_id.name"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:none;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- CONTENT -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 16px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="top" style="font-size: 14px;">
+                                                        <div>
+                                                            Dear <t t-out="object.user_id.name or ''">Marc Demo</t>,
+                                                            <br/>
+                                                            <br/>
+                                                            Your product has been successfully approved.
+                                                            <br/>
+                                                            <br/>
+                                                            To check your product, you can use the
+                                                            following
+                                                            link:
+                                                            <br/>
+                                                            <br/>
+                                                            <a t-attf-href="/web/login?auth_login={{ object.user_id.email }}"
+                                                               style="background-color: #875A7B; padding: 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                                Access Your Dashboard
+                                                            </a>
+                                                            <br/>
+                                                            <br/>
+                                                            Best regards,
+                                                            <br/>
+                                                            <t t-if="user.signature">
+                                                                <t t-out="user.signature or ''">[Admin Signature]</t>
+                                                            </t>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:none;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- FOOTER -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; font-size: 11px; padding: 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="middle" align="left">
+                                                        <t t-out="object.user_id.company_id.name or ''">[Company Name]
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="middle" align="left" style="opacity: 0.7;">
+                                                        <t t-out="object.user_id.company_id.phone or ''">[Phone]</t>
+                                                        <t t-if="object.user_id.company_id.email">
+                                                            |
+                                                            <a t-attf-href="'mailto:%s' % {{ object.user_id.company_id.email }}"
+                                                               style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.user_id.company_id.email or ''">
+                                                                    [Email]
+                                                                </t>
+                                                            </a>
+                                                        </t>
+                                                        <t t-if="object.user_id.company_id.website">
+                                                            |
+                                                            <a t-attf-href="'%s' % {{ object.user_id.company_id.website }}"
+                                                               style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.user_id.company_id.website or ''">
+                                                                    [Website]
+                                                                </t>
+                                                            </a>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- POWERED BY -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                                <tr>
+                                    <td style="text-align: center; font-size: 13px;">
+                                        Powered by
+                                        <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth"
+                                           style="color: #875A7B;">Odoo
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!--Seller Product Request Denied Template-->
+        <record id="mail_template_seller_product_request_denied" model="mail.template">
+            <field name="name">Seller Product: Request Denied</field>
+            <field name="model_id" ref="wbl_odoo_marketplace.model_mp_seller_product"/>
+            <field name="subject">Your Seller Product Request Has Been Denied</field>
+            <field name="email_from">{{ (object.user_id.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="email_to">{{ object.user_id.email }}</field>
+            <field name="description">Sent to portal user when their seller product request denied.</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0"
+                       style="padding-top: 16px; background-color: #FFFFFF; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="padding: 16px; background-color: #FFFFFF; color: #454748; border-collapse:separate;">
+                                <tbody>
+                                    <!-- HEADER -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="middle">
+                                                        <span style="font-size: 10px;">Your Account</span>
+                                                        <br/>
+                                                        <br/>
+                                                        <span style="font-size: 12px; color: #888888;"><t
+                                                                t-out="object.user_id.name or ''">Marc Demo</t>.
+                                                        </span>
+                                                    </td>
+                                                    <td valign="middle" align="right">
+                                                        <img t-attf-src="/logo.png?company={{ object.user_id.company_id.id }}"
+                                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                                             t-att-alt="object.user_id.company_id.name"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:none;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- CONTENT -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 16px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="top" style="font-size: 14px;">
+                                                        <div>
+                                                            Dear <t t-out="object.user_id.name or ''">Marc Demo</t>,
+                                                            <br/>
+                                                            <br/>
+                                                            Your seller product has been denied!
+                                                            <br/>
+                                                            <br/>
+                                                            To check your product, you can use the
+                                                            following
+                                                            link:
+                                                            <br/>
+                                                            <br/>
+                                                            <a t-attf-href="/web/login?auth_login={{ object.user_id.email }}"
+                                                               style="background-color: #875A7B; padding: 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                                Access Your Dashboard
+                                                            </a>
+                                                            <br/>
+                                                            <br/>
+                                                            Best regards,
+                                                            <br/>
+                                                            <t t-if="user.signature">
+                                                                <t t-out="user.signature or ''">[Admin Signature]</t>
+                                                            </t>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:none;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- FOOTER -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; font-size: 11px; padding: 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="middle" align="left">
+                                                        <t t-out="object.user_id.company_id.name or ''">[Company Name]
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="middle" align="left" style="opacity: 0.7;">
+                                                        <t t-out="object.user_id.company_id.phone or ''">[Phone]</t>
+                                                        <t t-if="object.user_id.company_id.email">
+                                                            |
+                                                            <a t-attf-href="'mailto:%s' % {{ object.user_id.company_id.email }}"
+                                                               style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.user_id.company_id.email or ''">
+                                                                    [Email]
+                                                                </t>
+                                                            </a>
+                                                        </t>
+                                                        <t t-if="object.user_id.company_id.website">
+                                                            |
+                                                            <a t-attf-href="'%s' % {{ object.user_id.company_id.website }}"
+                                                               style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.user_id.company_id.website or ''">
+                                                                    [Website]
+                                                                </t>
+                                                            </a>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- POWERED BY -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                                <tr>
+                                    <td style="text-align: center; font-size: 13px;">
+                                        Powered by
+                                        <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth"
+                                           style="color: #875A7B;">Odoo
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- Seller Request For Payment Notification Template for Admin -->
+        <record id="mail_template_request_for_payment_admin" model="mail.template">
+            <field name="name">Seller Request For Payment Notification</field>
+            <field name="model_id" ref="wbl_odoo_marketplace.model_marketplace_seller_payment"/>
+            <field name="subject">Seller Request For Payment Approval</field>
+            <field name="email_from">{{ user.email }}</field>
+            <field name="email_to">{{ (object.user_id.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="description">Notification to admin regarding seller for payment approval.</field>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0"
+                       style="padding-top: 16px; background-color: #FFFFFF; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="padding: 16px; background-color: #FFFFFF; color: #454748; border-collapse:separate;">
+                                <tbody>
+                                    <!-- HEADER -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="middle">
+                                                        <span style="font-size: 16px; font-weight: bold;">Seller Request
+                                                            For Payment
+                                                        </span>
+                                                        <br/>
+                                                        <span style="font-size: 12px; color: #888888;">A seller
+                                                            request for payment has been submitted.
+                                                        </span>
+                                                    </td>
+                                                    <td valign="middle" align="right">
+                                                        <img t-attf-src="/logo.png?company={{ object.user_id.company_id.id }}"
+                                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                                             t-att-alt="object.user_id.company_id.name"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:none;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- CONTENT -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 16px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="top" style="font-size: 14px;">
+                                                        <div>
+                                                            Dear Admin,
+                                                            <br/>
+                                                            <br/>
+                                                            seller payment request has been submitted for
+                                                            approval.
+                                                            The details are as follows:
+                                                            <br/>
+                                                            <br/>
+                                                            <strong>Seller Name:</strong>
+                                                            <t t-out="object.user_id.name or ''">[Seller Name]</t>
+                                                            <br/>
+                                                            <strong>Payment Amount:</strong>
+                                                            <t t-esc="'%s %.2f' % (object.currency_id.symbol, object.payment_amount or 0.0)"/>
+
+                                                            <br/>
+                                                            <strong>Request Date:</strong>
+                                                            <t t-out="object.create_date or ''">[Request Date]</t>
+                                                            <br/>
+                                                            <br/>
+                                                            You can review and approve or deny this payment request by
+                                                            accessing
+                                                            the marketplace admin dashboard.
+                                                            <br/>
+                                                            <br/>
+                                                            <a t-attf-href="/web/login?auth_login={{ user.email }}"
+                                                               style="background-color: #875A7B; padding: 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                                Access Admin Dashboard
+                                                            </a>
+                                                            <br/>
+                                                            <br/>
+                                                            Best regards,
+                                                            <br/>
+                                                            <t t-if="user.signature">
+                                                                <t t-out="user.signature or ''">[Admin Signature]</t>
+                                                            </t>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:none;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- FOOTER -->
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; font-size: 11px; padding: 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="middle" align="left">
+                                                        <t t-out="object.user_id.company_id.name or ''">[Company Name]
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="middle" align="left" style="opacity: 0.7;">
+                                                        <t t-out="object.user_id.company_id.phone or ''">[Phone]</t>
+                                                        <t t-if="object.user_id.company_id.email">
+                                                            |
+                                                            <a t-attf-href="'mailto:%s' % {{ object.user_id.company_id.email }}"
+                                                               style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.user_id.company_id.email or ''">
+                                                                    [Email]
+                                                                </t>
+                                                            </a>
+                                                        </t>
+                                                        <t t-if="object.user_id.company_id.website">
+                                                            |
+                                                            <a t-attf-href="'%s' % {{ object.user_id.company_id.website }}"
+                                                               style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.user_id.company_id.website or ''">
+                                                                    [Website]
+                                                                </t>
+                                                            </a>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- POWERED BY -->
+                    <tr>
+                        <td align="center" style="min-width: 590px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                                <tr>
+                                    <td style="text-align: center; font-size: 13px;">
+                                        Powered by
+                                        <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth"
+                                           style="color: #875A7B;">Odoo
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!--Seller Payment Request Approved Template-->
+        <record id="mail_template_seller_payment_request_approved" model="mail.template">
+            <field name="name">Seller Payment: Request Approved</field>
+            <field name="model_id" ref="wbl_odoo_marketplace.model_marketplace_seller_payment"/>
+            <field name="subject">Your Payment Request Has Been Approved!</field>
+            <field name="email_from">{{ object.user_id.company_id.email_formatted or user.email_formatted }}</field>
+            <field name="email_to">{{ object.user_id.email }}</field>
+            <field name="description">Notification sent to portal user when their payment request is approved.</field>
+            <field name="body_html" type="html">
+
+                <table width="100%"
+                       style="font-family: Arial, sans-serif; background-color: #f8f9fa; color: #333333; padding: 16px;">
+                    <tr>
+                        <td align="center">
+                            <table width="600"
+                                   style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 24px;">
+                                <!-- Header -->
+                                <tr>
+                                    <td style="text-align: left; font-size: 12px; color: #555;">
+                                        <strong>
+                                            <t t-out="object.user_id.name or ''">[Seller Name]</t>
+                                        </strong>
+                                        <br/>
+                                        <t t-out="object.user_id.company_id.name or ''">[Company Name]</t>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <img t-attf-src="/logo.png?company={{ object.user_id.company_id.id }}"
+                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                             t-att-alt="object.user_id.company_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="border-bottom: 1px solid #dddddd; padding: 8px 0;"></td>
+                                </tr>
+
+                                <!-- Body Content -->
+                                <tr>
+                                    <td colspan="2" style="padding: 24px 0; text-align: left;">
+                                        <p style="font-size: 16px; margin: 0;">
+                                            Dear
+                                            <strong>
+                                                <t t-out="object.user_id.name or 'Seller'">[Seller Name]</t>
+                                            </strong>
+                                            ,
+                                        </p>
+                                        <p style="margin: 16px 0;">
+                                            We are pleased to inform you that your payment request has been <strong>
+                                            successfully approved</strong>.
+                                        </p>
+                                        <p>
+                                            You can access your account and review your payment details using the link
+                                            below:
+                                        </p>
+                                        <p style="text-align: center; margin: 24px 0;">
+                                            <a t-attf-href="/web/login?auth_login={{ object.user_id.email }}"
+                                               style="background-color: #875A7B; color: #ffffff; text-decoration: none;
+                                              padding: 10px 20px; border-radius: 5px; font-size: 14px;">
+                                                Access Your Dashboard
+                                            </a>
+                                        </p>
+                                        <p style="margin: 16px 0;">
+                                            If you have any questions, feel free to reply to this email or contact our
+                                            support team.
+                                        </p>
+                                        <p style="margin: 0;">
+                                            Best regards,
+                                            <br/>
+                                            <t t-if="user.signature">
+                                                <t t-out="user.signature or ''">[Admin Signature]</t>
+                                            </t>
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <!-- Footer -->
+                                <tr>
+                                    <td colspan="2"
+                                        style="border-top: 1px solid #dddddd; padding: 16px 0; font-size: 12px; color: #777777; text-align: center;">
+                                        <t t-out="object.user_id.company_id.name or ''">[Your Company Name]</t>
+                                        <br/>
+                                        <t t-out=" object.user_id.company_id.phone or ''">[phone]</t>
+                                        |
+                                        <a t-attf-href="mailto:{{ object.user_id.company_id.email }}"
+                                           style="color: #555; text-decoration: none;">
+                                            <t t-out="object.user_id.company_id.email or ''">
+                                                [Email]
+                                            </t>
+                                        </a>
+                                        |
+                                        <a t-attf-href="{{ object.user_id.company_id.website or '' }}"
+                                           style="color: #555; text-decoration: none;">Website
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Powered by -->
+                            <table width="600"
+                                   style="font-size: 12px; color: #888888; text-align: center; margin-top: 16px;">
+                                <tr>
+                                    <td>
+                                        Powered by
+                                        <a href="https://www.odoo.com" target="_blank"
+                                           style="color: #875A7B; text-decoration: none;">Odoo
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+            </field>
+        </record>
+
+        <!--Seller Payment Request Denied Template-->
+        <record id="mail_template_seller_payment_request_denied" model="mail.template">
+            <field name="name">Seller Payment: Request Denied</field>
+            <field name="model_id" ref="wbl_odoo_marketplace.model_marketplace_seller_payment"/>
+            <field name="subject">Your Payment Request Has Been Denied!</field>
+            <field name="email_from">{{ object.user_id.company_id.email_formatted or user.email_formatted }}</field>
+            <field name="email_to">{{ object.user_id.email }}</field>
+            <field name="description">Notification sent to portal user when their payment request is Denied.</field>
+            <field name="body_html" type="html">
+                <table width="100%"
+                       style="font-family: Arial, sans-serif; background-color: #f8f9fa; color: #333333; padding: 16px;">
+                    <tr>
+                        <td align="center">
+                            <table width="600"
+                                   style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 24px;">
+                                <!-- Header -->
+                                <tr>
+                                    <td style="text-align: left; font-size: 12px; color: #555;">
+                                        <strong>
+                                            <t t-out="object.user_id.name or ''">[Seller Name]</t>
+                                        </strong>
+                                        <br/>
+                                        <t t-out="object.user_id.company_id.name or ''">[Company Name]</t>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <img t-attf-src="/logo.png?company={{ object.user_id.company_id.id }}"
+                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                             t-att-alt="object.user_id.company_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="border-bottom: 1px solid #dddddd; padding: 8px 0;"></td>
+                                </tr>
+
+                                <!-- Body Content -->
+                                <tr>
+                                    <td colspan="2" style="padding: 24px 0; text-align: left;">
+                                        <p style="font-size: 16px; margin: 0;">
+                                            Dear
+                                            <strong>
+                                                <t t-out="object.user_id.name or 'Seller'">[Seller Name]</t>
+                                            </strong>
+                                            ,
+                                        </p>
+                                        <p style="margin: 16px 0;">
+                                            We regret to inform you that your payment request has been <strong>
+                                            denied</strong>.
+                                        </p>
+                                        <p>
+                                            Please review the details of your request in your seller dashboard using the
+                                            link
+                                            below:
+                                        </p>
+                                        <p style="text-align: center; margin: 24px 0;">
+                                            <a t-attf-href="/web/login?auth_login={{ object.user_id.email }}"
+                                               style="background-color: #875A7B; color: #ffffff; text-decoration: none;
+                                      padding: 10px 20px; border-radius: 5px; font-size: 14px;">
+                                                Access Your Dashboard
+                                            </a>
+                                        </p>
+                                        <p style="margin: 16px 0;">
+                                            If you have any questions regarding this decision, please contact our
+                                            support team.
+                                        </p>
+                                        <p style="margin: 0;">
+                                            Best regards,
+                                            <br/>
+                                            <t t-if="user.signature">
+                                                <t t-out="user.signature or ''">[Admin Signature]</t>
+                                            </t>
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <!-- Footer -->
+                                <tr>
+                                    <td colspan="2"
+                                        style="border-top: 1px solid #dddddd; padding: 16px 0; font-size: 12px; color: #777777; text-align: center;">
+                                        <t t-out="object.user_id.company_id.name or ''">[Your Company Name]</t>
+                                        <br/>
+                                        <t t-out=" object.user_id.company_id.phone or ''">[phone]</t>
+                                        |
+                                        <a t-attf-href="mailto:{{ object.user_id.company_id.email }}"
+                                           style="color: #555; text-decoration: none;">
+                                            <t t-out="object.user_id.company_id.email or ''">
+                                                [Email]
+                                            </t>
+                                        </a>
+                                        |
+                                        <a t-attf-href="{{ object.user_id.company_id.website or '' }}"
+                                           style="color: #555; text-decoration: none;">Website
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Powered by -->
+                            <table width="600"
+                                   style="font-size: 12px; color: #888888; text-align: center; margin-top: 16px;">
+                                <tr>
+                                    <td>
+                                        Powered by
+                                        <a href="https://www.odoo.com" target="_blank"
+                                           style="color: #875A7B; text-decoration: none;">Odoo
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!--Admin Pay To seller Template-->
+        <record id="mail_template_admin_pay_to_seller" model="mail.template">
+            <field name="name">Admin : Pay To Seller</field>
+            <field name="model_id" ref="wbl_odoo_marketplace.model_marketplace_seller_payment"/>
+            <field name="subject">Payment Processed to Your Account</field>
+            <field name="email_from">{{ object.user_id.company_id.email_formatted or user.email_formatted }}</field>
+            <field name="email_to">{{ object.user_id.email }}</field>
+            <field name="description">Notification sent to portal user when their payment request is Denied.</field>
+            <field name="body_html" type="html">
+                <table width="100%"
+                       style="font-family: Arial, sans-serif; background-color: #f8f9fa; color: #333333; padding: 16px;">
+                    <tr>
+                        <td align="center">
+                            <table width="600"
+                                   style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 24px;">
+                                <!-- Header -->
+                                <tr>
+                                    <td style="text-align: left; font-size: 12px; color: #555;">
+                                        <strong>
+                                            <t t-out="object.user_id.name or ''">[Seller Name]</t>
+                                        </strong>
+                                        <br/>
+                                        <t t-out="object.user_id.company_id.name or ''">[Company Name]</t>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <img t-attf-src="/logo.png?company={{ object.user_id.company_id.id }}"
+                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                             t-att-alt="object.user_id.company_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="border-bottom: 1px solid #dddddd; padding: 8px 0;"></td>
+                                </tr>
+
+                                <!-- Body Content -->
+                                <tr>
+                                    <td valign="top" style="font-size: 14px;">
+                                        <div>
+                                            Dear <t t-out="object.user_id.name or ''">[Seller Name]</t>,
+                                            <br/>
+                                            <br/>
+                                            We would like to inform you that a payment has been processed to your
+                                            account.
+                                            The details are as follows:
+                                            <br/>
+                                            <br/>
+                                            <strong>Seller Name:</strong>
+                                            <t t-out="object.user_id.name or ''">[Seller Name]</t>
+                                            <br/>
+                                            <strong>Payment Amount:</strong>
+                                            <t t-esc="'%s %.2f' % (object.currency_id.symbol, object.payment_amount or 0.0)"/>
+
+                                            <br/>
+                                            <strong>Proceed Date:</strong>
+                                            <t t-out="object.create_date or ''">[Proceed Date]</t>
+                                            <br/>
+                                            <br/>
+                                            If you have any questions regarding this payment, feel free to reach out to
+                                            us
+                                            at
+                                            <span>
+                                                <t t-out="user.email or ''">[Admin email]</t>
+                                            </span>
+                                            <br/>
+                                            <br/>
+                                            <a t-attf-href="/web/login?auth_login={{ object.user_id.email }}"
+                                               style="background-color: #875A7B; padding: 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                Access Your Dashboard
+                                            </a>
+                                            <br/>
+                                            <br/>
+                                            Best regards,
+                                            <br/>
+                                            <t t-if="user.signature">
+                                                <t t-out="user.signature or ''">[Admin Signature]</t>
+                                            </t>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Footer -->
+                                <tr>
+                                    <td colspan="2"
+                                        style="border-top: 1px solid #dddddd; padding: 16px 0; font-size: 12px; color: #777777; text-align: center;">
+                                        <t t-out="object.user_id.company_id.name or ''">[Your Company Name]</t>
+                                        <br/>
+                                        <t t-out=" object.user_id.company_id.phone or ''">[phone]</t>
+                                        |
+                                        <a t-attf-href="mailto:{{ object.user_id.company_id.email }}"
+                                           style="color: #555; text-decoration: none;">
+                                            <t t-out="object.user_id.company_id.email or ''">
+                                                [Email]
+                                            </t>
+                                        </a>
+                                        |
+                                        <a t-attf-href="{{ object.user_id.company_id.website or '' }}"
+                                           style="color: #555; text-decoration: none;">Website
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Powered by -->
+                            <table width="600"
+                                   style="font-size: 12px; color: #888888; text-align: center; margin-top: 16px;">
+                                <tr>
+                                    <td>
+                                        Powered by
+                                        <a href="https://www.odoo.com" target="_blank"
+                                           style="color: #875A7B; text-decoration: none;">Odoo
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!--Admin Pay To seller Template-->
+        <record id="admin_sent_mail_to_seller_for_seller_query_template" model="mail.template">
+            <field name="name">Admin : Seller Query</field>
+            <field name="model_id" ref="wbl_odoo_marketplace.model_seller_query_wizard"/>
+            <field name="subject">{{ object.subject }}</field>
+            <field name="email_from">{{ object.user_id.company_id.email_formatted or user.email_formatted }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="description">Notification sent to Seller their query is open.</field>
+            <field name="body_html" type="html">
+                <table width="100%"
+                       style="font-family: Arial, sans-serif; background-color: #f8f9fa; color: #333333; padding: 16px;">
+                    <tr>
+                        <td align="center">
+                            <table width="600"
+                                   style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 24px;">
+                                <!-- Header -->
+                                <tr>
+                                    <td valign="middle">
+                                        <span style="font-size: 12px; color: #888888;">Your Query.
+                                        </span>
+                                    </td>
+                                    <td style="text-align: left; font-size: 12px; color: #555;">
+                                        <t t-out="user.company_id.name or ''">[Company Name]</t>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <img t-attf-src="/logo.png?company={{ object.user_id.company_id.id }}"
+                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                             t-att-alt="user.company_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="border-bottom: 1px solid #dddddd; padding: 8px 0;"></td>
+                                </tr>
+
+                                <!-- Body Content -->
+                                <tr>
+                                    <td valign="top" style="font-size: 14px;">
+                                        <div>
+                                            <br/>
+                                            <br/>
+                                            <t t-out="object.body or ''">[Body]</t>
+                                            <br/>
+                                            If you have any questions regarding this payment, feel free to reach out to
+                                            us
+                                            at
+                                            <br/>
+                                            <br/>
+                                            <span>
+                                                <t t-out="user.email or ''">[Admin email]</t>
+                                            </span>
+                                            <br/>
+                                            <br/>
+                                            Best regards,
+                                            <br/>
+                                            <t t-if="user.signature">
+                                                <t t-out="user.signature or ''">[Admin Signature]</t>
+                                            </t>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Footer -->
+                                <tr>
+                                    <td colspan="2"
+                                        style="border-top: 1px solid #dddddd; padding: 16px 0; font-size: 12px; color: #777777; text-align: center;">
+                                        <t t-out="object.user_id.company_id.name or ''">[Your Company Name]</t>
+                                        <br/>
+                                        <t t-out=" object.user_id.company_id.phone or ''">[phone]</t>
+                                        |
+                                        <a t-attf-href="mailto:{{ object.user_id.company_id.email }}"
+                                           style="color: #555; text-decoration: none;">
+                                            <t t-out="object.user_id.company_id.email or ''">
+                                                [Email]
+                                            </t>
+                                        </a>
+                                        |
+                                        <a t-attf-href="{{ object.user_id.company_id.website or '' }}"
+                                           style="color: #555; text-decoration: none;">Website
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Powered by -->
+                            <table width="600"
+                                   style="font-size: 12px; color: #888888; text-align: center; margin-top: 16px;">
+                                <tr>
+                                    <td>
+                                        Powered by
+                                        <a href="https://www.odoo.com" target="_blank"
+                                           style="color: #875A7B; text-decoration: none;">Odoo
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- Sent an email to seller for customer query-->
+        <record id="mail_sent_a_email_to_seller_for_query_template" model="mail.template">
+            <field name="name">Seller : Customer Query</field>
+            <field name="model_id" ref="wbl_odoo_marketplace.model_marketplace_customer_query"/>
+            <field name="subject">{{ object.subject }}</field>
+            <field name="email_from">{{ object.user_id.company_id.email_formatted or user.email_formatted }}</field>
+            <field name="email_to">{{ object.seller_id.email}}</field>
+            <field name="description">Notification sent to Seller for customer query.</field>
+            <field name="body_html" type="html">
+                <table width="100%"
+                       style="font-family: Arial, sans-serif; background-color: #f8f9fa; color: #333333; padding: 16px;">
+                    <tr>
+                        <td align="center">
+                            <table width="600"
+                                   style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 24px;">
+
+                                <!-- Body Content -->
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                               style="min-width: 590px; background-color: white; padding: 16px; border-collapse:separate;">
+                                            <tr>
+                                                <td valign="top" style="font-size: 14px;">
+                                                    <div>
+                                                        Dear <t t-out="object.seller_id.name or ''">[Seller Name]</t>,
+                                                        <br/>
+                                                        <br/>
+                                                        A customer raise query please resolve the query.The
+                                                        details are as follows:
+                                                        <br/>
+                                                        <br/>
+                                                        <strong>Customer Name:</strong>
+                                                        <t t-out="object.name or ''">[Customer Name]</t>
+                                                        <br/>
+                                                        <strong>Customer Question:</strong>
+                                                        <t t-out="object.question or ''">[Customer Question]</t>
+                                                        <br/>
+                                                        <br/>
+                                                        You can review and complete or close this query by accessing
+                                                        the marketplace Seller dashboard.
+                                                        <br/>
+                                                        <br/>
+                                                        <a t-attf-href="/web/login?auth_login={{ object.seller_uid.email }}"
+                                                           style="background-color: #875A7B; padding: 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                            Access Seller Dashboard
+                                                        </a>
+                                                        <br/>
+                                                        <br/>
+                                                        Best regards,
+                                                        <br/>
+                                                        <t t-if="user.signature">
+                                                            <t t-out="user.signature or ''">[Admin Signature]</t>
+                                                        </t>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    <hr width="100%"
+                                                        style="background-color:rgb(204,204,204);border:none;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px;"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <!-- Footer -->
+                                <tr>
+                                    <td colspan="2"
+                                        style="border-top: 1px solid #dddddd; padding: 16px 0; font-size: 12px; color: #777777; text-align: center;">
+                                        <t t-out="object.seller_uid.company_id.name or ''">[Your Company Name]</t>
+                                        <br/>
+                                        <t t-out=" object.seller_uid.company_id.phone or ''">[phone]</t>
+                                        |
+                                        <a t-attf-href="mailto:{{ object.seller_uid.company_id.email }}"
+                                           style="color: #555; text-decoration: none;">
+                                            <t t-out="object.seller_uid.company_id.email or ''">
+                                                [Email]
+                                            </t>
+                                        </a>
+                                        |
+                                        <a t-attf-href="{{ object.seller_uid.company_id.website or '' }}"
+                                           style="color: #555; text-decoration: none;">Website
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Powered by -->
+                            <table width="600"
+                                   style="font-size: 12px; color: #888888; text-align: center; margin-top: 16px;">
+                                <tr>
+                                    <td>
+                                        Powered by
+                                        <a href="https://www.odoo.com" target="_blank"
+                                           style="color: #875A7B; text-decoration: none;">Odoo
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- Sent an email to Admin for seller query-->
+        <record id="mail_sent_a_email_to_admin_for_seller_query_template" model="mail.template">
+            <field name="name">Admin : New Seller Query</field>
+            <field name="model_id" ref="wbl_odoo_marketplace.model_marketplace_seller_query"/>
+            <field name="subject">{{ object.topic }}</field>
+            <field name="email_from">{{ object.contact_info}}</field>
+            <field name="email_to">{{ object.user_id.company_id.email_formatted or user.email_formatted }}</field>
+            <field name="description">Notification sent to Admin for seller query.</field>
+            <field name="body_html" type="html">
+                <table width="100%"
+                       style="font-family: Arial, sans-serif; background-color: #f8f9fa; color: #333333; padding: 16px;">
+                    <tr>
+                        <td align="center">
+                            <table width="600"
+                                   style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 24px;">
+
+                                <!-- Body Content -->
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                               style="min-width: 590px; background-color: white; padding: 16px; border-collapse:separate;">
+                                            <tr>
+                                                <td valign="top" style="font-size: 14px;">
+                                                    <div>
+                                                        Dear Admin,
+                                                        <br/>
+                                                        <br/>
+                                                        A seller raise a query please resolve the query.The
+                                                        details are as follows:
+                                                        <br/>
+                                                        <br/>
+                                                        <strong>Seller Name:</strong>
+                                                        <t t-out="object.name or ''">[Seller Name]</t>
+                                                        <br/>
+                                                        <strong>Seller Email:</strong>
+                                                        <t t-out="object.contact_info or ''">[Seller Email]</t>
+                                                        <br/>
+                                                        <strong>Seller Question:</strong>
+                                                        <t t-out="object.message or ''">[Seller message]</t>
+                                                        <br/>
+                                                        <br/>
+                                                        You can review and approved this query by accessing
+                                                        the marketplace admin dashboard.
+                                                        <br/>
+                                                        <br/>
+                                                        <a t-attf-href="/web/login?auth_login={{ user.email }}"
+                                                           style="background-color: #875A7B; padding: 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                            Access Admin Dashboard
+                                                        </a>
+                                                        <br/>
+                                                        <br/>
+                                                        Best regards,
+                                                        <br/>
+                                                        <t t-if="user.signature">
+                                                            <t t-out="user.signature or ''">[Admin Signature]</t>
+                                                        </t>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    <hr width="100%"
+                                                        style="background-color:rgb(204,204,204);border:none;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px;"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <!-- Footer -->
+                                <tr>
+                                    <td colspan="2"
+                                        style="border-top: 1px solid #dddddd; padding: 16px 0; font-size: 12px; color: #777777; text-align: center;">
+                                        <t t-out="object.user_id.company_id.name or ''">[Your Company Name]</t>
+                                        <br/>
+                                        <t t-out=" object.user_id.company_id.phone or ''">[phone]</t>
+                                        |
+                                        <a t-attf-href="mailto:{{ object.user_id.company_id.email }}"
+                                           style="color: #555; text-decoration: none;">
+                                            <t t-out="object.user_id.company_id.email or ''">
+                                                [Email]
+                                            </t>
+                                        </a>
+                                        |
+                                        <a t-attf-href="{{ object.user_id.company_id.website or '' }}"
+                                           style="color: #555; text-decoration: none;">Website
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Powered by -->
+                            <table width="600"
+                                   style="font-size: 12px; color: #888888; text-align: center; margin-top: 16px;">
+                                <tr>
+                                    <td>
+                                        Powered by
+                                        <a href="https://www.odoo.com" target="_blank"
+                                           style="color: #875A7B; text-decoration: none;">Odoo
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- Sent an email to Seller for query-->
+        <record id="mail_sent_a_email_to_seller_for_seller_query_template" model="mail.template">
+            <field name="name">Seller : New Seller Query</field>
+            <field name="model_id" ref="wbl_odoo_marketplace.model_marketplace_seller_query"/>
+            <field name="subject">{{ object.topic }}</field>
+            <field name="email_from">{{ (object.user_id.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="email_to">{{ object.user_id.email}}</field>
+            <field name="description">Notification sent to Seller for seller query.</field>
+            <field name="body_html" type="html">
+                <table width="100%"
+                       style="font-family: Arial, sans-serif; background-color: #f8f9fa; color: #333333; padding: 16px;">
+                    <tr>
+                        <td align="center">
+                            <table width="600"
+                                   style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 24px;">
+
+                                <!-- Body Content -->
+                                <!-- Header -->
+                                <tr>
+                                    <td style="text-align: left; font-size: 12px; color: #555;">
+                                        <t t-out="object.user_id.company_id.name or ''">[Company Name]</t>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <img t-attf-src="/logo.png?company={{ object.user_id.company_id.id }}"
+                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                             t-att-alt="object.user_id.company_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                               style="min-width: 590px; background-color: white; padding: 16px; border-collapse:separate;">
+                                            <tr>
+                                                <td colspan="2" style="padding: 24px 0; text-align: left;">
+                                                    <p style="font-size: 16px; margin: 0;">
+                                                        Dear
+                                                        <strong>
+                                                            <t t-out="object.name or 'Seller'">[Seller Name]</t>
+                                                        </strong>
+                                                        ,
+                                                    </p>
+                                                    <p style="margin: 16px 0;">
+                                                        We are pleased to inform you that your query request has been
+                                                        sent
+                                                        successfully.
+                                                    </p>
+                                                    <p style="margin: 16px 0;">
+                                                        If you have any questions, feel free to reply to this email or
+                                                        contact our
+                                                        support team.
+                                                    </p>
+                                                    <p style="margin: 0;">
+                                                        Best regards,
+                                                        <br/>
+                                                        <t t-if="object.user_id.signature">
+                                                            <t t-out="object.user_id.signature or ''">[Admin
+                                                                Signature]
+                                                            </t>
+                                                        </t>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    <hr width="100%"
+                                                        style="background-color:rgb(204,204,204);border:none;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px;"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <!-- Footer -->
+                                <tr>
+                                    <td colspan="2"
+                                        style="border-top: 1px solid #dddddd; padding: 16px 0; font-size: 12px; color: #777777; text-align: center;">
+                                        <t t-out="object.user_id.company_id.name or ''">[Your Company Name]</t>
+                                        <br/>
+                                        <t t-out=" object.user_id.company_id.phone or ''">[phone]</t>
+                                        |
+                                        <a t-attf-href="mailto:{{ object.user_id.company_id.email }}"
+                                           style="color: #555; text-decoration: none;">
+                                            <t t-out="object.user_id.company_id.email or ''">
+                                                [Email]
+                                            </t>
+                                        </a>
+                                        |
+                                        <a t-attf-href="{{ object.user_id.company_id.website or '' }}"
+                                           style="color: #555; text-decoration: none;">Website
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Powered by -->
+                            <table width="600"
+                                   style="font-size: 12px; color: #888888; text-align: center; margin-top: 16px;">
+                                <tr>
+                                    <td>
+                                        Powered by
+                                        <a href="https://www.odoo.com" target="_blank"
+                                           style="color: #875A7B; text-decoration: none;">Odoo
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </field>
+        </record>
+
+        <!-- Sent an email to customer for query-->
+        <record id="mail_template_customer_query_sent_template" model="mail.template">
+            <field name="name">Customer : Customer Query</field>
+            <field name="model_id" ref="wbl_odoo_marketplace.model_marketplace_customer_query"/>
+            <field name="subject">{{ object.subject }}</field>
+            <field name="email_from">{{ user.company_id.email_formatted or user.email_formatted }}
+            </field>
+            <field name="email_to">{{ object.partner_id.email}}</field>
+            <field name="description">Notification sent to customer for query.</field>
+            <field name="body_html" type="html">
+                <table width="100%"
+                       style="font-family: Arial, sans-serif; background-color: #f8f9fa; color: #333333; padding: 16px;">
+                    <tr>
+                        <td align="center">
+                            <table width="600"
+                                   style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 24px;">
+                                <!-- Header -->
+                                <tr>
+                                    <td style="text-align: left; font-size: 12px; color: #555;">
+                                        <t t-out="user.company_id.name or ''">[Company Name]</t>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <img t-attf-src="/logo.png?company={{ user.company_id.id }}"
+                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                             t-att-alt="user.company_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="border-bottom: 1px solid #dddddd; padding: 8px 0;"></td>
+                                </tr>
+
+                                <!-- Body Content -->
+                                <tr>
+                                    <td colspan="2" style="padding: 24px 0; text-align: left;">
+                                        <p style="font-size: 16px; margin: 0;">
+                                            Dear
+                                            <strong>
+                                                <t t-out="object.name or 'Customer'">[Customer Name]</t>
+                                            </strong>
+                                            ,
+                                        </p>
+                                        <p style="margin: 16px 0;">
+                                            We are pleased to inform you that your query request has been sent
+                                            successfully.
+                                        </p>
+                                        <p style="margin: 16px 0;">
+                                            If you have any questions, feel free to reply to this email or contact our
+                                            support team.
+                                        </p>
+                                        <p style="margin: 0;">
+                                            Best regards,
+                                            <br/>
+                                            <t t-if="user.signature">
+                                                <t t-out="user.signature or ''">[Admin Signature]</t>
+                                            </t>
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <!-- Footer -->
+                                <tr>
+                                    <td colspan="2"
+                                        style="border-top: 1px solid #dddddd; padding: 16px 0; font-size: 12px; color: #777777; text-align: center;">
+                                        <t t-out="user.company_id.name or ''">[Your Company Name]</t>
+                                        <br/>
+                                        <t t-out="user.company_id.phone or ''">[phone]</t>
+                                        |
+                                        <a t-attf-href="mailto:{{ user.company_id.email }}"
+                                           style="color: #555; text-decoration: none;">
+                                            <t t-out="user.company_id.email or ''">
+                                                [Email]
+                                            </t>
+                                        </a>
+                                        |
+                                        <a t-attf-href="{{ user.company_id.website or '' }}"
+                                           style="color: #555; text-decoration: none;">Website
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Powered by -->
+                            <table width="600"
+                                   style="font-size: 12px; color: #888888; text-align: center; margin-top: 16px;">
+                                <tr>
+                                    <td>
+                                        Powered by
+                                        <a href="https://www.odoo.com" target="_blank"
+                                           style="color: #875A7B; text-decoration: none;">Odoo
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+            </field>
+        </record>
+
     </data>
 </odoo>

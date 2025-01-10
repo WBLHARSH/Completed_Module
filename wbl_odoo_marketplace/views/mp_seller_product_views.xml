@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="action_marketplace_seller_product" model="ir.actions.act_window">
-        <field name="name">Seller Product</field>
+        <field name="name">Marketplace Seller Product</field>
         <field name="res_model">mp.seller.product</field>
         <field name="view_mode">kanban,tree,form</field>
     </record>
@@ -96,7 +96,7 @@
                             </group>
                         </page>
 
-                        <page string="Inventory" name="inventory">
+                        <page string="Inventory" name="inventory" invisible="detailed_type == 'service'">
                             <group name="inventory">
                                 <group name="stock" string="Stock">
                                     <field name="initial_stock"/>

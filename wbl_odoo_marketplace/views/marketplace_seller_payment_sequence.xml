@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="seq_marketplace_seller_payment" model="ir.sequence">
+        <field name="name">Marketplace Seller Payment</field>
+        <field name="code">marketplace.seller.payment</field>
+        <field name="prefix">DB-</field>
+        <field name="padding">5</field>
+    </record>
+    <record id="seq_marketplace_seller_payment_credit" model="ir.sequence">
+        <field name="name">Marketplace Seller Payment</field>
+        <field name="code">marketplace.seller.payment.credit</field>
+        <field name="prefix">CR-</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

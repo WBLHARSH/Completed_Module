@@ -23,6 +23,13 @@
                             <field name="commission" widget="percentage"/>
                         </setting>
                     </block>
+                    <block title="Inventory" name="inventory">
+                        <setting help="Here you can choose your default stock location for seller.">
+                            <field name="stock_location" widget="many2one"
+                                   options="{'no_create_edit': True, 'no_quick_create': True}"/>
+
+                        </setting>
+                    </block>
                     <block title="Mail &amp; Notifications" name="mail_notifications">
                         <setting help="Email notification to admin when sellers request to approve their accounts.">
                             <field name="seller_request_notify_to_admin"/>
@@ -35,6 +42,42 @@
                         </setting>
                         <setting help="Email notification to seller when their account has been denied.">
                             <field name="seller_denied_notify_to_admin"/>
+                        </setting>
+                        <setting
+                                help="Send an email notification to the administrator when a seller requests for product approval.">
+                            <field name="seller_request_for_product_approval"/>
+                        </setting>
+                        <setting
+                                help="Send an email notification to the seller when their product approval request has been approved.">
+                            <field name="seller_product_approved_notify_to_seller"/>
+                        </setting>
+                        <setting
+                                help="Send an email notification to the seller when their product approval request has been denied.">
+                            <field name="seller_product_denied_notify_to_seller"/>
+                        </setting>
+                        <setting
+                                help="Send an email notification to the administrator when a seller request for payment.">
+                            <field name="seller_request_for_payment"/>
+                        </setting>
+                        <setting
+                                help="Send an email notification to the seller when administrator pay to seller.">
+                            <field name="admin_pay_to_seller"/>
+                        </setting>
+                        <setting
+                                help="Send an email notification to the seller when their payment request has been approved.">
+                            <field name="seller_payment_request_approved_notify_to_seller"/>
+                        </setting>
+                        <setting
+                                help="Send an email notification to the seller when their payment request has been denied.">
+                            <field name="seller_payment_request_denied_notify_to_seller"/>
+                        </setting>
+                        <setting
+                                help="Send an email notification to the seller when customer raise a query.">
+                            <field name="customer_query_notify_to_seller"/>
+                        </setting>
+                        <setting
+                                help="Send an email notification to the customer when their query has been sent to seller.">
+                            <field name="customer_query_notify_to_customer"/>
                         </setting>
                     </block>
                     <!--  Marketing Page  -->
@@ -51,94 +94,74 @@
 
                         <!-- New setting for Journey Short Description -->
                         <setting string="Journey Short Description"
-                                 help="Provide a brief description of the customer journey or story. This text will appear in the marketing section dedicated to showcasing the journey.">
+                                 help="Provide a brief description of the customer journey or story.">
                             <field name="journey_short_description"/>
                         </setting>
                         <setting/>
-                        <setting string="Promotion Number">
-                            <div class="content-group">
-                                <div class="row mt16">
-                                    <label for="seller_community" string="Seller Community" class="col-lg-3"/>
-                                    <field name="seller_community"/>
-                                </div>
-                                <div class="row mt16">
-                                    <label for="online_business" string="Online Business" class="col-lg-3"/>
-                                    <field name="online_business"/>
-                                </div>
-                            </div>
-                        </setting>
-                        <setting>
-                            <div class="content-group">
-                                <div class="row mt16">
-                                    <label for="days_payment" string="Days Payment" class="col-lg-3"/>
-                                    <field name="days_payment"/>
-                                </div>
-                                <div class="row mt16">
-                                    <label for="pincodes_served" string="Pincodes Served" class="col-lg-3"/>
-                                    <field name="pincodes_served"/>
-                                </div>
-                            </div>
-                        </setting>
-                        <setting string="Seller Love Key Points">
-                            <div class="content-group">
-                                <div class="row mt16">
-                                    <label for="opportunity" string="Opportunity" class="col-lg-3"/>
-                                    <field name="opportunity"/>
-                                </div>
-                                <div class="row mt16">
-                                    <label for="ease_of_doing_business" string="Ease of doing business"
-                                           class="col-lg-3"/>
-                                    <field name="ease_of_doing_business"/>
-                                </div>
-                            </div>
-                        </setting>
-                        <setting>
-                            <div class="content-group">
-                                <div class="row mt16">
-                                    <label for="growth" string="Growth" class="col-lg-3"/>
-                                    <field name="growth"/>
-                                </div>
-                                <div class="row mt16">
-                                    <label for="additional_support" string="Additional Support" class="col-lg-3"/>
-                                    <field name="additional_support"/>
-                                </div>
-                            </div>
-                        </setting>
-                        <setting string="Marketplace Journey Key Points">
-                            <div class="content-group">
-                                <div class="row mt16">
-                                    <label for="journey_create" string="Create" class="col-lg-3"/>
-                                    <field name="journey_create"/>
-                                </div>
-                                <div class="row mt16">
-                                    <label for="journey_list" string="List"
-                                           class="col-lg-3"/>
-                                    <field name="journey_list"/>
-                                </div>
-                                <div class="row mt16">
-                                    <label for="journey_payment" string="Payment"
-                                           class="col-lg-3"/>
-                                    <field name="journey_payment"/>
-                                </div>
-                            </div>
-                        </setting>
-                        <setting>
-                            <div class="content-group">
-                                <div class="row mt16">
-                                    <label for="journey_orders" string="Orders"
-                                           class="col-lg-3"/>
-                                    <field name="journey_orders"/>
-                                </div>
-                                <div class="row mt16">
-                                    <label for="journey_shipment" string="Shipment"
-                                           class="col-lg-3"/>
-                                    <field name="journey_shipment"/>
-                                </div>
+                        <setting string="Promotion Number"/>
+                        <setting/>
 
-                            </div>
+                        <setting string="Seller Community"
+                                 help="Describe the experiences and benefits sellers gain within the community, including collaboration and networking opportunities.">
+                            <field name="seller_community"/>
                         </setting>
+                        <setting string="Online Business"
+                                 help="Provide insights into how the seller engages in online business, including platforms used and customer interactions.">
+                            <field name="online_business"/>
+                        </setting>
+                        <setting string="Days Payment"
+                                 help="Indicate the typical payment cycle in days for the seller and their customers, including any discounts or incentives for early payment.">
+                            <field name="days_payment"/>
+                        </setting>
+                        <setting string="Pincodes Served"
+                                 help="List the geographical regions or pin codes where the seller’s products or services are available.">
+                            <field name="pincodes_served"/>
+                        </setting>
+
+                        <setting string="Seller Love Key Points"/>
+                        <setting/>
+
+                        <setting string="Opportunity"
+                                 help="Explain the growth opportunities available to sellers, such as market expansion, new product offerings, or collaboration with other businesses.">
+                            <field name="opportunity"/>
+                        </setting>
+                        <setting string="Ease of doing business"
+                                 help="Describe how easy it is for sellers to operate within the platform, including simplicity of processes and available tools.">
+                            <field name="ease_of_doing_business"/>
+                        </setting>
+                        <setting string="Growth"
+                                 help="Share insights on how sellers can scale their business, from increased sales to expansion into new markets.">
+                            <field name="growth"/>
+                        </setting>
+                        <setting string="Additional Support"
+                                 help="Detail the various types of support available to sellers, such as training, customer service, or financial assistance.">
+                            <field name="additional_support"/>
+                        </setting>
+
+                        <setting string="Marketplace Journey Key Points"/>
+                        <setting/>
+                        <setting string="Create"
+                                 help="Provide guidance on how sellers can create listings, set up their store, and attract customers.">
+                            <field name="journey_create"/>
+                        </setting>
+                        <setting string="List"
+                                 help="Explain the process of listing products, including categorization, pricing, and promotion.">
+                            <field name="journey_list"/>
+                        </setting>
+                        <setting string="Payment"
+                                 help="Outline the payment processes available to sellers, including payment methods, timing, and security features.">
+                            <field name="journey_payment"/>
+                        </setting>
+                        <setting string="Orders"
+                                 help="Describe how orders are managed within the platform, from order receipt to fulfillment.">
+                            <field name="journey_orders"/>
+                        </setting>
+                        <setting string="Shipment"
+                                 help="Explain how sellers manage shipments, including delivery options, logistics, and tracking.">
+                            <field name="journey_shipment"/>
+                        </setting>
+
                     </block>
-
 
                 </app>
             </xpath>

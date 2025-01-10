@@ -39,28 +39,14 @@
                       groups="group_marketplace_seller"
                       action="action_marketplace_customer_query"
                       sequence="30"/>
-        </menuitem>
 
-        <menuitem id="marketplace_sale_menu"
-                  name="Sales"
-                  sequence="25">
-            <menuitem id="menu_mp_sale_order"
-                      name="Orders"
+            <menuitem id="menu_marketplace_seller_query"
+                      name="Seller Queries"
                       groups="group_marketplace_seller"
-                      action="action_mp_sale_order_view"
-                      sequence="10"/>
-        </menuitem>
+                      action="action_marketplace_seller_query"
+                      sequence="30"/>
 
-        <menuitem id="marketplace_inventory_menu"
-                  name="Inventory"
-                  sequence="25">
-            <menuitem id="menu_mp_delivery_order"
-                      name="Delivery Orders"
-                      groups="group_marketplace_seller"
-                      action="action_mp_delivery_order_view"
-                      sequence="10"/>
         </menuitem>
-
 
         <menuitem id="marketplace_catalog_menu"
                   name="Catalog"
@@ -72,8 +58,55 @@
                       sequence="10"/>
         </menuitem>
 
+        <menuitem id="marketplace_sale_menu"
+                  name="Sales"
+                  sequence="40">
+            <menuitem id="menu_mp_sale_order"
+                      name="Orders"
+                      groups="group_marketplace_seller"
+                      action="action_mp_sale_order_view"
+                      sequence="10"/>
+
+            <menuitem id="menu_mp_seller_request_for_payment"
+                      name="Request For Payment"
+                      groups="group_marketplace_seller"
+                      action="action_mp_request_for_payment_wizard"
+                      sequence="10"/>
+
+            <menuitem id="menu_mp_seller_pay_to_seller"
+                      name="Pay To Seller"
+                      groups="group_marketplace_user"
+                      action="action_mp_pay_to_seller_wizard"
+                      sequence="10"/>
+            <menuitem id="menu_mp_seller_payment"
+                      name="Seller Payments"
+                      groups="group_marketplace_seller"
+                      action="action_mp_seller_request_for_payment"
+                      sequence="10"/>
+        </menuitem>
+
+        <menuitem id="marketplace_invoicing_menu"
+                  name="Invoicing"
+                  sequence="50">
+            <menuitem id="menu_mp_seller_invoice"
+                      name="Invoices"
+                      groups="group_marketplace_seller"
+                      action="action_mp_seller_invoice_view"
+                      sequence="10"/>
+        </menuitem>
+
+        <menuitem id="marketplace_inventory_menu"
+                  name="Inventory"
+                  sequence="60">
+            <menuitem id="menu_mp_delivery_order"
+                      name="Delivery Orders"
+                      groups="group_marketplace_seller"
+                      action="action_mp_delivery_order_view"
+                      sequence="10"/>
+        </menuitem>
+
         <menuitem id="marketplace_global_configuration_menu"
-                  sequence="40"
+                  sequence="70"
                   name="Configuration">
             <menuitem name="Settings"
                       id="menu_mp_settings"

@@ -9,9 +9,6 @@
                             <h1 class="cWSfmy">
                                 <span class="bvEpHv" t-esc="settings['banner_heading']">Become a Marketplace Seller
                                 </span>
-                                <!--                                <span class="kUlaXp">and sell to 50 Crore+-->
-                                <!--                                    customers-->
-                                <!--                                </span>-->
                             </h1>
                             <div id="become_a_seller_wrap" class="d-inline-flex align-items-center mb-2 me-auto">
                                 <a role="button" id="become_a_seller"
@@ -416,24 +413,34 @@
                                 left unanswered? Share your thoughts below which will help us improve your website
                                 experience.
                             </span>
-                            <form class="jLCHGW">
+                            <p class="alert alert-warning text-center fw-bolder" id="seller_query_warning_id"
+                               style="display: none;">Dear Seller your query already in processing so don't send another
+                                query.
+                            </p>
+                            <form id="seller_query_form_id" class="jLCHGW">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                 <div>
                                     <div class="iRkbXM collection-input-container">
-                                        <input class="fPuYwe collection" type="text"
-                                               placeholder="Enter Full Name" label="Enter Full Name" name="fullName"
-                                               value="" required="True"/>
+                                        <input class="fPuYwe collection" type="text" id="seller_query_name"
+                                               placeholder="Enter Full Name" label="Enter Full Name" name="fullName" required="True"/>
                                     </div>
+                                    <span id="error-name" class="error-message"
+                                          style="color: red; font-size: 12px; display: none;">Full Name is required.
+                                    </span>
                                 </div>
                                 <div>
                                     <div class="iRkbXM collection-input-container">
-                                        <input class="fPuYwe collection" type="text"
-                                               label="Enter Mobile Number / Email ID"
-                                               placeholder="Enter Mobile Number / Email ID" name="contactInformation"
-                                               value="" required="True"/>
+                                        <input class="fPuYwe collection" type="email"
+                                               label="Email ID" id="seller_query_email"
+                                               placeholder="Email ID" name="contactInformation"
+                                                required="True"/>
                                     </div>
+                                    <span id="error-email" class="error-message"
+                                          style="color: red; font-size: 12px; display: none;">Email is required.
+                                    </span>
                                 </div>
                                 <div>
-                                    <select name="topic" class="kCbpt">
+                                    <select name="topic" class="kCbpt" required="True" id="seller_query_topic">
                                         <option value="">Select a Topic</option>
                                         <option value="Account Creation">Account Creation</option>
                                         <option value="Fee Structure">Fee Structure</option>
@@ -443,15 +450,23 @@
                                         <option value="Shipping">Shipping</option>
                                         <option value="Others">Others</option>
                                     </select>
+                                    <span id="error-topic" class="error-message"
+                                          style="color: red; font-size: 12px; display: none;">Please select a topic.
+                                    </span>
                                 </div>
                                 <div>
                                     <div class="iRkbXM collection-text-area-input-container">
-                                        <input class="fPuYwe collection-text-area"
-                                               type="text" label="Type Your Messsage" placeholder="Type Your Message"
-                                               name="message" value="" required="True"/>
+                                        <textarea class="fPuYwe collection-text-area" id="seller_query_message"
+                                                  placeholder="Type Your Message"
+                                                  required="True" name="message"/>
                                     </div>
+                                    <span id="error-message" class="error-message"
+                                          style="color: red; font-size: 12px; display: none;">Message is Required.
+                                    </span>
                                 </div>
-                                <button class="klTPPh send-query-collection" type="submit">Send Query</button>
+                                <button class="klTPPh send-query-collection" id="seller_query_submit_button" type="button">
+                                    Send Query
+                                </button>
                             </form>
                         </div>
                         <div class="dawqwO">

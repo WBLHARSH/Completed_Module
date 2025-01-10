@@ -1,11 +1,347 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- Inventory Dashboard template -->
 <templates xml:space="preserve">
 	<t t-name="owl.OwlSalesDashBoard" owl="1">
-           <div class="vh-100 overflow-auto bg-muted">
-			   <div class="row m-3">
-				   <div class="col-lg-7">
+		<t t-if="state.isAdmin">
+			<div class="vh-100 overflow-auto bg-muted">
+				<div class="row m-3">
+					<div class="col m-0 p-0">
+							   <div class="shadow-sm border m-2 p-4 bg-white">
+								   <div class="d-flex align-items-center justify-content-between">
+									   <h1 class="text-primary fw-bold">Marketplace Dashboard</h1>
+                                       <div>
+										   <select class="form-select" t-model="state.period"
+                                                   t-on-change="onChangePeriod">
+											   <option value="0">Select Period</option>
+                                               <option value="7">Last 7 days</option>
+                                               <option value="30">Last 30 days</option>
+                                               <option value="90">Last 90 days</option>
+                                               <option value="365">Last 365 days</option>
+										   </select>
+									   </div>
+								   </div>
+							   </div>
+						   </div>
+				</div>
+                <div class="row m-3">
+                   <div class="col">
+                       <div class="row">
+						   <!-- Quotations Card -->
+                           <div class="col-lg-4 col-md-6 col-sm-12 p-2 pb-2">
+								<div t-on-click="viewQuotations"
+                                     class="shadow-lg bg-gradient rounded text-center p-4 cursor-pointer delivery-card">
+									<div class="display-4 fw-bold text-primary" t-esc="state.quotations.value">10</div>
+                                    <div class="h5 text-muted mb-4">Marketplace Products</div>
+                                    <div>
+										<div class="row mb-3">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-edit text-primary me-2"></i>
+                                                <span class="fw-bold text-primary me-1"
+                                                      t-esc="state.quotations.draft">5</span>
+                                                <span class="text-muted">Draft</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-hourglass-half text-warning me-2"></i>
+                                                <span class="fw-bold text-warning me-1"
+                                                      t-esc="state.quotations.pending">5</span>
+                                                <span class="text-muted">Pending</span>
+											</div>
+										</div>
+                                        <div class="row">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-check-circle text-success me-2"></i>
+                                                <span class="fw-bold text-success me-1"
+                                                      t-esc="state.quotations.approved">5</span>
+                                                <span class="text-muted">Approved</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-times-circle text-danger me-2"></i>
+                                                <span class="fw-bold text-danger me-1"
+                                                      t-esc="state.quotations.denied">5</span>
+                                                <span class="text-muted">Denied</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+                           <!--  Card -->
+                           <t t-if="state.isAdmin">
+								<div class="col-lg-4 col-md-6 col-sm-12 p-2 pb-2">
+									<div t-on-click="viewOrders"
+                                         class="shadow-lg bg-gradient rounded text-center p-4 cursor-pointer delivery-card">
+										<div class="display-4 fw-bold text-primary" t-esc="state.orders.value">20</div>
+                                        <div class="h5 text-muted mb-4">Marketplace Sellers</div>
+                                        <div>
+											<div class="row mb-3">
+												<div class="col-6 text-start d-flex align-items-center">
+													<i class="fas fa-edit text-primary me-2"></i>
+                                                    <span class="fw-bold text-primary me-1"
+                                                          t-esc="state.orders.draft">5</span>
+                                                    <span class="text-muted">Draft</span>
+												</div>
+                                                <div class="col-6 text-start d-flex align-items-center">
+													<i class="fas fa-hourglass-half text-warning me-2"></i>
+                                                    <span class="fw-bold text-warning me-1"
+                                                          t-esc="state.orders.pending">5</span>
+                                                    <span class="text-muted">Pending</span>
+												</div>
+											</div>
+                                            <div class="row">
+												<div class="col-6 text-start d-flex align-items-center">
+													<i class="fas fa-check-circle text-success me-2"></i>
+                                                    <span class="fw-bold text-success me-1"
+                                                          t-esc="state.orders.approved">5</span>
+                                                    <span class="text-muted">Approved</span>
+												</div>
+                                                <div class="col-6 text-start d-flex align-items-center">
+													<i class="fas fa-times-circle text-danger me-2"></i>
+                                                    <span class="fw-bold text-danger me-1"
+                                                          t-esc="state.orders.denied">5</span>
+                                                    <span class="text-muted">Denied</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+						   </t>
+                           <!-- Sale Orders Card -->
+                           <div class="col-lg-4 col-md-6 col-sm-12 p-2 pb-2">
+								<div t-on-click="viewSaleOrder"
+                                     class="shadow-lg bg-gradient rounded text-center p-4 cursor-pointer delivery-card">
+									<div class="display-4 fw-bold text-primary"
+                                         t-esc="state.Saleorder.value">30.50k</div>
+                                    <div class="h5 text-muted mb-4">Marketplace Orders</div>
+                                    <div>
+										<div class="row mb-3">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-edit text-primary me-2"></i>
+                                                <span class="fw-bold text-primary me-1"
+                                                      t-esc="state.Saleorder.draft">5</span>
+                                                <span class="text-muted">Draft</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-hourglass-half text-warning me-2"></i>
+                                                <span class="fw-bold text-warning me-1" t-esc="state.Saleorder.pending">5</span>
+                                                <span class="text-muted">Pending</span>
+											</div>
+										</div>
+                                        <div class="row">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-check-circle text-success me-2"></i>
+                                                <span class="fw-bold text-success me-1"
+                                                      t-esc="state.Saleorder.approved">5</span>
+                                                <span class="text-muted">Approved</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-times-circle text-danger me-2"></i>
+                                                <span class="fw-bold text-danger me-1"
+                                                      t-esc="state.Saleorder.denied">5</span>
+                                                <span class="text-muted">Denied</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+					   </div>
+                       <div class="row">
+						            <!-- Delivery Orders Card -->
+                           <div class="col-lg-4 col-md-6 col-sm-12 p-2 pb-2">
+								<div t-on-click="viewDeliveryOrder"
+                                     class="shadow-lg bg-gradient rounded text-center p-4 cursor-pointer delivery-card">
+									<div class="display-4 fw-bold text-primary"
+                                         t-esc="state.DeliveryOrder.value">2.5k</div>
+                                    <div class="h5 text-muted mb-4">Marketplace Delivery Orders</div>
+                                    <div>
+										<div class="row mb-3">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-edit text-primary me-2"></i>
+                                                <span class="fw-bold text-primary me-1"
+                                                      t-esc="state.DeliveryOrder.draft">5</span>
+                                                <span class="text-muted">Draft</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-hourglass-half text-warning me-2"></i>
+                                                <span class="fw-bold text-warning me-1"
+                                                      t-esc="state.DeliveryOrder.waiting">5</span>
+                                                <span class="text-muted">Waiting</span>
+											</div>
+										</div>
+                                        <div class="row">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-bolt text-success me-2"></i>
+                                                <span class="fw-bold text-success me-1"
+                                                      t-esc="state.DeliveryOrder.ready">5</span>
+                                                <span class="text-muted">Ready</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-check-circle text-success me-2"></i>
+                                                <span class="fw-bold text-success me-1"
+                                                      t-esc="state.DeliveryOrder.done">5</span>
+                                                <span class="text-muted">Done</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+                           <!-- Admin Revenue Card -->
+                           <t t-if="state.isAdmin">
+                           	<div class="col-lg-4 col-md-6 col-sm-12 p-2 pb-2">
+								<div t-on-click="viewSellerPayment"
+                                     class="shadow-lg bg-gradient rounded text-center p-4 cursor-pointer delivery-card">
+									<div class="d-flex justify-content-center align-items-baseline">
+											<span class="display-4 fw-bold text-primary"
+                                                  t-esc="state.currency_symbol">-</span>
+                                        <div class="display-4 fw-bold text-primary"
+                                             t-esc="state.revenue.admin_value">2.5k</div>
+										</div>
+                                    <div class="h5 text-muted mb-4">Marketplace Admin Revenue</div>
+                                    <div>
+										<div class="row mb-3">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-edit text-primary me-2"></i>
+                                                <span class="fw-bold text-primary me-1"
+                                                      t-esc="state.revenue.draft">5</span>
+                                                <span class="text-muted">Draft</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-hourglass-half text-warning me-2"></i>
+                                                <span class="fw-bold text-warning me-1"
+                                                      t-esc="state.revenue.pending">5</span>
+                                                <span class="text-muted">Pending</span>
+											</div>
+										</div>
+                                        <div class="row">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-check-circle text-success me-2"></i>
+                                                <span class="fw-bold text-success me-1"
+                                                      t-esc="state.revenue.approved">5</span>
+                                                <span class="text-muted">Approved</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-times-circle text-danger me-2"></i>
+                                                <span class="fw-bold text-danger me-1"
+                                                      t-esc="state.revenue.denied">5</span>
+                                                <span class="text-muted">Denied</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						   </t>
+                           <t t-if="state.isAdmin === false">
+                           	<div class="col-lg-4 col-md-6 col-sm-12 p-2 pb-2">
+									<div t-on-click="viewSellerPayment"
+                                         class="shadow-lg bg-gradient rounded text-center p-4 cursor-pointer delivery-card">
+
+										<div class="d-flex justify-content-center align-items-baseline">
+											<span class="display-4 fw-bold text-primary"
+                                                  t-esc="state.currency_symbol">-</span>
+                                            <div class="display-4 fw-bold text-primary"
+                                                 t-esc="state.revenue.value">2.5k</div>
+										</div>
+
+                                        <div class="h5 text-muted mb-4">Marketplace Seller Revenue</div>
+
+                                        <div>
+											<div class="row mb-3">
+												<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-edit text-primary me-2"></i>
+                                                    <span class="fw-bold text-primary me-1"
+                                                          t-esc="state.revenue.draft">5</span>
+                                                    <span class="text-muted">Draft</span>
+											</div>
+                                                <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-hourglass-half text-warning me-2"></i>
+                                                    <span class="fw-bold text-warning me-1"
+                                                          t-esc="state.revenue.pending">5</span>
+                                                    <span class="text-muted">Pending</span>
+											</div>
+											</div>
+
+                                            <div class="row">
+												<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-check-circle text-success me-2"></i>
+                                                    <span class="fw-bold text-success me-1"
+                                                          t-esc="state.revenue.approved">5</span>
+                                                    <span class="text-muted">Approved</span>
+											</div>
+                                                <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-times-circle text-danger me-2"></i>
+                                                    <span class="fw-bold text-danger me-1"
+                                                          t-esc="state.revenue.denied">5</span>
+                                                    <span class="text-muted">Denied</span>
+											</div>
+											</div>
+											</div>
+										</div>
+									</div>
+						   </t>
+                           <div class="col-lg-4 col-md-6 col-sm-12 p-2 pb-2">
+							<div t-on-click="viewPaymentRequest"
+                                 class="shadow-lg bg-gradient rounded text-center p-4 cursor-pointer delivery-card">
+								<div class="display-4 fw-bold text-primary" t-esc="state.pay_req.value">20</div>
+                                <div class="h5 text-muted mb-4">Marketplace Payment Requests</div>
+                                <div>
+									<div class="row mb-3">
+										<div class="col-6 text-start d-flex align-items-center">
+											<i class="fas fa-edit text-primary me-2"></i>
+                                            <span class="fw-bold text-primary me-1"
+                                                  t-esc="state.pay_req.draft">5</span>
+                                            <span class="text-muted">Draft</span>
+										</div>
+                                        <div class="col-6 text-start d-flex align-items-center">
+											<i class="fas fa-hourglass-half text-warning me-2"></i>
+                                            <span class="fw-bold text-warning me-1"
+                                                  t-esc="state.pay_req.pending">5</span>
+                                            <span class="text-muted">Pending</span>
+										</div>
+									</div>
+                                    <div class="row">
+										<div class="col-6 text-start d-flex align-items-center">
+											<i class="fas fa-check-circle text-success me-2"></i>
+                                            <span class="fw-bold text-success me-1"
+                                                  t-esc="state.pay_req.approved">5</span>
+                                            <span class="text-muted">Approved</span>
+										</div>
+                                        <div class="col-6 text-start d-flex align-items-center">
+											<i class="fas fa-times-circle text-danger me-2"></i>
+                                            <span class="fw-bold text-danger me-1"
+                                                  t-esc="state.pay_req.denied">5</span>
+                                            <span class="text-muted">Denied</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					   </div>
+				   </div>
+                    <div class="col-lg-3 p-2 pb-2">
 					   <div class="row">
+						   <div class="col">
+							   <div t-on-click="viewQuotations"
+                                    class="shadow-lg bg-gradient rounded text-center p-4 cursor-pointer delivery-card">
+								   <div class="d-flex align-items-center justify-content-between">
+									   <h3 class="text-primary fw-bold">Top Sellers</h3>
+                                       <div class="px-3 py-1 bg-primary cursor-pointer">
+										  <span class="fa fa-arrow-right text-white"/>
+									   </div>
+								   </div>
+                                   <ChartRenderer type="'doughnut'" title="'Top Sellers Report'"
+                                                  config="state.topProducts"/>
+							   </div>
+						   </div>
+					   </div>
+				   </div>
+			   </div>
+		   </div>
+		</t>
+        <t t-if="state.isAdmin === false">
+			<div class="vh-100 overflow-auto bg-muted">
+			   <div class="row m-3">
+				    <div class="row">
 						   <div class="col m-0 p-0">
 							   <div class="shadow-sm border m-2 p-4 bg-white">
 								   <div class="d-flex align-items-center justify-content-between">
@@ -24,124 +360,185 @@
 							   </div>
 						   </div>
 					   </div>
+                   <div class="col">
                        <div class="row">
-						   <div class="col-lg-3 m-0 p-0">
-							   <div t-on-click="viewQuotations"
-                                    class="shadow-sm border m-2 p-4 bg-white text-center cursor-pointer">
-								  <div class="h1 fw-bold text-dark" style="font-size:48px"
-                                       t-esc="state.quotations.value">10</div>
-                                   <div class="h3 text-muted">Marketplace Products</div>
-                                   <div class="h3 mt-5">
-									  <span t-attf-class="text-#{ state.quotations.percentage > 0 ? 'success':'danger' }">
-										  <span t-attf-class="me-1 fa fa-arrow-#{ state.quotations.percentage > 0 ? 'up':'down' }"/>
-                                          <span t-esc="state.quotations.percentage"/>%
-									  </span>
-                                       <span>since last period</span>
-								  </div>
-							   </div>
-      						 </div>
-                           <div class="col-lg-3 m-0 p-0">
-							   <div t-on-click="viewOrders"
-                                    class="shadow-sm border m-2 p-4 bg-white text-center cursor-pointer">
-								  <div class="h1 fw-bold text-dark" style="font-size:48px"
-                                       t-esc="state.orders.value">20</div>
-                                   <div class="h3 text-muted">Orders</div>
-                                   <div class="h3 mt-5">
-									  <span t-attf-class="text-#{ state.orders.percentage > 0 ? 'success':'danger' }">
-										  <span t-attf-class="me-1 fa fa-arrow-#{ state.orders.percentage > 0 ? 'up':'down' }"/>
-                                          <span t-esc="state.orders.percentage"/>%
-									  </span>
-                                       <span>since last period</span>
-								  </div>
-							   </div>
-      						 </div>
-                           <div class="col-lg-3 m-0 p-0">
-							   <div t-on-click="viewRevenues"
-                                    class="shadow-sm border m-2 p-4 bg-white text-center cursor-pointer">
-								  <div class="h1 fw-bold text-dark" style="font-size:48px" t-esc="state.orders.revenue">30.50k</div>
-                                   <div class="h3 text-muted">Revenues</div>
-                                   <div class="h3 mt-5">
-									  <span t-attf-class="text-#{ state.orders.revenue_percentage > 0 ? 'success':'danger' }">
-										  <span t-attf-class="me-1 fa fa-arrow-#{ state.orders.revenue_percentage > 0 ? 'up':'down' }"/>
-                                          <span t-esc="state.orders.revenue_percentage"/>%
-									  </span>
-                                       <span>since last period</span>
-								  </div>
-							   </div>
-      						 </div>
-                           <div class="col-lg-3 m-0 p-0">
-							   <div t-on-click="viewRevenues"
-                                    class="shadow-sm border m-2 p-4 bg-white text-center cursor-pointer">
-								  <div class="h1 fw-bold text-dark" style="font-size:48px" t-esc="state.orders.average">2.5k</div>
-                                   <div class="h3 text-muted">Average Order</div>
-                                   <div class="h3 mt-5">
-									  <span t-attf-class="text-#{ state.orders.average_percentage > 0 ? 'success':'danger' }">
-										  <span t-attf-class="me-1 fa fa-arrow-#{ state.orders.average_percentage > 0 ? 'up':'down' }"/>
-                                          <span t-esc="state.orders.average_percentage"/>%
-									  </span>
-                                       <span>since last period</span>
-								  </div>
-							   </div>
-      						 </div>
-					   </div>
-                       <div class="row">
-						   <div class="col-lg-6 m-0 p-0">
-							   <div class="shadow-sm border m-2 p-4 bg-white">
-								   <div class="d-flex align-items-center justify-content-between">
-									   <h3 class="text-primary fw-bold">Top Products</h3>
-                                       <div class="px-3 py-1 bg-primary cursor-pointer">
-										  <span class="fa fa-arrow-right text-white"/>
-									   </div>
-								   </div>
-                                   <ChartRenderer type="'doughnut'" title="'Top Products Report'"
-                                                  config="state.topProducts"/>
-							   </div>
-						   </div>
-                           <div class="col-lg-6 m-0 p-0">
-							   <div class="shadow-sm border m-2 p-4 bg-white">
-								   <div class="d-flex align-items-center justify-content-between">
-									   <h3 class="text-primary fw-bold">Top Sales People</h3>
-                                       <div class="px-3 py-1 bg-primary cursor-pointer">
-										  <span class="fa fa-arrow-right text-white"/>
-									   </div>
-								   </div>
-                                   <ChartRenderer type="'pie'" title="'Top Sales People Report'"
-                                                  config="state.topSalesPeople"/>
-							   </div>
-						   </div>
-					   </div>
-				   </div>
-                   <div class="col-lg-5">
-					   <div class="row">
-						   <div class="col m-0 p-0">
-							   <div class="shadow-sm border m-2 p-4 bg-white">
-								   <div class="d-flex align-items-center justify-content-between">
-									   <h3 class="text-primary fw-bold">Monthly Sales</h3>
-                                       <div class="px-3 py-1 bg-primary cursor-pointer">
-										  <span class="fa fa-arrow-right text-white"/>
-									   </div>
-								   </div>
-                                   <ChartRenderer type="'bar'" title="'Monthly Sales Report'"
-                                                  config="state.monthlySales"/>
-							   </div>
-						   </div>
-					   </div>
-                       <div class="row">
-						   <div class="col m-0 p-0">
-							   <div class="shadow-sm border m-2 p-4 bg-white">
-								   <div class="d-flex align-items-center justify-content-between">
-									   <h3 class="text-primary fw-bold">Partner Orders</h3>
-                                       <div class="px-3 py-1 bg-primary cursor-pointer">
-										  <span class="fa fa-arrow-right text-white"/>
-									   </div>
-								   </div>
-                                   <ChartRenderer type="'bar'" title="'Partner Orders Report'"
-                                                  config="state.partnerOrders"/>
-							   </div>
-						   </div>
+						   <!-- Quotations Card -->
+                           <div class="col-lg-3 col-md-6 col-sm-12 p-2">
+								<div t-on-click="viewQuotations"
+                                     class="shadow-lg bg-gradient rounded text-center p-4 cursor-pointer delivery-card">
+									<div class="display-4 fw-bold text-primary" t-esc="state.quotations.value">10</div>
+                                    <div class="h5 text-muted mb-4">Marketplace Products</div>
+                                    <div>
+										<div class="row mb-3">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-edit text-primary me-2"></i>
+                                                <span class="fw-bold text-primary me-1"
+                                                      t-esc="state.quotations.draft">5</span>
+                                                <span class="text-muted">Draft</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-hourglass-half text-warning me-2"></i>
+                                                <span class="fw-bold text-warning me-1"
+                                                      t-esc="state.quotations.pending">5</span>
+                                                <span class="text-muted">Pending</span>
+											</div>
+										</div>
+                                        <div class="row">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-check-circle text-success me-2"></i>
+                                                <span class="fw-bold text-success me-1"
+                                                      t-esc="state.quotations.approved">5</span>
+                                                <span class="text-muted">Approved</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-times-circle text-danger me-2"></i>
+                                                <span class="fw-bold text-danger me-1"
+                                                      t-esc="state.quotations.denied">5</span>
+                                                <span class="text-muted">Denied</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+                           <!-- Sale Orders Card -->
+                           <div class="col-lg-3 col-md-6 col-sm-12 p-2">
+								<div t-on-click="viewSaleOrder"
+                                     class="shadow-lg bg-gradient rounded text-center p-4 cursor-pointer delivery-card">
+									<div class="display-4 fw-bold text-primary"
+                                         t-esc="state.Saleorder.value">30.50k</div>
+                                    <div class="h5 text-muted mb-4">Marketplace Orders</div>
+                                    <div>
+										<div class="row mb-3">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-edit text-primary me-2"></i>
+                                                <span class="fw-bold text-primary me-1"
+                                                      t-esc="state.Saleorder.draft">5</span>
+                                                <span class="text-muted">Draft</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-hourglass-half text-warning me-2"></i>
+                                                <span class="fw-bold text-warning me-1" t-esc="state.Saleorder.pending">5</span>
+                                                <span class="text-muted">Pending</span>
+											</div>
+										</div>
+                                        <div class="row">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-check-circle text-success me-2"></i>
+                                                <span class="fw-bold text-success me-1"
+                                                      t-esc="state.Saleorder.approved">5</span>
+                                                <span class="text-muted">Approved</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-times-circle text-danger me-2"></i>
+                                                <span class="fw-bold text-danger me-1"
+                                                      t-esc="state.Saleorder.denied">5</span>
+                                                <span class="text-muted">Denied</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+                           <!-- Delivery Orders Card -->
+                           <div class="col-lg-3 col-md-6 col-sm-12 p-2">
+								<div t-on-click="viewDeliveryOrder"
+                                     class="shadow-lg bg-gradient rounded text-center p-4 cursor-pointer delivery-card">
+									<div class="display-4 fw-bold text-primary"
+                                         t-esc="state.DeliveryOrder.value">2.5k</div>
+                                    <div class="h5 text-muted mb-4">Marketplace Delivery Orders</div>
+                                    <div>
+										<div class="row mb-3">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-edit text-primary me-2"></i>
+                                                <span class="fw-bold text-primary me-1"
+                                                      t-esc="state.DeliveryOrder.draft">5</span>
+                                                <span class="text-muted">Draft</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-hourglass-half text-warning me-2"></i>
+                                                <span class="fw-bold text-warning me-1"
+                                                      t-esc="state.DeliveryOrder.waiting">5</span>
+                                                <span class="text-muted">Waiting</span>
+											</div>
+										</div>
+                                        <div class="row">
+											<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-bolt text-success me-2"></i>
+                                                <span class="fw-bold text-success me-1"
+                                                      t-esc="state.DeliveryOrder.ready">5</span>
+                                                <span class="text-muted">Ready</span>
+											</div>
+                                            <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-check-circle text-success me-2"></i>
+                                                <span class="fw-bold text-success me-1"
+                                                      t-esc="state.DeliveryOrder.done">5</span>
+                                                <span class="text-muted">Done</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+                           <div class="col-lg-3 col-md-6 col-sm-12 p-2">
+									<div t-on-click="viewSellerPayment"
+                                         class="shadow-lg bg-gradient rounded text-center p-4 cursor-pointer delivery-card">
+
+										<div class="d-flex justify-content-center align-items-baseline">
+											<span class="display-4 fw-bold text-primary"
+                                                  t-esc="state.currency_symbol">-</span>
+                                            <div class="display-4 fw-bold text-primary"
+                                                 t-esc="state.revenue.value">2.5k</div>
+										</div>
+
+                                        <div class="h5 text-muted mb-4">Marketplace Seller Revenue</div>
+
+                                        <div>
+											<div class="row mb-3">
+												<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-edit text-primary me-2"></i>
+                                                    <span class="fw-bold text-primary me-1"
+                                                          t-esc="state.revenue.draft">5</span>
+                                                    <span class="text-muted">Draft</span>
+											</div>
+                                                <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-hourglass-half text-warning me-2"></i>
+                                                    <span class="fw-bold text-warning me-1"
+                                                          t-esc="state.revenue.pending">5</span>
+                                                    <span class="text-muted">Pending</span>
+											</div>
+											</div>
+
+                                            <div class="row">
+												<div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-check-circle text-success me-2"></i>
+                                                    <span class="fw-bold text-success me-1"
+                                                          t-esc="state.revenue.approved">5</span>
+                                                    <span class="text-muted">Approved</span>
+											</div>
+                                                <div class="col-6 text-start d-flex align-items-center">
+												<i class="fas fa-times-circle text-danger me-2"></i>
+                                                    <span class="fw-bold text-danger me-1"
+                                                          t-esc="state.revenue.denied">5</span>
+                                                    <span class="text-muted">Denied</span>
+											</div>
+											</div>
+											</div>
+										</div>
+									</div>
+
 					   </div>
 				   </div>
 			   </div>
 		   </div>
+		</t>
 	</t>
 </templates>
+
+
+
+
+
+
+
+

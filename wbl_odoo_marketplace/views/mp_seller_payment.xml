@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Action to display Sale Order Lines -->
+    <record id="action_mp_seller_request_for_payment" model="ir.actions.act_window">
+        <field name="name">Marketplace Seller Payments</field>
+        <field name="res_model">marketplace.seller.payment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_mp_seller_request_for_payment_tree" model="ir.ui.view">
+        <field name="name">marketplace.seller.tree</field>
+        <field name="model">marketplace.seller.payment</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="seller_payment_reference"/>
+                <field name="seller_id"/>
+                <field name="create_date" string="Payment Date"/>
+                <field name="payment_type"/>
+                <field name="display_amount" decoration-danger="payment_type == 'debit'"
+                       decoration-success="payment_type == 'credit'"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Seller Payment -->
+    <record id="view_seller_payment_form" model="ir.ui.view">
+        <field name="name">mp.seller.payment.form</field>
+        <field name="model">marketplace.seller.payment</field>
+        <field name="arch" type="xml">
+            <form string="Seller Payment" create="false" edit="false">
+                <header>
+                    <button id="payment_request_approved" name="action_payment_request_approved" string="Approve"
+                            groups="wbl_odoo_marketplace.group_marketplace_user"
+                            class="btn-primary"
+                            invisible="state != 'pending'" type="object"/>
+
+                    <button id="payment_request_denied" name="action_payment_request_denied" string="Deny"
+                            groups="wbl_odoo_marketplace.group_marketplace_user"
+                            class="btn-primary"
+                            invisible="state != 'pending'"
+                            confirm="Are you sure you want to deny this Payment request?" type="object"/>
+                    <field name="user_id" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,pending,approved,denied"/>
+                </header>
+                <sheet name="Seller_payment_form">
+                    <div class="oe_button_box" name="button_box"
+                         invisible="state != 'approved'">
+                        <button name="action_view_seller_invoice"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o" type="object">
+                            <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                        </button>
+                    </div>
+                    <group>
+                        <!-- Left Side Fields -->
+                        <group>
+                            <field name="seller_payment_reference" string="Payment Reference" readonly="1"/>
+                            <field name="display_amount" readonly="1" string="Payment Amount"/>
+                            <field name="payment_description" readonly="1" string="Payment Description"/>
+                        </group>
+
+                        <!-- Right Side Fields -->
+                        <group>
+                            <field name="seller_id"/>
+                            <field name="payment_type" string="Payment Type" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

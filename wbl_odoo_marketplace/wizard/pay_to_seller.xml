@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>) -->
+<!-- Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd. -->
+<odoo>
+    <record id="mp_pay_to_seller_view_form_wizard" model="ir.ui.view">
+        <field name="name">pay.to.seller.view.form.wizard</field>
+        <field name="model">pay.seller.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Pay To Seller">
+                <group>
+                    <group>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="seller_id" widget="many2one"/>
+                        <field name="cashable_amount" widget="monetary" readonly="1"/>
+                        <field name="requested_amount" widget="monetary"/>
+                        <field name="payment_description"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_payment_to_seller" string="Pay Seller" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_mp_pay_to_seller_wizard">
+        <field name="name">Pay To Seller</field>
+        <field name="res_model">pay.seller.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

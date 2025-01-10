@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_marketplace_seller_query" model="ir.actions.act_window">
+        <field name="name">Seller Query</field>
+        <field name="res_model">marketplace.seller.query</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+    <record id="view_marketplace_seller_query_form" model="ir.ui.view">
+        <field name="name">marketplace.seller.query.form</field>
+        <field name="model">marketplace.seller.query</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form string="Customer Query">
+                <header>
+                    <button id="product_approved" name="action_sent_mail_to_seller_wizard" string="Approve"
+                            groups="wbl_odoo_marketplace.group_marketplace_user"
+                            class="btn-primary"
+                            invisible="state != 'pending'" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="pending,approved"/>
+                </header>
+                <sheet name="customer_query_form">
+                    <div class="oe_title">
+                        <label for="name" string="Customer Name"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field class="text-break" name="name" options="{'line_breaks': False}" widget="text"
+                                       placeholder="e.g. Azure Interior"/>
+                            </div>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" widget="res_partner_many2one"/>
+                        </group>
+                        <group>
+                            <field name="contact_info"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Query" name="query">
+                            <group>
+                                <group name="group_query">
+                                    <field name="topic"/>
+                                    <field name="message"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_marketplace_seller_query_tree" model="ir.ui.view">
+        <field name="name">marketplace.seller.query.tree</field>
+        <field name="model">marketplace.seller.query</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="id"/>
+                <field name="partner_id"/>
+                <field name="name"/>
+                <field name="contact_info"/>
+                <field name="topic"/>
+                <field name="message"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--  Seller Query Kanban View  -->
+    <record id="view_marketplace_seller_query_kanban" model="ir.ui.view">
+        <field name="name">Seller Query Kanban</field>
+        <field name="model">marketplace.seller.query</field>
+        <field name="arch" type="xml">
+            <kanban sample="1">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <div class="o_kanban_record_top mb-0">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                        <ul>
+                                            <li class="o_text_overflow">
+                                                <field name="contact_info"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div name="query_subject" class="mt-1">
+                                    Topic:
+                                    <field name="topic"/>
+                                </div>
+                                <div name="query_subject" class="mt-1">
+                                    Status:
+                                    <field name="state"/>
+                                </div>
+                            </div>
+                            <div class="oe_kanban_footer">
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <field name="partner_id" widget="many2one_avatar_user"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

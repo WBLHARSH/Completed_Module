@@ -44,6 +44,9 @@ class SaleOrderLine(models.Model):
         sale_order_line = super(SaleOrderLine, self).create(vals)
 
         # Access the computed fields after the record is created
+        if sale_order_line.order_id.state == 'draft' or sale_order_line.order_id.state == 'sent':
+            sale_order_line.mp_state = 'draft'
+
         price_total = sale_order_line.price_total
 
         # Check if the product is defined and get the related seller

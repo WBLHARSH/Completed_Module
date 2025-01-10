@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Action to display Delivery Order Lines -->
+    <record id="action_mp_seller_invoice_view" model="ir.actions.act_window">
+        <field name="name">Marketplace Seller Invoice</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('seller_id', '!=', False)]</field>
+    </record>
+
+</odoo>

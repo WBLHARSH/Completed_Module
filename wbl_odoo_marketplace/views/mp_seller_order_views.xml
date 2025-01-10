@@ -3,7 +3,7 @@
 
     <!-- Action to display Sale Order Lines -->
     <record id="action_mp_sale_order_view" model="ir.actions.act_window">
-        <field name="name">Sale Order</field>
+        <field name="name">Marketplace Sale Order</field>
         <field name="res_model">sale.order.line</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="domain">[('seller_id', '!=', False)]</field>
@@ -24,7 +24,8 @@
                     <button id="order_denied" name="action_order_denied" string="Deny"
                             groups="wbl_odoo_marketplace.group_marketplace_seller"
                             class="btn-primary"
-                            invisible="mp_state != 'pending'" type="object" confirm="Are you sure you want to deny this order?"/>
+                            invisible="mp_state != 'pending'" type="object"
+                            confirm="Are you sure you want to deny this order?"/>
                     <field name="user_id" invisible="1"/>
                     <field name="mp_state" widget="statusbar" statusbar_visible="draft,pending,approved,denied"/>
                 </header>

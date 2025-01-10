@@ -12,6 +12,7 @@
 
 from odoo import fields, models, tools, api
 from odoo.tools.translate import html_translate
+from odoo.http import request
 
 
 class MarketplaceSellerProduct(models.Model):
@@ -21,7 +22,7 @@ class MarketplaceSellerProduct(models.Model):
     user_id = fields.Many2one(comodel_name='res.users', string='User', required=True)
     seller_id = fields.Many2one(comodel_name='marketplace.seller', string='Seller', required=True)
     product_id = fields.Many2one(comodel_name='product.product', string='Product')
-    name = fields.Char(string='Name')
+    name = fields.Char(string='Name', required=True)
     image_1920 = fields.Image('Image')
     detailed_type = fields.Selection([
         ('consu', 'Consumable'),
@@ -146,16 +147,19 @@ class MarketplaceSellerProduct(models.Model):
     def action_product_approval_request(self):
         for rec in self:
             rec.state = 'pending'
+            self._send_seller_product_notification(rec.id, 'Pending')
 
     def action_product_approved(self):
         for rec in self:
             rec.state = 'approved'
+            self._send_seller_product_notification(rec.id, 'Approved')
             odoo_product = self._create_mp_product(rec)
             rec.write({'product_id': odoo_product.id})
 
     def action_product_denied(self):
         for rec in self:
             rec.state = 'denied'
+            self._send_seller_product_notification(rec.id, 'Denied')
 
     def _create_product_images(self, mp_product, product):
         """
@@ -176,18 +180,43 @@ class MarketplaceSellerProduct(models.Model):
         return image_ids
 
     def create_initial_stock(self, product, mp_product):
-        """
-                Creates stock.quant records based on the product type in mp_product.initial_stock.
-        """
-        warehouse = self.env['stock.warehouse'].search(
-            [('company_id', '=', self.env.company.id)], limit=1
-        )
-        self.env['stock.quant'].with_context(inventory_mode=True).create({
-            'product_id': product.id,
-            'location_id': warehouse.lot_stock_id.id,
-            'inventory_quantity': mp_product.initial_stock,
-        }).action_apply_inventory()
-        return True
+        try:
+            settings = request.env['res.config.settings'].sudo().get_values()
+            stock_location = settings.get('stock_location')
+
+            # Temporarily add the inventory group to the user
+            inventory_group_id = self.env.ref('stock.group_stock_manager')
+            mp_product.user_id.sudo().write({'groups_id': [(4, inventory_group_id.id)]})
+
+            if stock_location:
+                stock_quant = self.env['stock.quant'].with_context(inventory_mode=True).create({
+                    'product_id': product.id,
+                    'location_id': stock_location,
+                    'inventory_quantity': mp_product.initial_stock,
+                })
+                stock_quant.sudo().action_apply_inventory()
+            else:
+                warehouse = self.env['stock.warehouse'].sudo().search(
+                    [('company_id', '=', self.env.company.id)], limit=1
+                )
+                stock_quant = self.env['stock.quant'].with_context(inventory_mode=True).create({
+                    'product_id': product.id,
+                    'location_id': warehouse.lot_stock_id.id,
+                    'inventory_quantity': mp_product.initial_stock,
+                })
+                stock_quant.sudo().action_apply_inventory()
+
+            # Remove all inventory-related access
+            inventory_groups = self.env['res.groups'].sudo().search([('category_id.name', '=', 'Inventory')])
+            for group in inventory_groups:
+                mp_product.user_id.sudo().write({'groups_id': [(3, group.id)]})
+
+            return True
+        except Exception as e:
+            inventory_groups = self.env['res.groups'].sudo().search([('category_id.name', '=', 'Inventory')])
+            for group in inventory_groups:
+                mp_product.user_id.sudo().write({'groups_id': [(3, group.id)]})
+            return True
 
     def _create_mp_product(self, mp_product):
         product = self.env['product.product'].create({
@@ -205,13 +234,32 @@ class MarketplaceSellerProduct(models.Model):
             'description_pickingout': mp_product.description_pickingout,
             'show_availability': mp_product.show_availability,
             'out_of_stock_message': mp_product.out_of_stock_message,
-
         })
         image_ids = self._create_product_images(mp_product, product)
         product.product_template_image_ids = [(6, 0, image_ids)]
+        product_tmpl_id = product.product_tmpl_id
+        product_tmpl_id.write({
+            'seller_id': mp_product.seller_id.id
+        })
 
         # Here we store the on hand quantity of product
         if mp_product.detailed_type == "product":
             self.create_initial_stock(product, mp_product)
 
         return product
+
+    def _send_seller_product_notification(self, product_id, state):
+        settings = request.env['res.config.settings'].sudo().get_values()
+        notify_seller_product_approval = settings.get('seller_request_for_product_approval')
+        notify_seller_product_approved = settings.get('seller_product_approved_notify_to_seller')
+        notify_seller_product_denied = settings.get('seller_product_denied_notify_to_seller')
+        # Mail Send
+        if state == 'Pending' and notify_seller_product_approval:
+            template = request.env.ref('wbl_odoo_marketplace.mail_template_seller_product_submission_admin')
+            template.send_mail(product_id, force_send=True)
+        if state == "Approved" and notify_seller_product_approved:
+            template = request.env.ref('wbl_odoo_marketplace.mail_template_seller_product_request_approved')
+            template.send_mail(product_id, force_send=True)
+        elif state == "Denied" and notify_seller_product_denied:
+            template = request.env.ref('wbl_odoo_marketplace.mail_template_seller_product_request_denied')
+            template.send_mail(product_id, force_send=True)

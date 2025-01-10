@@ -554,7 +554,13 @@
 .jLCHGW .collection-text-area-input-container {
     width: unset;
     height: 134px;
+
 }
+
+.collection-text-area{
+    padding:12px;
+}
+
 .dawqwO {
     display: flex;
     -webkit-box-align: center;
@@ -575,4 +581,31 @@
 }
 .wbl-h6 {
     font-size: 25px;
+}
+
+.delivery-card {
+    background: linear-gradient(135deg, #f9f9f9, #ffffff);
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.delivery-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.delivery-card .text-primary {
+    color: #007bff !important;
+}
+
+.delivery-card .text-warning {
+    color: #ffc107 !important;
+}
+
+.delivery-card .text-success {
+    color: #28a745 !important;
+}
+
+.delivery-card .text-danger {
+    color: #dc3545 !important;
 }

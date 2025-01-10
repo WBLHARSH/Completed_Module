@@ -16,6 +16,7 @@
         </field>
         <field name="implied_ids" eval="[(4, ref('group_marketplace_pending_seller'))]"/>
     </record>
+
     <record id="group_marketplace_user" model="res.groups">
         <field name="name">User</field>
         <field name="category_id" ref="wbl_odoo_marketplace.module_category_marketplace"/>

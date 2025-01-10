@@ -13,19 +13,32 @@ class Menu(models.Model):
         if user_group:
             for menu in menus:
                 menu_obj = self.env['ir.ui.menu'].browse(menu)
+                if menu_obj.name == 'Request For Payment':
+                    menus.remove(menu_obj.id)
+                    break
+        # Exclude 'My Shop Profile' menu for user groups
+        if user_group:
+            for menu in menus:
+                menu_obj = self.env['ir.ui.menu'].browse(menu)
                 if menu_obj.name == 'My Shop Profile':
                     menus.remove(menu_obj.id)
                     break
+
         elif pending_seller_group:
             seller_menus = [
                 'Marketplace',
                 'Dashboard',
                 'Sellers',
                 'My Shop Profile',
+                'Customer Queries',
                 'Catalog',
                 'Products',
                 'Sales',
                 'Orders',
+                'Request For Payment',
+                'Seller Payments',
+                'Invoicing',
+                'Invoices',
                 'Inventory',
                 'Delivery Orders',
                 'Website',

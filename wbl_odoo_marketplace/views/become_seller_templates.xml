@@ -14,6 +14,12 @@
                 </section>
                 <section class="s_text_block pt40 pb40 o_colored_level " data-snippet="s_text_block">
                     <div class="container s_allow_columns">
+                        <p class="alert alert-warning text-center fw-bolder" id="become_seller_exist_warning_id"
+                           style="display: none;">Seller is already exist.
+                        </p>
+                        <p class="alert alert-warning text-center fw-bolder" id="become_url_exist_warning_id"
+                           style="display: none;">Seller Shop Url is already exist please enter unique url.
+                        </p>
                         <div class="row">
                             <div class="col-lg-8 mt-4 mt-lg-0">
                                 <p>
@@ -27,15 +33,9 @@
                                 </p>
                                 <section data-vcss="001" data-snippet="s_website_form">
                                     <div class="container">
-                                        <form id="become_seller_form" action="/seller/form" method="post"
-                                              enctype="multipart/form-data" class="o_mark_required" data-mark="*"
-                                              data-success-mode="redirect"
-                                              data-model_name=""
-                                              data-success-page="" data-pre-fill="true">
-                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <form id="become_seller_form" class="o_mark_required">
                                             <div class="s_website_form_rows row s_col_no_bgcolor">
-                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required"
-                                                     data-type="char" data-name="Field">
+                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
                                                     <div class="row s_col_no_resize s_col_no_bgcolor">
                                                         <label class="col-form-label col-sm-auto s_website_form_label"
                                                                style="width: 200px" for="seller_name">
@@ -44,15 +44,18 @@
                                                             <span class="s_website_form_mark">*</span>
                                                         </label>
                                                         <div class="col-sm">
-                                                            <input id="seller_name" type="text"
+                                                            <input id="become_seller_name" type="text"
                                                                    class="form-control s_website_form_input"
                                                                    name="seller_name"
-                                                                   required="" t-att-value="partner.name"/>
+                                                                   required="True" t-att-value="partner.name"/>
+                                                            <span id="become-error-name" class="become-error-name"
+                                                                  style="color: red; font-size: 12px; display: none;">
+                                                                Seller Name is required.
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom"
-                                                     data-type="char" data-name="Field">
+                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom">
                                                     <div class="row s_col_no_resize s_col_no_bgcolor">
                                                         <label class="col-form-label col-sm-auto s_website_form_label"
                                                                style="width: 200px" for="seller_phone">
@@ -61,15 +64,18 @@
                                                             <span class="s_website_form_mark">*</span>
                                                         </label>
                                                         <div class="col-sm">
-                                                            <input id="seller_phone" type="tel"
+                                                            <input id="become_seller_phone" type="tel"
                                                                    class="form-control s_website_form_input"
-                                                                   required=""
+                                                                   required="True"
                                                                    name="seller_phone" t-att-value="partner.phone"/>
+                                                            <span id="become-error-phone" class="become-error-phone"
+                                                                  style="color: red; font-size: 12px; display: none;">
+                                                                Phone is required.
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_required s_website_form_model_required"
-                                                     data-type="email" data-name="Field">
+                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_required s_website_form_model_required">
                                                     <div class="row s_col_no_resize s_col_no_bgcolor">
                                                         <label class="col-form-label col-sm-auto s_website_form_label"
                                                                style="width: 200px" for="seller_email">
@@ -77,10 +83,14 @@
                                                             <span class="s_website_form_mark">*</span>
                                                         </label>
                                                         <div class="col-sm">
-                                                            <input id="seller_email" type="email"
+                                                            <input id="become_seller_email" type="email"
                                                                    class="form-control s_website_form_input"
-                                                                   name="seller_email" required=""
+                                                                   name="seller_email" required="True"
                                                                    t-att-value="partner.email"/>
+                                                            <span id="become-error-email" class="become-error-email"
+                                                                  style="color: red; font-size: 12px; display: none;">
+                                                                Email is required.
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -94,6 +104,7 @@
                                                         </label>
                                                         <div class="col-sm">
                                                             <select name="seller_country_id"
+                                                                    id="become_seller_country_id"
                                                                     class="form-control s_website_form_input"
                                                                     required="">
                                                                 <option value="">Country...</option>
@@ -104,11 +115,14 @@
                                                                     </option>
                                                                 </t>
                                                             </select>
+                                                            <span id="become-error-country" class="become-error-country"
+                                                                  style="color: red; font-size: 12px; display: none;">
+                                                                Country is required.
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_required s_website_form_model_required"
-                                                     data-type="char" data-name="Field">
+                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_required s_website_form_model_required">
                                                     <div class="row s_col_no_resize s_col_no_bgcolor">
                                                         <label class="col-form-label col-sm-auto s_website_form_label"
                                                                style="width: 200px" for="shop_name">
@@ -116,9 +130,14 @@
                                                             <span class="s_website_form_mark">*</span>
                                                         </label>
                                                         <div class="col-sm">
-                                                            <input id="shop_name" type="text"
+                                                            <input id="become_shop_name" type="text"
                                                                    class="form-control s_website_form_input"
-                                                                   name="shop_name" required=""/>
+                                                                   name="shop_name" required="True"/>
+                                                            <span id="become-error-shop-name"
+                                                                  class="become-error-shop-name"
+                                                                  style="color: red; font-size: 12px; display: none;">
+                                                                Shop Name is required.
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -136,10 +155,15 @@
                                                             <input id="shop_unique_url" type="text"
                                                                    class="form-control s_website_form_input"
                                                                    name="shop_unique_url" required=""/>
+                                                            <span id="become-error-shop-url"
+                                                                  class="become-error-shop-url"
+                                                                  style="color: red; font-size: 12px; display: none;">
+                                                                Shop_url is required.
+                                                            </span>
                                                             <i id="shop_url_success_icon" class="fa fa-check-circle"
-                                                               style="display: none; color: green;"></i>
+                                                               style="display: none; color: green;"/>
                                                             <i id="shop_url_error_icon" class="fa fa-times-circle"
-                                                               style="display: none; color: red;"></i>
+                                                               style="display: none; color: red;"/>
                                                             <div id="shop_url_error"
                                                                  style="display: none; color: #e02b27; font-size: 0.9em;">
                                                                 <!-- Error messages will appear here -->
@@ -149,10 +173,9 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="mb-0 py-2 col-12 s_website_form_submit"
-                                                     data-name="Submit Button">
+                                                <div class="mb-0 py-2 col-12 s_website_form_submit">
                                                     <div style="width: 200px;" class="s_website_form_label"/>
-                                                    <button id="wbl_seller_form_submit" type="submit"
+                                                    <button id="wbl_seller_form_submit" type="button"
                                                             class="btn btn-primary s_website_form_send">Submit
                                                     </button>
                                                 </div>

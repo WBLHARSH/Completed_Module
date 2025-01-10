@@ -1,0 +1,18 @@
+<odoo>
+    <record id="wbl_inherit_product_view_form" model="ir.ui.view">
+        <field name="name">wbl.inherit.product.view.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='inventory']" position="after">
+                <page name="Marketplace" invisible="not seller_id">
+                    <group>
+                        <group>
+                            <field name="seller_id" widget="many2one"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

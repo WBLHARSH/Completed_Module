@@ -10,9 +10,8 @@
 # You can`t redistribute it and/or modify it.
 ##################################################################################
 
-from odoo import fields, models, api, _
+from odoo import fields, models
 from odoo.http import request
-from odoo.exceptions import UserError
 
 
 class MarketplaceSeller(models.Model):
@@ -21,9 +20,9 @@ class MarketplaceSeller(models.Model):
 
     user_id = fields.Many2one(comodel_name='res.users')
     partner_id = fields.Many2one(comodel_name='res.partner', related='user_id.partner_id')
-    name = fields.Char(string='Name')
+    name = fields.Char(string='Name', required=True)
     image_1920 = fields.Image(related='partner_id.image_1920', readonly=False)
-    email = fields.Char(string='Email')
+    email = fields.Char(string='Email', required=True)
     phone = fields.Char(string='Phone')
     mobile = fields.Char(string='Mobile', related='partner_id.mobile', readonly=False)
     street = fields.Char(related='partner_id.street', readonly=False)
@@ -35,11 +34,11 @@ class MarketplaceSeller(models.Model):
                                domain="[('country_id', '=?', country_id)]", readonly=False)
     country_id = fields.Many2one(comodel_name='res.country', string='Country')
     country_code = fields.Char(string="Country Code", related='country_id.code', readonly=False)
-    shop_name = fields.Char(string="Shop Name")
-    shop_url = fields.Char(string="Shop Url")
-    shop_image_logo = fields.Image()
-    shop_image_banner = fields.Image()
-    description = fields.Text(string="Description")
+    shop_name = fields.Char(string="Shop Name", help="Name of the seller's shop.")
+    shop_url = fields.Char(string="Shop Url", help="Unique keyword for the seller to find shop on website.")
+    shop_image_logo = fields.Image(help="Logo of the seller's shop.")
+    shop_image_banner = fields.Image(help="Banner of the seller's shop.")
+    description = fields.Text(string="Description", help="Description of the seller's shop.")
     terms_conditions = fields.Html(string='Terms & Conditions')
     state = fields.Selection(
         selection=[
@@ -84,11 +83,9 @@ class MarketplaceSeller(models.Model):
         config_param = request.env['ir.config_parameter'].sudo()
         notify_seller_on_approval = config_param.get_param('wbl_odoo_marketplace.seller_approved_notify_to_seller')
         notify_admin_on_denial = config_param.get_param('wbl_odoo_marketplace.seller_denied_notify_to_admin')
-
         if status == "Approved" and notify_seller_on_approval:
             template = request.env.ref('wbl_odoo_marketplace.mail_template_seller_request_approved')
             template.send_mail(seller_id, force_send=True)
         elif status == "Denied" and notify_admin_on_denial:
             template = request.env.ref('wbl_odoo_marketplace.mail_template_seller_request_denied')
             template.send_mail(seller_id, force_send=True)
-

@@ -142,125 +142,155 @@
                             <section class="s_text_block pt40 pb40 o_colored_level " data-snippet="s_text_block">
                                 <div class="container s_allow_columns">
                                     <div class="row">
+                                        <span id="warning_for_customer_query" style="display:none;"
+                                              class="alert alert-warning text-center fw-bolder">Your query is already
+                                            being
+                                            processed. Please do not send another query regarding the issue. Thank
+                                            you for your patience.
+                                        </span>
                                         <div class="col-lg-8 mt-4 mt-lg-0">
+
                                             <p>
                                                 Have questions about a product or need more information? Use the form
                                                 below to reach out to the seller directly. They'll get back to you as
                                                 soon as possible!
                                             </p>
+
                                             <section data-vcss="001" data-snippet="s_website_form">
                                                 <div class="container">
-                                                    <form id="contact_seller_form" action="/contact/seller"
-                                                          method="post"
-                                                          enctype="multipart/form-data" class="o_mark_required"
-                                                          data-mark="*"
-                                                          data-success-mode="redirect"
-                                                          data-model_name=""
-                                                          data-success-page="" data-pre-fill="true">
-                                                        <input type="hidden" name="csrf_token"
-                                                               t-att-value="request.csrf_token()"/>
-                                                        <input type="hidden" name="seller_id" t-att-value="seller.id"/>
-                                                        <input type="hidden" name="seller_uid"
+                                                    <form id="contact_seller_form" class="o_mark_required">
+                                                        <input type="hidden" id="contact_seller_id" name="seller_id"
+                                                               t-att-value="seller.id"/>
+                                                        <input type="hidden" id="contact_seller_uid" name="seller_uid"
                                                                t-att-value="seller.user_id.id"/>
                                                         <div class="s_website_form_rows row s_col_no_bgcolor">
-                                                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required"
-                                                                 data-type="char" data-name="Field">
+                                                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
                                                                 <div class="row s_col_no_resize s_col_no_bgcolor">
                                                                     <label class="col-form-label col-sm-auto s_website_form_label"
-                                                                           style="width: 200px" for="name">
+                                                                           style="width: 200px"
+                                                                           for="contact_partner_name">
                                                                         <span class="s_website_form_label_content">
                                                                             Name
                                                                         </span>
                                                                         <span class="s_website_form_mark">*</span>
                                                                     </label>
                                                                     <div class="col-sm">
-                                                                        <input id="partner_name" type="text"
+                                                                        <input id="contact_partner_name" type="text"
                                                                                class="form-control s_website_form_input"
                                                                                name="partner_name"
                                                                                required="" t-att-value="partner.name"/>
+                                                                        <span id="contact-error-name"
+                                                                              class="contact-error-name"
+                                                                              style="color: red; font-size: 12px; display: none;">
+                                                                            Full Name is required.
+                                                                        </span>
                                                                     </div>
                                                                 </div>
+
                                                             </div>
-                                                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom"
-                                                                 data-type="char" data-name="Field">
+                                                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom">
                                                                 <div class="row s_col_no_resize s_col_no_bgcolor">
                                                                     <label class="col-form-label col-sm-auto s_website_form_label"
-                                                                           style="width: 200px" for="partner_phone">
+                                                                           style="width: 200px"
+                                                                           for="contact_partner_phone">
                                                                         <span class="s_website_form_label_content">Phone
                                                                             Number
                                                                         </span>
                                                                         <span class="s_website_form_mark">*</span>
                                                                     </label>
                                                                     <div class="col-sm">
-                                                                        <input id="partner_phone" type="tel"
+                                                                        <input id="contact_partner_phone" type="tel"
                                                                                class="form-control s_website_form_input"
                                                                                required=""
                                                                                name="partner_phone"
                                                                                t-att-value="partner.phone"/>
+                                                                        <span id="contact-error-phone"
+                                                                              class="contact-error-phone"
+                                                                              style="color: red; font-size: 12px; display: none;">
+                                                                            Phone Number is required.
+                                                                        </span>
                                                                     </div>
                                                                 </div>
+
                                                             </div>
-                                                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_required s_website_form_model_required"
-                                                                 data-type="email" data-name="Field">
+                                                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_required s_website_form_model_required">
                                                                 <div class="row s_col_no_resize s_col_no_bgcolor">
                                                                     <label class="col-form-label col-sm-auto s_website_form_label"
-                                                                           style="width: 200px" for="customer_email">
+                                                                           style="width: 200px"
+                                                                           for="contact_partner_email">
                                                                         <span class="s_website_form_label_content">
                                                                             Email
                                                                         </span>
                                                                         <span class="s_website_form_mark">*</span>
                                                                     </label>
                                                                     <div class="col-sm">
-                                                                        <input id="partner_email" type="email"
+                                                                        <input id="contact_partner_email" type="email"
                                                                                class="form-control s_website_form_input"
                                                                                name="partner_email" required=""
                                                                                t-att-value="partner.email"/>
+                                                                        <span id="contact-error-email"
+                                                                              class="contact-error-email"
+                                                                              style="color: red; font-size: 12px; display: none;">
+                                                                            Email is required.
+                                                                        </span>
                                                                     </div>
                                                                 </div>
+
                                                             </div>
-                                                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_required s_website_form_model_required"
-                                                                 data-type="char" data-name="Field">
-                                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_required s_website_form_model_required"
-                                                                     data-type="char" data-name="Field">
+                                                            <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_required s_website_form_model_required">
+                                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_required s_website_form_model_required">
                                                                     <div class="row s_col_no_resize s_col_no_bgcolor">
                                                                         <label class="col-form-label col-sm-auto s_website_form_label"
-                                                                               style="width: 200px" for="contact5">
+                                                                               style="width: 200px"
+                                                                               for="contact_subject">
                                                                             <span class="s_website_form_label_content">
                                                                                 Subject
                                                                             </span>
                                                                             <span class="s_website_form_mark">*</span>
                                                                         </label>
                                                                         <div class="col-sm">
-                                                                            <input id="contact5" type="text"
+                                                                            <input id="contact_subject" type="text"
                                                                                    class="form-control s_website_form_input"
                                                                                    name="subject" required=""/>
+                                                                            <span id="contact-error-subject"
+                                                                                  class="contact-error-subject"
+                                                                                  style="color: red; font-size: 12px; display: none;">
+                                                                                Subject is required.
+                                                                            </span>
                                                                         </div>
                                                                     </div>
+
                                                                 </div>
-                                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required"
-                                                                     data-type="text" data-name="Field">
+                                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required">
                                                                     <div class="row s_col_no_resize s_col_no_bgcolor">
                                                                         <label class="col-form-label col-sm-auto s_website_form_label"
-                                                                               style="width: 200px" for="contact6">
+                                                                               style="width: 200px"
+                                                                               for="contact_question">
                                                                             <span class="s_website_form_label_content">
                                                                                 Question
                                                                             </span>
                                                                             <span class="s_website_form_mark">*</span>
                                                                         </label>
                                                                         <div class="col-sm">
-                                                                            <textarea id="contact6"
+                                                                            <textarea id="contact_question"
                                                                                       class="form-control s_website_form_input"
                                                                                       name="question"
-                                                                                      required=""></textarea>
+                                                                                      required=""/>
+                                                                            <span id="contact-error-question"
+                                                                                  class="contact-error-question"
+                                                                                  style="color: red; font-size: 12px; display: none;">
+                                                                                Question is required.
+                                                                            </span>
                                                                         </div>
+
                                                                     </div>
+
                                                                 </div>
                                                             </div>
-                                                            <div class="mb-0 py-2 col-12 s_website_form_submit"
-                                                                 data-name="Submit Button">
+                                                            <div class="mb-0 py-2 col-12 s_website_form_submit">
                                                                 <div style="width: 200px;"
                                                                      class="s_website_form_label"/>
-                                                                <button type="submit"
+                                                                <button type="button" id="wbl_contact_seller_submit"
                                                                         class="btn btn-primary s_website_form_send">
                                                                     Submit
                                                                 </button>

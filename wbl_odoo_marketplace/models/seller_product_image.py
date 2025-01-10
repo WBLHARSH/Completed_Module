@@ -28,7 +28,6 @@ class SellerProductImage(models.Model):
 
     @api.depends('image_1920', 'image_1024')
     def _compute_can_image_1024_be_zoomed(self):
-        print('working1')
         for image in self:
             image.can_image_1024_be_zoomed = image.image_1920 and tools.is_image_size_above(image.image_1920, image.image_1024)
 
@@ -51,7 +50,7 @@ class SellerProductImage(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        print('working2')
+
         """
             We don't want the default_seller_product_id from the context
             to be applied if we have a product_variant_id set to avoid
@@ -59,13 +58,11 @@ class SellerProductImage(models.Model):
             But we want it if we don't have a product_variant_id set.
         """
         context_without_template = self.with_context({k: v for k, v in self.env.context.items() if k != 'default_seller_product_id'})
-        print(context_without_template)
         normal_vals = []
         variant_vals_list = []
 
         for vals in vals_list:
             if vals.get('product_variant_id') and 'default_seller_product_id' in self.env.context:
-                print(vals)
                 variant_vals_list.append(vals)
             else:
                 normal_vals.append(vals)

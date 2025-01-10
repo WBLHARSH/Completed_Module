@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>) -->
+<!-- Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd. -->
+<odoo>
+    <record id="mp_seller_query_view_form_wizard" model="ir.ui.view">
+        <field name="name">seller.query.view.form.wizard</field>
+        <field name="model">seller.query.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Compose Email" class="pt-0 pb-0 o_mail_composer_form" js_class="mail_composer_form">
+                <group>
+                    <field name="subject" placeholder="Welcome to MyCompany!" required="True"/>
+                </group>
+                <div>
+                    <field name="body" class="oe-bordered-editor" placeholder="Write your message here..."
+                           options="{'style-inline': true}" force_save="1"/>
+                    <group>
+                        <field name="attachment_ids" widget="many2many_binary" string="Attach a file" nolabel="1"
+                               colspan="2"/>
+                    </group>
+                </div>
+                <footer>
+                    <button string="Send" name="action_sent_mail_to_seller" type="object"
+                            class="btn-primary o_mail_send" data-hotkey="q"
+                    />
+
+                    <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_mp_seller_query_wizard">
+        <field name="name">Seller Query Mail Form</field>
+        <field name="res_model">seller.query.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

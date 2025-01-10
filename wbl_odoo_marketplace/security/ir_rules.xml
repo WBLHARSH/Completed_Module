@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
+    <!--  Marketplace Product filter  -->
     <record id="mp_seller_product_personal_rule" model="ir.rule">
         <field name="name">Seller Personal Products</field>
         <field ref="model_mp_seller_product" name="model_id"/>
@@ -13,6 +14,7 @@
         <field name="groups" eval="[(4, ref('wbl_odoo_marketplace.group_marketplace_user'))]"/>
     </record>
 
+    <!--  Marketplace Sale Order  -->
     <record id="mp_seller_order_personal_rule" model="ir.rule">
         <field name="name">Seller Sale Orders</field>
         <field ref="model_sale_order_line" name="model_id"/>
@@ -26,6 +28,7 @@
         <field name="groups" eval="[(4, ref('wbl_odoo_marketplace.group_marketplace_user'))]"/>
     </record>
 
+    <!--  Marketplace Delivery Order  -->
     <record id="mp_seller_delivery_order_personal_rule" model="ir.rule">
         <field name="name">Seller Delivery Orders</field>
         <field ref="model_stock_picking" name="model_id"/>
@@ -39,4 +42,58 @@
         <field name="groups" eval="[(4, ref('wbl_odoo_marketplace.group_marketplace_user'))]"/>
     </record>
 
+    <!--  Marketplace Seller Payment  -->
+    <record id="mp_seller_seller_payment_personal_rule" model="ir.rule">
+        <field name="name">Seller Payments</field>
+        <field ref="model_marketplace_seller_payment" name="model_id"/>
+        <field name="domain_force">[('user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('wbl_odoo_marketplace.group_marketplace_seller'))]"/>
+    </record>
+    <record id="mp_seller_seller_payment_see_all" model="ir.rule">
+        <field name="name">All seller Payments</field>
+        <field ref="model_marketplace_seller_payment" name="model_id"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('wbl_odoo_marketplace.group_marketplace_user'))]"/>
+    </record>
+
+
+    <!--  Marketplace Seller Invoice  -->
+    <record id="mp_seller_invoice_personal_rule" model="ir.rule">
+        <field name="name">Seller Invoice</field>
+        <field ref="model_account_move" name="model_id"/>
+        <field name="domain_force">[('invoice_user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('wbl_odoo_marketplace.group_marketplace_seller'))]"/>
+    </record>
+    <record id="mp_seller_invoice_see_all" model="ir.rule">
+        <field name="name">All seller Invoice</field>
+        <field ref="model_account_move" name="model_id"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('wbl_odoo_marketplace.group_marketplace_user'))]"/>
+    </record>
+
+    <!--  Marketplace Customer Queries  -->
+    <record id="mp_seller_customer_query_personal_rule" model="ir.rule">
+        <field name="name">Customer Query</field>
+        <field ref="model_marketplace_customer_query" name="model_id"/>
+        <field name="domain_force">[('seller_uid','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('wbl_odoo_marketplace.group_marketplace_seller'))]"/>
+    </record>
+    <record id="mp_seller_customer_query_see_all" model="ir.rule">
+        <field name="name">All Customer Query</field>
+        <field ref="model_marketplace_customer_query" name="model_id"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('wbl_odoo_marketplace.group_marketplace_user'))]"/>
+    </record>
+
+
+
+    <record id="access_account_move_seller" model="ir.model.access">
+        <field name="name">Seller Invoice Access</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="group_id" ref="wbl_odoo_marketplace.group_marketplace_seller"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
 </odoo>
