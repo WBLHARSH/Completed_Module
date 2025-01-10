@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  # Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)  -->
+<!--  # Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.  -->
+
+<templates>
+    <!--  Multicurrency Button  -->
+    <t t-name="posMultiCurrencyButton" t-inherit="point_of_sale.PaymentScreenButtons" t-inherit-mode="extension">
+        <xpath expr="//div[@class = 'd-flex flex-column flex-sm-row gap-2 w-100']" position="before">
+            <div class="gap-1 gap-lg-2"
+                 t-att-class="{ 'd-grid p-1 gap-1 overflow-y-auto rounded-3 bg-300': ui.isSmall, 'd-flex flex-column gap-lg-2': !ui.isSmall }">
+                <div class="button btn btn-light btn-lg lh-lg flex-fill" id="multi_currency_popup_button">
+                    <div class="payment-method-display d-flex align-items-center gap-2 text-wrap text-start lh-sm"
+                         t-on-click.stop="_click_currency_popup">
+                        <span class="payment-name">Multi Currency</span>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </t>
+
+    <!--  Currency Popup  -->
+    <t t-name="wbl_pos_multi_currency.MultiCurrencyPopupNew">
+        <Dialog title.translate="Multi Currency">
+            <div class="section">
+                <div class="d-flex flex-column gap-3">
+                    <!-- Select Currency -->
+                    <div class="form-group">
+                        <label for="select_currency" class="form-label">Select Currency</label>
+                        <select id="select_currency" class="form-control" t-on-change="onCurrencyChange">
+                            <option value="">Choose Your Currency...</option>
+                            <option t-foreach="currencyOptions" t-as="option" t-att-value="option.value"
+                                    t-key="option.value">
+                                <t t-esc="option.label"/>
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Current Rate -->
+                    <div class="form-group">
+                        <label for="current_rate" class="form-label">Current Rate</label>
+                        <input
+                                type="text"
+                                id="current_rate"
+                                class="form-control"
+                                readonly="readonly"
+                                t-att-value="state.currentRate"
+                        />
+                    </div>
+
+                    <!-- Amount to be Paid -->
+                    <div class="form-group">
+                        <label for="amount_to_be_paid" class="form-label">Amount to be Paid</label>
+                        <input
+                                type="text"
+                                id="amount_to_be_paid"
+                                class="form-control"
+                                readonly="readonly"
+                                t-att-value="state.convertedOrderAmount"
+                        />
+                    </div>
+
+                    <!-- Enter Amount -->
+                    <div class="form-group">
+                        <label for="enter_amount" class="form-label">Enter Amount</label>
+                        <input
+                                type="number"
+                                id="enter_amount"
+                                class="form-control"
+                                placeholder="Enter amount"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <t t-set-slot="footer">
+                <button class="btn btn-primary btn-lg me-2" t-on-click="props.close">Cancel</button>
+                <button class="btn btn-secondary btn-lg" t-on-click="props.addPaymentLine">Add</button>
+            </t>
+
+        </Dialog>
+    </t>
+
+    <!--  Payment Line  -->
+    <t t-name="posMultiCurrencyAmountSymbol" t-inherit="point_of_sale.PaymentScreenPaymentLines"
+       t-inherit-mode="extension">
+        <xpath expr="//t[@t-if='line.isSelected()']//span[hasclass('payment-name')]" position="after">
+            <t t-if="line.isSelected()"> <!-- Add a t-if here to ensure logic flow -->
+                <div class="payment-currency"
+                     style="margin-left: 10px;margin-right: 10px;padding: 1rem;">
+                    <t t-if="line.converted_currency">
+                        (
+                        <t t-esc="line.converted_currency.amount"/>
+                        <t t-esc="line.converted_currency.symbol"/>)
+                    </t>
+                </div>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-else='']//t[@t-esc='line.payment_method_id.name']" position="after">
+            <div class="payment-currency" style="margin-left: 10px;margin-right: 10px;padding: 1rem;">
+                <t t-if="line.converted_currency">
+                    (
+                    <t t-esc="line.converted_currency.amount"/>
+                    <t t-esc="line.converted_currency.symbol"/>)
+                </t>
+            </div>
+        </xpath>
+
+    </t>
+
+    <!--  Order Receipt  -->
+    <t t-name="posMultiCurrencyOrderReceipt" t-inherit="point_of_sale.OrderReceipt"
+       t-inherit-mode="extension">
+        <xpath expr="//t[@t-esc='line.name']" position="after">
+            <t t-if="line.paymentCurrency and line.multiCurrencyAmount">
+                <span style="margin-left: 30%;">(
+                    <t t-esc="line.multiCurrencyAmount"/>
+                    <t t-esc="line.paymentSymbol"/>
+                    )
+                </span>
+            </t>
+        </xpath>
+    </t>
+
+</templates>
+
+
+
+
+
