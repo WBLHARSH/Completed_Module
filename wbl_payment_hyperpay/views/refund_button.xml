@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <record id="view_refund_button" model="ir.ui.view">
+        <field name="name">account.payment.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_draft']" position="after">
+                <field name="hypepay_payment_type" invisible="1"/>
+                <button name="action_open_refund_wizard"
+                        invisible="hypepay_payment_type != 'DB'" string="REFUND"
+                        type="object"
+                        class="oe_stat_button" icon="fa-undo"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

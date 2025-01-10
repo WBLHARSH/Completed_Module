@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo noupdate="1">
+
+    <record id="payment_method_hyperpay" model="payment.method">
+        <field name="name">HyperPay (VISA/Master Card/Amex)</field>
+        <field name="code">hyperpay</field>
+        <field name="sequence">4</field>
+         <field name="image" type="base64" file="wbl_payment_hyperpay/static/description/logo.png"/>
+        <field name="support_tokenization">False</field>
+        <field name="support_express_checkout">False</field>
+        <field name="support_refund"/>
+        <field name="supported_currency_ids"
+               eval="[Command.set([
+                         ref('base.EUR'),ref('base.USD'),ref('base.SAR'),
+                     ])]"
+        />
+    </record>
+
+    <record id="payment_method_hyperpay_mada" model="payment.method">
+        <field name="name">HyperPay MADA</field>
+        <field name="code">mada</field>
+        <field name="sequence">5</field>
+         <field name="image" type="base64" file="wbl_payment_hyperpay/static/description/logo.png"/>
+        <field name="support_tokenization">False</field>
+        <field name="support_express_checkout">False</field>
+        <field name="support_refund"/>
+        <field name="supported_currency_ids"
+               eval="[Command.set([
+                         ref('base.SAR'),
+                     ])]"
+        />
+    </record>
+
+</odoo>
+
+
+

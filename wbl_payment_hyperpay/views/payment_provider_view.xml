@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--# Author      : Weblytic Labs Pvt. Ltd. (<https://store.weblyticlabs.com/>)-->
+<!--# Copyright(c): 2023-Present Weblytic Labs Pvt. Ltd.-->
+<odoo>
+    <record id="payment_provider_form" model="ir.ui.view">
+        <field name="name">Hyper Payment Gateway Form</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <group name="provider_credentials" position="inside">
+                <group invisible="code != 'hyperpay'">
+                    <field name="hyperpay_merchant_id" string="Entity ID"/>
+                    <field name="hyperpay_merchant_id_mada" string="Entity ID (MADA)"/>
+                    <field name="hyperpay_authorization_bearer" string="Authorization Bearer"
+                           required="code == 'hyperpay' and state != 'disabled'" password="True"/>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
+
+
+

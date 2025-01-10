@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_refund_amount_wizard,refund.amount.wizard,model_refund_amount_wizard,base.group_user,1,1,1,1
+access_payment_provider_public_public,payment.provider public,model_payment_provider,base.group_public,1,1,1,1
+access_payment_provider_public_portal,payment.provider public,model_payment_provider,base.group_portal,1,1,1,1
+access_payment_provider_public_employee,payment.provider public,model_payment_provider,base.group_user,1,1,1,1
